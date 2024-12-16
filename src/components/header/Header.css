@@ -48,6 +48,7 @@
   text-transform: capitalize;
   color: var(--first-color);
   transition: .3s linear;
+  cursor: pointer;
 }
 
 .nav-link.active,
