@@ -10,8 +10,8 @@ const Nav = ({isMenuOpen}) => {
           <Link 
             to={item}
             key={index}
-            className="nav-link"
-          >{item}</Link>
+            className="nav-link">{item}
+          </Link>
         ))}
       </div>
       
