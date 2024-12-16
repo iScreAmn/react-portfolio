@@ -9,15 +9,12 @@ function App() {
       <main>
           <Home/>
           <About/>
+          <Skills/>
+          <Services/>
+          <Portfolio/>
           <Clients/>
           <Contacts/>
           <Features/>
-          <Portfolio/>
-          <Services/>
-          <Skills/>
-          <div className="container">
-            <h1>React Portfolio</h1>
-          </div>
       </main>
       <Footer/>
     </>
