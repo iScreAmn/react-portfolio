@@ -1,0 +1,67 @@
+.about__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+   overflow-x: hidden; /*  Убирает резкий скачок блоков в AOS  */
+}
+
+.about-img {
+  max-width: 500px;
+  width: 100%;
+}
+
+.about-img img {
+  border-radius: 10px;
+}
+
+.about-info {
+  max-width: 600px;
+  width: 100%;
+}
+
+.description h3 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.description h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.description h4 span {
+  color: var(--second-color);
+}
+
+.description p {
+  color: var(--third-color);
+  font-size: var(--normal-font-size);
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--liner-color);
+}
+
+.professional-list {
+  display: flex;
+  column-gap: 30px;
+}
+
+.professional-list .list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 15px;
+  margin-bottom: 20px;
+}
+
+.list-item .number {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.list-item .text {
+  color: var(--third-color);
+  font-size: var(--small-font-size);
+}
