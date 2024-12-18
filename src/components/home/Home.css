@@ -61,6 +61,12 @@
   background: var(--hover-color);
 }
 
+.inner-info-link svg {
+  vertical-align: middle;
+  margin-left: 4px;
+  font-size: 17px;
+}
+
 .home-img img {
   width: 90%;
 }
