@@ -1,0 +1,26 @@
+.inner-title{
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(to top, transparent 0%, var(--first-color) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: .1;
+}
+
+.inner-subtitle {
+  position: relative;
+  font-size: 25px;
+  font-weight: 700;
+  transform: translateY(-55px);
+}
+
+.inner-subtitle::before {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 5px;
+  right: 0;
+  bottom: 0;
+  background: var(--second-color);
+}
