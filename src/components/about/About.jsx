@@ -1,12 +1,12 @@
 import { aboutImg } from "../../assets/images"
+import SectionTitle from "../section-title/SectionTitle"
 import "./About.css"
 
 const About = () => {
   return (
     <section className="about section" id="about">
         <div className="container flex-center">
-            <h2 className="inner-title">About me</h2>
-            <h3 className="inner-subtitle">About me</h3>
+            <SectionTitle title="About me" subtitle="About me"/>
             <div className="about__wrapper">
                 <div className="about-img">
                     <img src={aboutImg} alt="about"/>
