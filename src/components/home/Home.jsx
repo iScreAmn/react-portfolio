@@ -3,6 +3,7 @@ import { mainImg } from "../../assets/images"
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
 
 
@@ -27,7 +28,7 @@ const Home = () => {
                 <p>I create stunning websites for your business, Highly experienced in web design and development.</p>
                 <a href="#" className="home-info-link inner-info-link">
                     Contact me
-                    <i className="fa-regular fa-circle-right"></i>
+                    <FaRegArrowAltCircleRight />
                 </a>
             </div>
             <div className="home-img">
