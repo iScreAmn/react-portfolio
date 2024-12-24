@@ -1,4 +1,4 @@
-import { services } from "../../data/services"
+import services from "../../data/services"
 import ServiceItem from "./ServiceItem"
 import SectionTitle from "../section-title/SectionTitle"
 import "./Services.css"
