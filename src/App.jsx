@@ -1,4 +1,4 @@
-import { Header, Footer, Home, About, SkillsInfo, Services, Clients, Contacts, Features, Portfolio, GetInTouch } from "./components/index"
+import { Header, Footer, Home, About, SkillsInfo, Services, Contacts, Features, Portfolio, GetInTouch, OurClients } from "./components/index"
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
           <Services/>
           <Portfolio/>
           <GetInTouch/>
-          <Clients/>
+          <OurClients/>
           <Contacts/>
           <Features/>
       </main>
