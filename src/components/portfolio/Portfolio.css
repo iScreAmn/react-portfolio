@@ -36,7 +36,7 @@
 
 .portfolio-img-card .inf {
   position: absolute;
-  z-index: 10;
+  z-index: 5;
   bottom: 0;
   left: 0;
   margin: 20px;
@@ -90,10 +90,6 @@
   transition: .3s linear;
 }
 
-.portfolio-modal.active .portfolio-modal-body {
-  transform: translateY(0);
-}
-
 .portfolio-modal-body {
   position: relative;
   background: var(--modal-bg-color);
@@ -103,7 +99,20 @@
   border-radius: 10px;
   box-shadow: var(--box-shadow);
   transition: .5s linear;
-  transform: translateY(-50px);
+  
+}
+
+.portfolio-modal.active .portfolio-modal-body {
+  animation: slideIn 0.9s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100px)
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .portfolio-modal-body h3 {
