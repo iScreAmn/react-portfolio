@@ -3,6 +3,7 @@ import { infoLinks, followLinks } from "../../data/footerData";
 import FooterLinkGroup from "./FooterLinkGroup";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear()
   return (
     <footer className="footer">
       <div className="footer-wrapper container">
@@ -17,7 +18,7 @@ const Footer = () => {
         
       </div>
       <p className="footer-copyright">
-        © <span className="year">2024</span> by Yandex Practicum, All rights
+        © <span className="year">{currentYear}</span> by Yandex Practicum, All rights
         reserved.
       </p>
     </footer>
