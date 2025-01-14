@@ -8,7 +8,6 @@ export {default as Portfolio} from "./portfolio/Portfolio"
 export {default as GetInTouch} from "./getInTouch/GetInTouch"
 export {default as OurClients} from "./ourClients/OurClients"
 export {default as Contacts} from "./contacts/Contacts"
-export {default as Features} from "./features/Features"
 export {default as Footer} from "./footer/Footer"
 
 
