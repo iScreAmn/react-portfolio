@@ -1,4 +1,4 @@
-import { Header, Footer, Home, About, SkillsInfo, Services, Contacts, Portfolio, GetInTouch, OurClients, ScrollToTop } from "./components/index"
+import { Header, Footer, Home, About, SkillsInfo, Services, Contacts, Portfolio, GetInTouch, OurClients, ScrollToTop, ThemeToggle } from "./components/index"
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
       </main>
       <Footer/>
       <ScrollToTop/>
+      <ThemeToggle/>
     </>
   )
 }
