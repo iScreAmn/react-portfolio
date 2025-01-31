@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Nav from "../nav/nav"
 import "./Header.css"
 import { TbMenu2 } from "react-icons/tb";
 import { TbMenu3 } from "react-icons/tb";
 import {RemoveScroll} from 'react-remove-scroll';
+import Nav from "../nav/Nav";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
