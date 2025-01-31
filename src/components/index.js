@@ -1,5 +1,5 @@
 export {default as Header} from "./header/Header"
-export {default as Nav} from "./nav/nav"
+export {default as Nav} from "./nav/Nav"
 export {default as Home} from "./home/Home"
 export {default as About} from "./about/About"
 export {default as SkillsInfo} from "./skills/SkillsInfo"
