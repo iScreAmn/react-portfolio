@@ -1,12 +1,31 @@
+import { motion } from "motion/react";
+import { slideInVariants } from "../../utils/animation";
 import workExperience from "../../data/workExperience";
 
 const WorkExperience = () => {
   return (
     <div className="education work-exp">
-      <h3 className="work-exp-title">Work & Experience</h3>
+      <motion.h3
+        className="work-exp-title"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        custom={2}
+        variants={slideInVariants("top", 0.7, 50, true)}
+      >
+        Work & Experience
+      </motion.h3>
       <div className="skills-info">
         {workExperience.map((item, index) => (
-          <div className="expirience-card" key={index}>
+          <motion.div
+            className="expirience-card"
+            key={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            custom={index}
+            variants={slideInVariants("top", 0.7, 50, true)}
+          >
             <div className="upper">
               <h3>{item.title}</h3>
               <h5>{item.employmentType}</h5>
@@ -15,7 +34,7 @@ const WorkExperience = () => {
             </div>
             <h4 className="label">{item.company}</h4>
             <p>{item.description}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
