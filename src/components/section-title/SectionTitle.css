@@ -12,7 +12,7 @@
   position: relative;
   font-size: 25px;
   font-weight: 700;
-  transform: translateY(-55px);
+  top: -55px;
 }
 
 .inner-subtitle::before {
