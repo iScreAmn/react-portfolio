@@ -1,22 +1,53 @@
 import { FaPaperPlane } from "react-icons/fa6";
+import { motion } from "motion/react";
+import { slideInVariants } from "../../utils/animation";
 
 const ContactsForm = () => {
   return (
     <form className="contact-form">
-      <div className="first-row">
+      <motion.div
+        className="first-row"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        custom={1}
+        variants={slideInVariants("top", 0.7, 50, true)}
+      >
         <input placeholder="Name" type="text" />
-      </div>
-      <div className="second-row">
+      </motion.div>
+      <motion.div
+        className="second-row"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        custom={2}
+        variants={slideInVariants("top", 0.7, 50, true)}
+      >
         <input placeholder="Email" type="email" />
         <input placeholder="Subject" type="text" />
-      </div>
+      </motion.div>
       <div className="third-row">
-        <textarea placeholder="Message"></textarea>
+        <motion.textarea
+          placeholder="Message"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          custom={3}
+          variants={slideInVariants("top", 0.7, 50, true)}
+        ></motion.textarea>
       </div>
-      <button className="contact-btn inner-info-link" type="submit">
+      <motion.button
+        className="contact-btn inner-info-link"
+        type="submit"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        custom={4}
+        variants={slideInVariants("top", 0.7, 50, true)}
+      >
         Send Message
         <FaPaperPlane />
-      </button>
+      </motion.button>
     </form>
   );
 };
