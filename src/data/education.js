@@ -1,18 +1,18 @@
 const education = [
   {
-    year: "2020-2021",
-    degree: "Ph.D in Horriblensess",
-    institution: "Harvard University, Cambridge, MA",
+    year: "2017-2018",
+    degree: "Network & System Engineer",
+    institution: "Pulsar IT Academy",
   },
   {
-    year: "2018-2019",
-    degree: "Computer Science",
-    institution: "Imperialize Technical Institute",
+    year: "2019-2020",
+    degree: "Web Development",
+    institution: "Information Technologies Institute",
   },
   {
-    year: "2016-2018",
-    degree: "Graphic Designer",
-    institution: "Web Graphy, Los Angeles, CA",
+    year: "2023-2024",
+    degree: "Frontend Development",
+    institution: "Yandex Practicum Web Academy",
   },
 ]
 
