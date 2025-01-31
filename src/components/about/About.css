@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   gap: 40px;
-   overflow-x: hidden; /*  Убирает резкий скачок блоков в AOS  */
 }
 
 .about-img {
