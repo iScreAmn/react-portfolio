@@ -10,6 +10,17 @@ import client1 from "./client1.webp"
 import client2 from "./client2.webp"
 import client3 from "./client3.webp"
 
+
+// Portfolio Images
+import modalFirst from "./portfolio/modal-main-1.webp"
+import modalSecond from "./portfolio/modal-main-2.webp"
+import modalThird from "./portfolio/modal-main-3.webp"
+
+import modalInnerFirst from "./portfolio/modal-inner-1.webp"
+import modalInnerSecond from "./portfolio/modal-inner-2.webp"
+import modalInnerThird from "./portfolio/modal-inner-3.webp"
+
+
 export {
   aboutImg,
   portfolio1,
@@ -21,4 +32,10 @@ export {
   client1,
   client2,
   client3,
+  modalFirst,
+  modalSecond,
+  modalThird,
+  modalInnerFirst,
+  modalInnerSecond,
+  modalInnerThird,
 }
