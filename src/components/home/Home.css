@@ -109,13 +109,14 @@
 }
 
 @media (max-width: 980px) {
+
   .home {
-    padding: 50px;
+    padding: 30px;
   }
 
   .home__wrapper {
     flex-direction: column-reverse;
-    row-gap: 50px;
+    row-gap: 30px;
   }
 
   .home-info {
