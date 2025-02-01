@@ -31,7 +31,7 @@ const Header = () => {
       <div className="container">
         <div className="header__wrapper">
           <a href="#" className="logo">DJ</a>
-          <RemoveScroll enabled={isMenuOpen}>
+          <RemoveScroll enabled={isMenuOpen} className="remove-scroll-wrapper">
             <Nav isMenuOpen={isMenuOpen} handleMenuClick={handleMenuClick} />
           </RemoveScroll>
           <div className="nav-menu-btn" onClick={toggleMenu}>
