@@ -1,5 +1,6 @@
 import "./Home.css";
-import { mainImg } from "../../assets/images";
+// import lightImg from "/src/assets/images/main-img/dj-bg-transparent-2.png";
+
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -19,7 +20,11 @@ const icons = [
     href: "https://www.instagram.com/d.jmukhadze/",
     icon: <FaInstagram />,
   },
-  { id: 3, href: "https://github.com/iScreAmn/", icon: <FaGithub /> },
+  { 
+    id: 3, 
+    href: "https://github.com/iScreAmn/", 
+    icon: <FaGithub /> 
+  },
 ];
 
 const Home = () => {
@@ -84,6 +89,7 @@ const Home = () => {
             <FaRegArrowAltCircleRight />
           </motion.a>
         </div>
+        <div className="circle"></div>
         <motion.div
           className="home-img"
           initial="hidden"
@@ -91,7 +97,7 @@ const Home = () => {
           viewport={{ once: true, amount: 0.5 }}
           variants={slideInVariants("right", 0.9, 100, true)}
         >
-          <img src={mainImg} alt="Profile Photo" />
+          {/* <img src={lightImg} alt="Profile Photo" /> */}
         </motion.div>
       </div>
       <a href="#about" className="scroll-down">
