@@ -115,6 +115,7 @@
 
   .home__wrapper {
     flex-direction: column-reverse;
+    row-gap: 50px;
   }
 
   .home-info {
@@ -126,7 +127,11 @@
   }
 
   .home-info h1 {
-    font-size: 45px;
+    font-size: 35px;
+  }
+
+  .home-info p {
+    font-size: 15px;
   }
 
   .media-icons {
@@ -134,9 +139,14 @@
     gap: 50px;
   }
 
+  .inner-info-link {
+    padding: 15px 20px;
+    font-size: 13px;
+  }
+
   .circle {
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
   }
 
   .scroll-down {
