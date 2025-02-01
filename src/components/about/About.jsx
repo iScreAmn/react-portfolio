@@ -78,7 +78,7 @@ const About = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
             >
-              Download
+              Download CV
               <i className="fa-solid fa-download"></i>
             </motion.a>
           </div>

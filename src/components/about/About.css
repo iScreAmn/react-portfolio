@@ -64,3 +64,34 @@
   color: var(--third-color);
   font-size: var(--small-font-size);
 }
+
+@media (max-width: 393px) {
+
+  .about__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .description h3 {
+    font-size: 22px;
+  }
+
+  .description h4 {
+    font-size: 15px;
+  }
+
+  .description p {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .professional-list {
+    max-width: 200px;
+    flex-direction: column;
+  }
+
+  .professional-list .list-item {
+    justify-content: unset;
+  }
+}
