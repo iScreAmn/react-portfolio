@@ -1,4 +1,3 @@
-import mainImg from "./main-img-2.webp"
 import aboutImg from "./about-img-2.webp"
 import portfolio1 from "./portfolio-1.webp"
 import portfolio2 from "./portfolio-2.webp"
@@ -12,7 +11,6 @@ import client2 from "./client2.webp"
 import client3 from "./client3.webp"
 
 export {
-  mainImg,
   aboutImg,
   portfolio1,
   portfolio2,
