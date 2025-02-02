@@ -77,13 +77,46 @@
 }
 
 .education .bar {
-  background: var(--card-bg-color);
+  
+
+  background-color: var(--card-bg-color);
   box-shadow: var(--box-shadow);
   margin-top: 15px;
   padding: 18px;
   border-radius: 6px;
   transition: .3s linear;
   border-bottom: 3px solid var(--second-color);
+}
+
+.bar:nth-child(1) {
+  background-image: var(--skills-logo-html);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(2) {
+  background-image: var(--skills-logo-css);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(3) {
+  background-image: var(--skills-logo-js);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(4) {
+  background-image: var(--skills-logo-react);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(5) {
+  background-image: var(--skills-logo-ts);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
 }
 
 .education .info {
