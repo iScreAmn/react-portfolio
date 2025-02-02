@@ -4,7 +4,7 @@ import workExperience from "../../data/workExperience";
 
 const WorkExperience = () => {
   return (
-    <div className="education work-exp">
+    <div className="education work-exp none">
       <motion.h3
         className="work-exp-title"
         initial="hidden"
