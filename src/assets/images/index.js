@@ -15,6 +15,10 @@ import client3 from "./client3.webp"
 import modalFirst from "./portfolio/modal-main-1.webp"
 import modalSecond from "./portfolio/modal-main-2.webp"
 import modalThird from "./portfolio/modal-main-3.webp"
+import modalFourth from "./portfolio/modal-main-4.webp"
+import modalFifth from "./portfolio/modal-main-5.webp"
+import modalSixth from "./portfolio/modal-main-6.webp"
+
 
 import modalInnerFirst from "./portfolio/modal-inner-1.webp"
 import modalInnerSecond from "./portfolio/modal-inner-2.webp"
@@ -35,6 +39,9 @@ export {
   modalFirst,
   modalSecond,
   modalThird,
+  modalFourth,
+  modalFifth,
+  modalSixth,
   modalInnerFirst,
   modalInnerSecond,
   modalInnerThird,
