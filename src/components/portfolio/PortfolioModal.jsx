@@ -39,7 +39,8 @@ const PortfolioModal = ({ item, isModalOpen, closeModal }) => {
         <h3>{item.title}</h3> {/* Заголовок */}
         <img src={item.imgSrc} alt={item.title} /> {/* Изображение */}
         <p>{item.description}</p> {/* Описание */}
-        <a href="https://iscreamn.github.io/creative-paralax/" className="modal-btn">
+        <a href={item.href} target="_blank" className="modal-btn" >
+        
           Explore
         </a> {/* Кнопка */}
       </div>
