@@ -70,7 +70,7 @@ const About = () => {
               ))}
             </ul>
             <motion.a
-              href=""
+              href="#!"
               className="inner-info-link"
               custom={3}
               variants={slideInVariants("bottom", 0.7, 60, true)}
