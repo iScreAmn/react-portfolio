@@ -19,10 +19,17 @@ import modalFourth from "./portfolio/modal-main-4.webp"
 import modalFifth from "./portfolio/modal-main-5.webp"
 import modalSixth from "./portfolio/modal-main-6.webp"
 
-
 import modalInnerFirst from "./portfolio/modal-inner-1.webp"
 import modalInnerSecond from "./portfolio/modal-inner-2.webp"
 import modalInnerThird from "./portfolio/modal-inner-3.webp"
+
+// Skills Logos
+
+import skillLogo1 from "./skills/css.webp"
+import skillLogo2 from "./skills/html.webp"
+import skillLogo3 from "./skills/js.webp"
+import skillLogo4 from "./skills/react.webp"
+import skillLogo5 from "./skills/ts.webp"
 
 
 export {
@@ -45,4 +52,9 @@ export {
   modalInnerFirst,
   modalInnerSecond,
   modalInnerThird,
+  skillLogo1,
+  skillLogo2,
+  skillLogo3,
+  skillLogo4,
+  skillLogo5,
 }
