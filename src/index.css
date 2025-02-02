@@ -25,6 +25,13 @@
     --liner-color: #d7d7d7;
 
     --profile-img: url("./assets/images/main-img/dj-bg-transparent-2.webp");
+    
+    /*=======Skills Logos=======*/
+    --skills-logo-html: url("./assets/images/skills/html.webp");
+    --skills-logo-css: url("./assets/images/skills/css.webp");
+    --skills-logo-js: url("./assets/images/skills/js.webp");
+    --skills-logo-react: url("./assets/images/skills/react.webp");
+    --skills-logo-ts: url("./assets/images/skills/ts.webp");
 
     /*=======Color Filter=======*/
     --color-filter: invert(1);
@@ -40,6 +47,8 @@
     --scroll-bar-color: #c5cadf;
     --scroll-thumb-color: #70768a;
     --scroll-thumb-hover-color: #454f6b;
+
+    --form-color: #e19301;
 }
 
 .dark-theme {
@@ -69,6 +78,8 @@
   --scroll-bar-color: #c1ceff;
   --scroll-thumb-color: #282f4e;
   --scroll-thumb-hover-color: #454f6b;
+
+  --form-color: #1653e1;
 
 }
 
