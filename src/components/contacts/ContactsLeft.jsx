@@ -19,7 +19,7 @@ const ContactsLeft = () => {
             key={item.id}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: false, amount: 0.5 }}
             custom={index}
             variants={slideInVariants("top", 0.7, 50, true)}
           >

@@ -15,7 +15,7 @@ const WorkExperience = () => {
       >
         Work & Experience
       </motion.h3>
-      <div className="skills-info">
+      <div className="expirience-info">
         {workExperience.map((item, index) => (
           <motion.div
             className="expirience-card"

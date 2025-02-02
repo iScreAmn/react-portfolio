@@ -12,7 +12,7 @@ const SkillsInfo = () => {
   return (
     <section className="skills section" id="skills">
       <div className="container flex-center">
-        <SectionTitle title="SKills" subtitle="Skills" />
+        <SectionTitle title="Skills" subtitle="Skills" />
         <div className="inner__content">
           <motion.div
             className="skills-description"

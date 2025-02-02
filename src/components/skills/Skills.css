@@ -1,11 +1,15 @@
 .skills .inner__content {
   padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skills-description {
   max-width: 700px;
   width: 100%;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 .skills-description h3 {
@@ -22,14 +26,23 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.expirience-info {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 21px;
   margin-bottom: 20px;
 }
 
 .education,
-.skills-info > div {
+.skills-info>div {
   min-width: 390px;
-  width: 32%;
+  /* width: 32%; */
 }
 
 .education .label {
@@ -42,7 +55,7 @@
 }
 
 .education-list .item {
-  padding: 20px;
+  padding: 27.3px;
   margin-top: 15px;
   border-radius: 6px;
   background: var(--card-bg-color);
@@ -64,12 +77,46 @@
 }
 
 .education .bar {
-  background: var(--card-bg-color);
+  
+
+  background-color: var(--card-bg-color);
   box-shadow: var(--box-shadow);
   margin-top: 15px;
   padding: 18px;
   border-radius: 6px;
   transition: .3s linear;
+  border-bottom: 3px solid var(--second-color);
+}
+
+.bar:nth-child(1) {
+  background-image: var(--skills-logo-html);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(2) {
+  background-image: var(--skills-logo-css);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(3) {
+  background-image: var(--skills-logo-js);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(4) {
+  background-image: var(--skills-logo-react);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
+}
+.bar:nth-child(5) {
+  background-image: var(--skills-logo-ts);
+  background-size: 40%;
+  background-position: calc(0% + 270px);
+  background-repeat: no-repeat;
 }
 
 .education .info {
@@ -85,15 +132,15 @@
   font-weight: 500;
 }
 
-.bar .line {
+/* .bar .line {
   position: relative;
   width: 100%;
   height: 7px;
   border-radius: 2px;
   background: #c5cadf;
-}
+} */
 
-.bar .line::before {
+/* .bar .line::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -101,7 +148,7 @@
   left: 0;
   background: var(--second-color);
   border-radius: 2px;
-}
+} */
 
 .bar .html::before {
   width: 95%;
@@ -132,6 +179,7 @@
 .work-exp .work-exp-title {
   font-size: 30px;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 .work-exp .expirience-card {
@@ -158,7 +206,7 @@
 .expirience-card .hr {
   width: 100%;
   height: 2px;
-  margin: 10px 0 22px; 
+  margin: 10px 0 22px;
   background: var(--liner-color);
 }
 
@@ -171,4 +219,12 @@
 .bar:hover {
   transform: scale(1.03);
   cursor: pointer;
+}
+
+@media (max-width: 393px) {
+
+  .inner__content {
+    width: 100%;
+  }
+
 }

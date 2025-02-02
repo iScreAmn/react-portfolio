@@ -59,8 +59,6 @@
   color: var(--first-color);
 }
 
-.contact-form {}
-
 .contact-form input,
 .contact-form textarea {
   border: 1px solid transparent;
@@ -83,7 +81,7 @@
 .contact-form textarea:focus,
 .contact-form input:active,
 .contact-form input:active {
-  border: 1px solid #614fd0;
+  border: 1px solid var(--form-color);
 }
 
 .first-row input {

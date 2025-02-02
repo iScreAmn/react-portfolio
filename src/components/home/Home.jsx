@@ -4,7 +4,7 @@ import "./Home.css";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { FaPaperPlane } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { motion } from "motion/react";
 import { iconVariants, slideInVariants } from "../../utils/animation";
@@ -77,7 +77,8 @@ const Home = () => {
             web design and development.
           </motion.p>
           <motion.a
-            href="#"
+            href="https://t.me/iscreamn"
+            target="_blank"
             className="home-info-link inner-info-link"
             initial="hidden"
             whileInView="visible"
@@ -86,7 +87,7 @@ const Home = () => {
             variants={slideInVariants("left", 0.9, 100, true)}
           >
             Contact me
-            <FaRegArrowAltCircleRight />
+            <FaPaperPlane />
           </motion.a>
         </div>
         <div className="circle"></div>
