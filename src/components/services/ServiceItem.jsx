@@ -37,7 +37,7 @@ const ServiceItem = ({ services }) => {
           </div>
           <ServiceModal
             item={item}
-            isActive={activeIndex === index}
+            isModalOpen={activeIndex === index}
             closeModal={closeModal}
           />
         </motion.li>
