@@ -12,6 +12,6 @@ export const profList = [
   {
     id: 3,
     number: "5+",
-    text: "Success Projects",
+    text: "PET Projects",
   },
 ];

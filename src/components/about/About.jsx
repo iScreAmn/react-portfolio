@@ -47,10 +47,7 @@ const About = () => {
                 custom={0}
                 variants={slideInVariants("left", 0.5, 50, true)}
               >
-                I design and develop services for customers specializing
-                creating stylish, modern websites, web services and online
-                stores. My passion is to design digital user experiences through
-                meaningful interactions. Check out my Portfolio
+                I build custom solutions for clients, focusing on crafting sleek, modern websites, web applications, and e-commerce platforms. I’m driven by a passion for creating engaging digital experiences through thoughtful and impactful design. Take a look at my portfolio
               </motion.p>
             </div>
             <ul className="professional-list">
@@ -71,7 +68,7 @@ const About = () => {
             </ul>
             <motion.a
               href="#!"
-              className="inner-info-link"
+              className="inner-info-link none"
               custom={3}
               variants={slideInVariants("bottom", 0.7, 60, true)}
               initial="hidden"
