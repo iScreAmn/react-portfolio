@@ -27,11 +27,11 @@ const portfolioData = [
   },
   {
     id: 4,
-    title: "Russian Travel",
-    category: "Yandex Practicum",
+    title: "Ukrainian Travel",
+    category: "",
     imgSrc: modalFourth,
-    href: "https://iscreamn.github.io/russian-travel/",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    href: "https://iscreamn.github.io/ukrainian-travel/",
+    description: "Explore Ukraine – your portal to stunning landscapes, ancient heritage, and vibrant traditions in Europe’s hidden gem. From the Carpathian peaks to the Black Sea’s golden shores, Ukraine welcomes explorers with endless adventures."
   },
   {
     id: 5,
@@ -43,11 +43,11 @@ const portfolioData = [
   },
   {
     id: 6,
-    title: "Web Larek",
-    category: "Yandex Practicum",
+    title: "Telegram Bot",
+    category: "LaFee Studio",
     imgSrc: modalSixth,
-    href: "#!",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    href: "https://t.me/laFee_remont_dizain_bot",
+    description: "This Telegram bot helps users of LaFee Studio to get personalized interior design solutions by answering a few simple questions. Built with GrammY framework, it provides an interactive questionnaire and visual inspiration for home renovation projects."
   },
 ]
 
