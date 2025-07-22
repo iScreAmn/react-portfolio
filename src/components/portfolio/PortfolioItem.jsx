@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
 import PortfolioModal from "./PortfolioModal";
 
-const PortfolioItem = ({ item, index }) => {
+const PortfolioItem = ({ item, index, isLoadMoreItem = false, isHiding = false }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -11,14 +11,18 @@ const PortfolioItem = ({ item, index }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  
+  const cardClassName = `portfolio-img-card${isLoadMoreItem ? ' load-more-item' : ''}${isHiding ? ' hide-item' : ''}`;
+  
   return (
     <motion.div
-      className="portfolio-img-card"
+      className={cardClassName}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
       custom={index}
       variants={slideInVariants("top", 0.7, 50, true)}
+      style={isLoadMoreItem ? { '--animation-order': index - 5 } : {}}
     >
       <div className="img-card" onClick={openModal}>
         <div className="overlay"></div>
@@ -28,13 +32,11 @@ const PortfolioItem = ({ item, index }) => {
         </div>
         <img src={item.imgSrc} alt={item.title} />
       </div>
-      {isModalOpen && (
-        <PortfolioModal
-          item={item}
-          isModalOpen={isModalOpen}
-          closeModal={closeModal}
-        />
-      )}
+      <PortfolioModal
+        item={item}
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+      />
     </motion.div>
   );
 };

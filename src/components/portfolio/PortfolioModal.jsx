@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { FaXmark } from "react-icons/fa6";
 
 const PortfolioModal = ({ item, isModalOpen, closeModal }) => {
@@ -38,20 +39,21 @@ const PortfolioModal = ({ item, isModalOpen, closeModal }) => {
 
   if (!isModalOpen) return null;
 
-  return (
+  return createPortal(
     <div className={`portfolio-modal ${isModalOpen ? "active" : ""}`}>
       <div className="portfolio-modal-overlay"></div>
 
       <div className="portfolio-modal-body" ref={modalRef}>
-        <FaXmark className="portfolio-close-btn" onClick={closeModal} />{" "}
+        <FaXmark className="portfolio-close-btn" onClick={closeModal} />
         <h3>{item.title}</h3>
         <img src={item.imgSrc} alt={item.title} />
         <p>{item.description}</p>
         <a href={item.href} target="_blank" className="modal-btn">
           Explore
-        </a>{" "}
+        </a>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
