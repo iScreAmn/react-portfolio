@@ -3,6 +3,7 @@ import { aboutImg } from "../../assets/images";
 import SectionTitle from "../section-title/SectionTitle";
 import { slideInVariants } from "../../utils/animation";
 import { profList } from "../../data/profList";
+import AnimatedNumber from "../AnimatedNumber/AnimatedNumber";
 import "./About.css";
 
 const About = () => {
@@ -61,7 +62,9 @@ const About = () => {
                   custom={index}
                   variants={slideInVariants("right", 0.6, 40, true)}
                 >
-                  <span className="number">{item.number}</span>
+                  <span className="number">
+                    <AnimatedNumber value={item.number} duration={2} delay={index * 0.2} />
+                  </span>
                   <span className="text">{item.text}</span>
                 </motion.li>
               ))}

@@ -1,0 +1,13 @@
+.animated-number {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--second-color);
+  font-size: 40px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 393px) {
+  .animated-number {
+    font-size: 32px;
+  }
+} 

@@ -56,8 +56,7 @@
 }
 
 .list-item .number {
-  font-size: 40px;
-  font-weight: 700;
+  /* Стили теперь в AnimatedNumber.css */
 }
 
 .list-item .text {
