@@ -9,7 +9,6 @@ export {default as GetInTouch} from "./getInTouch/GetInTouch"
 export {default as OurClients} from "./ourClients/OurClients"
 export {default as Contacts} from "./contacts/Contacts"
 export {default as Footer} from "./footer/Footer"
-export {default as ScrollToTop} from "./scrollToTop/ScrollToTop"
-export {default as ThemeToggle} from "./themeToggle/ThemeToggle"
+export {default as SidePanel} from "./SidePanel/SidePanel"
 
 
