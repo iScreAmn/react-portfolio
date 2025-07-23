@@ -45,12 +45,16 @@ const PortfolioModal = ({ item, isModalOpen, closeModal }) => {
 
       <div className="portfolio-modal-body" ref={modalRef}>
         <FaXmark className="portfolio-close-btn" onClick={closeModal} />
-        <h3>{item.title}</h3>
-        <img src={item.imgSrc} alt={item.title} />
-        <p>{item.description}</p>
-        <a href={item.href} target="_blank" className="modal-btn">
-          Explore
-        </a>
+        <div className="img-container">
+          <img src={item.imgSrc} alt={item.title} />
+        </div>
+        <div className="portfolio-content">
+          <h3 className="portfolio-title">{item.title}</h3>
+          <p className="portfolio-description">{item.description}</p>
+          <a className="modal-btn" href={item.href} target="_blank">
+            Explore
+          </a>
+        </div>
       </div>
     </div>,
     document.body

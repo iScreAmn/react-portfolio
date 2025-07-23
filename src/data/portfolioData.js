@@ -6,32 +6,32 @@ const portfolioData = [
     title: "AskChef",
     category: "MealPlanner App",
     imgSrc: portfolio1,
-    href: "https://t.me/laFee_remont_dizain_bot",
-    description: "This Telegram bot helps users of LaFee Studio to get personalized interior design solutions by answering a few simple questions. Built with GrammY framework, it provides an interactive questionnaire and visual inspiration for home renovation projects."
+    href: "https://askchef.vercel.app/",
+    description: "AskChef is a modern web app for planning a weekly menu, managing recipes, and automatically generating shopping lists. It includes an AI assistant for selecting recipes based on available ingredients."
   },
   {
     id: 2,
     title: "MartlMsajuleba",
     category: "LawFirm",
     imgSrc: portfolio2,
-    href: "https://t.me/laFee_remont_dizain_bot",
-    description: "This Telegram bot helps users of LaFee Studio to get personalized interior design solutions by answering a few simple questions. Built with GrammY framework, it provides an interactive questionnaire and visual inspiration for home renovation projects."
+    href: "https://martlmsajuleba.vercel.app/ka",
+    description: "A multi-page website for a Georgian law firm with support for three languages and a modern responsive design."
   },
   {
     id: 3,
     title: "Old Tbilisi Narikala",
     category: "Apartment Rental",
     imgSrc: portfolio3,
-    href: "https://t.me/laFee_remont_dizain_bot",
-    description: "This Telegram bot helps users of LaFee Studio to get personalized interior design solutions by answering a few simple questions. Built with GrammY framework, it provides an interactive questionnaire and visual inspiration for home renovation projects."
+    href: "https://iscreamn.github.io/apartment-otn/",
+    description: "This is a modern, responsive website designed to showcase and promote the charming apartments located in the heart of Tbilisi"
   },
   {
     id: 4,
     title: "Mesto Europe",
     category: "Yandex Practicum",
     imgSrc: portfolio4,
-    href: "#!",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    href: "https://mesto-europe.vercel.app/",
+    description: "An interactive social service application for uploading and storing your photos. Built with vanilla JavaScript and Webpack as part of the Yandex Practicum Web Development program."
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ const portfolioData = [
     category: "Paralax",
     imgSrc: portfolio5,
     href: "https://iscreamn.github.io/creative-paralax/",
-    description: "Добро пожаловать в Creative Space – уникальное цифровое пространство, где творчество встречается с технологиями"
+    description: "Welcome to Creative Space – a unique digital environment where creativity meets technology."
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ const portfolioData = [
     category: "",
     imgSrc: portfolio8,
     href: "https://iscreamn.github.io/burger-house-site/",
-    description: "Новый ресторан с современными бургерами которы снесут вам крышу"
+    description: "New restaurant with modern burgers that will blow your mind. On the website, you can easily choose your favorite burger and place an order in the currency convenient for you."
   },
   {
     id: 9,
