@@ -21,7 +21,7 @@ const PortfolioItem = ({ item, index, isLoadMoreItem = false, isHiding = false }
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
       custom={index}
-      variants={slideInVariants("top", 0.7, 50, true)}
+      variants={slideInVariants("top", 0.4, 50, true)}
       style={isLoadMoreItem ? { '--animation-order': index - 5 } : {}}
     >
       <div className="img-card" onClick={openModal}>
