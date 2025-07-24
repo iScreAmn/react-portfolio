@@ -96,8 +96,8 @@
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .side-panel {
-    top: 120px;
-    gap: 8px;
+    top: 30%;
+    gap: 50px;
   }
   
   .side-panel-btn {
@@ -109,8 +109,8 @@
 
 @media (max-width: 480px) {
   .side-panel {
-    top: 100px;
-    gap: 6px;
+    top: 30%;
+    gap: 55px;
   }
   
   .side-panel-btn {
