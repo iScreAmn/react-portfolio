@@ -4,15 +4,15 @@ const portfolioData = [
   {
     id: 1,
     title: "AskChef",
-    category: "MealPlanner App",
+    category: "Meal Planner App",
     imgSrc: portfolio1,
     href: "https://askchef.vercel.app/",
     description: "AskChef is a modern web app for planning a weekly menu, managing recipes, and automatically generating shopping lists. It includes an AI assistant for selecting recipes based on available ingredients."
   },
   {
     id: 2,
-    title: "MartlMsajuleba",
-    category: "LawFirm",
+    title: "LawFirm",
+    category: "Lawyer Bureau",
     imgSrc: portfolio2,
     href: "https://martlmsajuleba.vercel.app/ka",
     description: "A multi-page website for a Georgian law firm with support for three languages and a modern responsive design."

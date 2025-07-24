@@ -3,30 +3,32 @@ import "./Portfolio.css";
 import portfolioData from "../../data/portfolioData";
 import SectionTitle from "../section-title/SectionTitle";
 import PortfolioItem from "./PortfolioItem";
+import LoadingCircleSpinner from "../loadingCircle/LoadingCircle";
 
 const Portfolio = () => {
   const [visibleItems, setVisibleItems] = useState(6);
   const [isLoading, setIsLoading] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
+  const [showLoadingAnimation, setShowLoadingAnimation] = useState(false);
 
   const handleLoadMore = () => {
     setIsLoading(true);
-    // Имитация задержки для плавности
+    setShowLoadingAnimation(true);
+    
+    // Показываем анимацию загрузки на 1.5 секунды
     setTimeout(() => {
       setVisibleItems(portfolioData.length);
       setIsLoading(false);
-    }, 500);
+      setShowLoadingAnimation(false);
+    }, 4000);
   };
 
   const handleShowLess = () => {
     setIsLoading(true);
     setIsHiding(true);
-    // Имитация задержки для плавности
-    setTimeout(() => {
-      setVisibleItems(6);
-      setIsLoading(false);
-      setIsHiding(false);
-    }, 400);
+    setVisibleItems(6);
+    setIsLoading(false);
+    setIsHiding(false);
   };
 
   const visiblePortfolioData = portfolioData.slice(0, visibleItems);
@@ -44,13 +46,21 @@ const Portfolio = () => {
               <PortfolioItem 
                 key={item.id} 
                 item={item} 
-                index={index} 
+                index={index}
                 isLoadMoreItem={isLoadMoreItem}
                 isHiding={shouldHide}
               />
             );
           })}
         </div>
+        
+        {/* Анимация загрузки в пустом пространстве */}
+        {showLoadingAnimation && (
+          <div className="portfolio-loading-container">
+            <LoadingCircleSpinner />
+          </div>
+        )}
+        
         <div className="load-more-container">
           {hasMoreItems ? (
             <button 
@@ -60,7 +70,9 @@ const Portfolio = () => {
             >
               {isLoading ? "Loading..." : "Load More"}
             </button>
-          ) : visibleItems > 6 ? (
+          ) 
+          
+          : visibleItems > 6 ? (
             <button 
               className="load-more-btn show-less-btn" 
               onClick={handleShowLess}
