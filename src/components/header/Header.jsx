@@ -5,16 +5,8 @@ import { TbMenu3 } from "react-icons/tb";
 import {RemoveScroll} from 'react-remove-scroll';
 import Nav from "../nav/Nav";
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+const Header = ({ isMenuOpen, toggleMenu, handleMenuClick }) => {
   const [isSticky, setIsSticky] = useState(false)
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-  const handleMenuClick = () => {
-    setIsMenuOpen(false)
-  }
 
   const handleScroll = () => {
     setIsSticky(window.scrollY > 0)

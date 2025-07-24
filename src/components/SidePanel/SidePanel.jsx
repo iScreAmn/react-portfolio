@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FaArrowUp, FaSun, FaMoon } from "react-icons/fa";
 import "./SidePanel.css";
 
-const SidePanel = () => {
+const SidePanel = ({ isMenuOpen }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [theme, setTheme] = useState("light");
 
@@ -40,6 +40,11 @@ const SidePanel = () => {
     document.body.classList.toggle("dark-theme", newTheme === "dark");
     localStorage.setItem("saved-theme", newTheme);
   };
+
+  // Скрываем панель если открыто мобильное меню
+  if (isMenuOpen) {
+    return null;
+  }
 
   return (
     <div className={`side-panel ${isVisible ? "visible" : ""}`}>

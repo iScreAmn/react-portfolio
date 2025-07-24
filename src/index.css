@@ -10,6 +10,7 @@
     --old-second-color: #6a59d1;
     --old-third-color: #777;
 
+    --nav-link-color: #1653e1;
 
     /*=======Hover colors=======*/
     --hover-color: #e19301;
@@ -42,6 +43,7 @@
     /*=======Font size=======*/
     --small-font-size: 14px;
     --normal-font-size: 16px;
+    --nav-font-size: 20px;
 
     /*=======Scroll bar colors=======*/
     --scroll-bar-color: #c5cadf;
@@ -56,6 +58,8 @@
   --first-color: #fff;
   --second-color: #1653e1;
   --third-color: #a9afc3;
+
+  --nav-link-color: #e19301;
 
   /*=======Background colors=======*/
   --body-bg-color: #0e1b31;

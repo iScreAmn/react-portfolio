@@ -1,0 +1,96 @@
+/* Стили для мобильного навигационного меню */
+@media (max-width: 980px) {
+  .nav-link {
+    color: #FFF;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-family: inherit;
+    text-transform: capitalize;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  .nav-link:after {
+    content: attr(data-hover-name);
+    color: #000;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  .nav-link:before {
+    content: '';
+    display: block;
+    position: absolute;
+    transform-origin: right;
+    transform: scaleX(0);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #FFF;
+    transition: transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  .nav-link:hover:after,
+  .nav-link.active:after {
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+    transition-delay: 0.3s;
+  }
+
+  .nav-link:hover:before,
+  .nav-link.active:before {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: transparent;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+    transition-delay: 0.3s;
+  }
+
+  /* Эффект при клике */
+  .nav-link:active:before {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  .nav-link:active:after {
+    opacity: 1;
+    transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+    transition-delay: 0.1s;
+  }
+
+  /* Мгновенный сброс эффекта */
+  .nav-link.reset-effect:before {
+    transform: scaleX(0) !important;
+    transition: none !important;
+  }
+
+  .nav-link.reset-effect:after {
+    opacity: 0 !important;
+    transition: none !important;
+  }
+
+  .nav-link.reset-effect {
+    color: #FFF !important;
+    transition: none !important;
+  }
+}

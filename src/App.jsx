@@ -1,11 +1,20 @@
+import { useState } from "react";
 import { Header, Footer, Home, About, SkillsInfo, Services, Contacts, Portfolio, GetInTouch, OurClients, SidePanel } from "./components/index"
 
-
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleMenuClick = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <>
-    <Header/>
+    <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} handleMenuClick={handleMenuClick}/>
       <main>
           <Home/>
           <About/>
@@ -17,7 +26,7 @@ function App() {
           <Contacts/>
       </main>
       <Footer/>
-      <SidePanel/>
+      <SidePanel isMenuOpen={isMenuOpen}/>
     </>
   )
 }
