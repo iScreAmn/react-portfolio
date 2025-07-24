@@ -1,7 +1,7 @@
 import "./Home.css";
 // import lightImg from "/src/assets/images/main-img/dj-bg-transparent-2.png";
 
-import { FaFacebookF } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaPaperPlane } from "react-icons/fa";
@@ -12,8 +12,8 @@ import { iconVariants, slideInVariants } from "../../utils/animation";
 const icons = [
   {
     id: 1,
-    href: "https://www.facebook.com/jmukhadze.dimitri/",
-    icon: <FaFacebookF />,
+    href: "https://www.linkedin.com/in/dimitri-jmukhadze-2048b733a/",
+    icon: <FaLinkedinIn />,
   },
   {
     id: 2,

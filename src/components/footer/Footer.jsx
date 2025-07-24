@@ -1,9 +1,17 @@
 import "./Footer.css";
-import { infoLinks, followLinks } from "../../data/footerData";
+import { followLinks } from "../../data/footerData";
 import FooterLinkGroup from "./FooterLinkGroup";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { useState } from "react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
+  const [isHeartFilled, setIsHeartFilled] = useState(false);
+
+  const toggleHeart = () => {
+    setIsHeartFilled(!isHeartFilled);
+  };
+
   return (
     <footer className="footer">
       <div className="footer-wrapper container">
@@ -12,14 +20,14 @@ const Footer = () => {
           <p>Frontend Developer</p>
           <a href="#about">About me</a>
         </div>
-        <FooterLinkGroup title="More" links={infoLinks} isSocial={false}/>
-        <div className="hr"></div>
         <FooterLinkGroup title="Follow" links={followLinks} isSocial={true}/>
-        
       </div>
       <p className="footer-copyright">
-        © <span className="year">{currentYear}</span> by Yandex Practicum, All rights
-        reserved.
+        © <span className="year">{currentYear}</span> Made with{" "}
+        <span className="heart-icon" onClick={toggleHeart}>
+          {isHeartFilled ? <FaHeart /> : <FaRegHeart />}
+        </span>{" "}
+        by me
       </p>
     </footer>
   );
