@@ -8,9 +8,7 @@ export const infoLinks = [
 ];
 
 export const followLinks = [
-  {id: 1, href: "https://facebook.com", icon: FaLinkedinIn},
-  {id: 2, href: "https://instagram.com", icon: FaInstagram},
-  {id: 3, href: "https://github.com", icon: FaGithub},
+  {id: 1, href: "https://www.linkedin.com/in/dimitri-jmukhadze-2048b733a/", icon: FaLinkedinIn},
+  {id: 2, href: "https://www.instagram.com/d.jmukhadze/", icon: FaInstagram},
+  {id: 3, href: "https://github.com/iScreAmn/", icon: FaGithub},
 ]
-
-// export default {infoLinks, followLinks} 13-41
