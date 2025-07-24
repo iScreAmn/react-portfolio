@@ -7,10 +7,19 @@
 .about-img {
   max-width: 500px;
   width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .about-img img {
   border-radius: 10px;
+  transition: transform 0.5s ease;
+  width: 100%;
+  height: auto;
+}
+
+.about-img:hover img {
+  transform: scale(1.1);
 }
 
 .about-info {
@@ -68,6 +77,105 @@
   display: none;
 }
 
+/* Стили для кнопки CV */
+.cv-btn {
+  background: var(--second-color);
+  color: #fff;
+  font-size: var(--normal-font-size);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 20px 30px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.cv-btn:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cv-btn:active {
+  transform: translateY(0);
+}
+
+.cv-btn .download-icon {
+  font-size: 18px;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.1);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .about__wrapper {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .about-img {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .about-info {
+    max-width: 100%;
+  }
+
+  .description h3 {
+    font-size: 28px;
+  }
+
+  .description h4 {
+    font-size: 18px;
+  }
+
+  .description p {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .professional-list {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .professional-list .list-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .cv-btn {
+    margin: 25px auto 0;
+    display: inline-flex;
+  }
+}
+
 @media (max-width: 393px) {
 
   .about__wrapper {
@@ -96,5 +204,15 @@
 
   .professional-list .list-item {
     justify-content: unset;
+  }
+
+  .cv-btn {
+    font-size: 14px;
+    padding: 15px 20px;
+    gap: 8px;
+  }
+
+  .cv-btn .download-icon {
+    font-size: 16px;
   }
 }
