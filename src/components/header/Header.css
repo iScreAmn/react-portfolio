@@ -122,4 +122,9 @@
   .nav-menu li {
       text-align: center;
   }
+
+  .nav-link.active::after,
+  .nav-link:hover::after {
+    bottom: -2px;
+  }
 }

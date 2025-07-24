@@ -11,7 +11,13 @@ const Nav = ({isMenuOpen, handleMenuClick}) => {
             to={item}
             key={index}
             className="nav-link"
+            spy={true}
+            smooth={true}
+            offset={-80}
+            duration={0}
+            activeClass="active"
             onClick={handleMenuClick}
+            delay={0}
           >{item}
           </Link>
         ))}
