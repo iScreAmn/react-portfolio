@@ -3,6 +3,9 @@ import { followLinks } from "../../data/footerData";
 import FooterLinkGroup from "./FooterLinkGroup";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useState } from "react";
+import CircularText from "../circularText/CircularText";
+import SplashCursor from '../splashCursor/SplashCursor'
+
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,13 +17,15 @@ const Footer = () => {
 
   return (
     <footer className="footer">
+      <SplashCursor />
       <div className="footer-wrapper container">
-        <div className="about-group">
-          <h2>Dimitri</h2>
-          <p>Frontend Developer</p>
-          <a href="#about">About me</a>
-        </div>
-        <FooterLinkGroup title="Follow" links={followLinks} isSocial={true}/>
+        <CircularText
+          text="DIMITRI•FRONTEND•DEVELOPER•"
+          onHover="speedUp"
+          spinDuration={20}
+          className="custom-class"
+        />
+        <FooterLinkGroup title="Follow" links={followLinks} isSocial={true} />
       </div>
       <p className="footer-copyright">
         © <span className="year">{currentYear}</span> Made with{" "}

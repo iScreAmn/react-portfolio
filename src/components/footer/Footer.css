@@ -4,7 +4,18 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
-  padding: 60px 0 20px;
+  padding: 30px 0 10px;
+  overflow: hidden;
+}
+
+/* Ограничение области действия SplashCursor только в футере */
+.footer {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Скрываем SplashCursor вне футера */
+.footer ~ div[style*="position: fixed"] {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .footer-wrapper {
@@ -12,41 +23,11 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
+  overflow: hidden;
 }
 
-.about-group {
-  flex: 1;
+.footer .circular-text {
   max-width: 300px;
-}
-
-.about-group h2 {
-  font-size: 35px;
-  font-weight: 600;
-  opacity: .8;
-  background: linear-gradient(to top, transparent 0%, #fff 50%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
-}
-
-.about-group p {
-  font-size: var(--normal-font-size);
-  font-weight: 300;
-  margin-bottom: 20px;
-  opacity: 0.9;
-}
-
-.about-group a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 400;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid transparent;
-}
-
-.about-group a:hover {
-  border-bottom-color: #fff;
-  opacity: 0.8;
 }
 
 .follow-group {
@@ -142,12 +123,17 @@
     gap: 30px;
   }
 
-  .about-group {
+  .footer .circular-text {
     max-width: 100%;
   }
-
-  .about-group h2 {
-    font-size: 28px;
+  
+  .footer .circular-text .circular-text {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .footer .circular-text .circular-text span {
+    font-size: 16px;
   }
 
   .follow-group {
@@ -166,20 +152,23 @@
 
 @media (max-width: 450px) {
   .footer {
-    padding: 40px 0 20px;
+    padding: 20px 0 20px;
   }
 
   .footer-wrapper {
     gap: 25px;
   }
-
-  .about-group h2 {
-    font-size: 24px;
+  
+  .footer .circular-text .circular-text {
+    width: 120px;
+    height: 120px;
   }
-
-  .about-group p {
+  
+  .footer .circular-text .circular-text span {
     font-size: 14px;
   }
+
+
 
   .follow-group h3 {
     font-size: 16px;
