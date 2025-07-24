@@ -6,18 +6,22 @@ import { useState } from "react";
 import CircularText from "../circularText/CircularText";
 import SplashCursor from '../splashCursor/SplashCursor'
 
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [isHeartFilled, setIsHeartFilled] = useState(false);
+  const [isSplashCursorActive, setIsSplashCursorActive] = useState(false);
 
   const toggleHeart = () => {
     setIsHeartFilled(!isHeartFilled);
   };
 
+  const toggleSplashCursor = () => {
+    setIsSplashCursorActive(!isSplashCursorActive);
+  };
+
   return (
     <footer className="footer">
-      <SplashCursor />
+      {isSplashCursorActive && <SplashCursor />}
       <div className="footer-wrapper container">
         <CircularText
           text="DIMITRI•FRONTEND•DEVELOPER•"
@@ -29,7 +33,10 @@ const Footer = () => {
       </div>
       <p className="footer-copyright">
         © <span className="year">{currentYear}</span> Made with{" "}
-        <span className="heart-icon" onClick={toggleHeart}>
+        <span className="heart-icon" onClick={() => {
+          toggleHeart();
+          toggleSplashCursor();
+        }}>
           {isHeartFilled ? <FaHeart /> : <FaRegHeart />}
         </span>{" "}
         by me
