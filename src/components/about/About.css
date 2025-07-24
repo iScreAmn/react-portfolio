@@ -197,10 +197,10 @@
     margin-right: 10px;
   }
 
-  .professional-list {
+  /* .professional-list {
     max-width: 200px;
     flex-direction: column;
-  }
+  } */
 
   .professional-list .list-item {
     justify-content: unset;
