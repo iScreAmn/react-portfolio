@@ -3,8 +3,8 @@ import { followLinks } from "../../data/footerData";
 import FooterLinkGroup from "./FooterLinkGroup";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useState } from "react";
-import CircularText from "../circularText/CircularText";
-import SplashCursor from '../splashCursor/SplashCursor'
+import CircularText from "../widgets/circularText/CircularText";
+import SplashCursor from '../widgets/splashCursor/SplashCursor'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

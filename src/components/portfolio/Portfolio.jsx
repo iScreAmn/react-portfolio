@@ -3,7 +3,7 @@ import "./Portfolio.css";
 import portfolioData from "../../data/portfolioData";
 import SectionTitle from "../section-title/SectionTitle";
 import PortfolioItem from "./PortfolioItem";
-import LoadingCircleSpinner from "../loadingCircle/LoadingCircle";
+import LoadingCircleSpinner from "../widgets/loadingCircle/LoadingCircle";
 
 const Portfolio = () => {
   const [visibleItems, setVisibleItems] = useState(6);
