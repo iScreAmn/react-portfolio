@@ -6,12 +6,13 @@ import { profList } from "../../data/profList";
 import AnimatedNumber from "../AnimatedNumber/AnimatedNumber";
 import { FaDownload } from "react-icons/fa";
 import "./About.css";
+import ProfileCard from "../widgets/profileCard/ProfileCard";
 
 const About = () => {
   const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/CV_Dimitri-Jmukhadze.pdf';
-    link.download = 'CV_Dimitri-Jmukhadze.pdf';
+    const link = document.createElement("a");
+    link.href = "/CV_Dimitri-Jmukhadze.pdf";
+    link.download = "CV_Dimitri-Jmukhadze.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -23,7 +24,7 @@ const About = () => {
         <SectionTitle title="About me" subtitle="About me" />
         <div className="about__wrapper">
           <motion.div
-            className="about-img"
+            className="about-img none"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -31,6 +32,19 @@ const About = () => {
           >
             <img src={aboutImg} alt="about" />
           </motion.div>
+          <ProfileCard
+            name=""
+            title=""
+            handle="dimitri.j"
+            status="Online"
+            contactText="Contact Me"
+            innerGradient={true}
+            avatarUrl={aboutImg}
+            showUserInfo={true}
+            enableTilt={true}
+            enableMobileTilt={false}
+            onContactClick={() => window.open('https://t.me/iscreamn', '_blank')}
+          />
           <div className="about-info">
             <div className="description">
               <motion.h3
@@ -58,7 +72,11 @@ const About = () => {
                 custom={0}
                 variants={slideInVariants("left", 0.5, 50, true)}
               >
-                I build custom solutions for clients, focusing on crafting sleek, modern websites, web applications, and e-commerce platforms. I&apos;m driven by a passion for creating engaging digital experiences through thoughtful and impactful design. Take a look at my portfolio
+                I build custom solutions for clients, focusing on crafting
+                sleek, modern websites, web applications, and e-commerce
+                platforms. I&apos;m driven by a passion for creating engaging
+                digital experiences through thoughtful and impactful design.
+                Take a look at my portfolio
               </motion.p>
             </div>
             <ul className="professional-list">
@@ -73,7 +91,11 @@ const About = () => {
                   variants={slideInVariants("right", 0.6, 40, true)}
                 >
                   <span className="number">
-                    <AnimatedNumber value={item.number} duration={2} delay={index * 0.2} />
+                    <AnimatedNumber
+                      value={item.number}
+                      duration={2}
+                      delay={index * 0.2}
+                    />
                   </span>
                   <span className="text">{item.text}</span>
                 </motion.li>
