@@ -25,6 +25,11 @@
   color: var(--hover-color);
 }
 
+.home-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .home-info h1 {
   font-size: 60px;
   font-weight: 600;
@@ -38,11 +43,34 @@
   line-height: 2;
 }
 
-.home-info p {
+.home-info-text {
   font-size: var(--normal-font-size);
   color: var(--third-color);
   max-width: 350px;
   width: 100%;
+}
+
+/* Контейнер для стабилизации DecryptedText */
+.decrypted-text-stable-container {
+  height: 3.2em;
+  line-height: 1.6;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .decrypted-text-stable-container {
+    height: 4em;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .decrypted-text-stable-container {
+    height: 4.5em;
+    line-height: 1.4;
+  }
 }
 
 .inner-info-link {
@@ -55,6 +83,7 @@
   padding: 20px 30px;
   letter-spacing: 1px;
   border-radius: 10px;
+  width: fit-content;
 }
 
 .inner-info-link:hover {

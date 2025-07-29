@@ -1,5 +1,5 @@
 import "./Home.css";
-// import lightImg from "/src/assets/images/main-img/dj-bg-transparent-2.png";
+import DecryptedText from "../widgets/decryptedText/DecryptedText";
 
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -20,10 +20,10 @@ const icons = [
     href: "https://www.instagram.com/d.jmukhadze/",
     icon: <FaInstagram />,
   },
-  { 
-    id: 3, 
-    href: "https://github.com/iScreAmn/", 
-    icon: <FaGithub /> 
+  {
+    id: 3,
+    href: "https://github.com/iScreAmn/",
+    icon: <FaGithub />,
   },
 ];
 
@@ -47,6 +47,7 @@ const Home = () => {
             </motion.a>
           ))}
         </div>
+
         <div className="home-info">
           <motion.h1
             initial="hidden"
@@ -66,16 +67,20 @@ const Home = () => {
           >
             Front-end Developer
           </motion.h3>
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            custom={2}
-            variants={slideInVariants("left", 0.9, 100, true)}
-          >
-            I create stunning websites for your business, Highly experienced in
-            web design and development.
-          </motion.p>
+
+
+          <div className="decrypted-text-stable-container">
+            <DecryptedText
+              text="I create stunning websites for your business, Highly experienced in web design and development."
+              animateOn="view"
+              revealDirection="center"
+              speed={20}
+              maxIterations={10}
+              sequential={true}
+              className="home-info-text"
+            />
+          </div>
+
           <motion.a
             href="https://t.me/iscreamn"
             target="_blank"
