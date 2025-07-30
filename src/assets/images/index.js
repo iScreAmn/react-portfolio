@@ -1,4 +1,5 @@
 import aboutImg from "./about-img-2.webp"
+import flameJumper from "./flameJumper.jpg"
 
 // Portfolio Images
 import portfolio1 from "./portfolio/askchef.webp"
@@ -24,6 +25,7 @@ import skillLogo5 from "./skills/ts.webp"
 
 export {
   aboutImg,
+  flameJumper,
   portfolio1,
   portfolio2,
   portfolio3,
