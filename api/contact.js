@@ -19,6 +19,19 @@ export default async function handler(req, res) {
   try {
     const { name, email, subject, message, captcha } = req.body;
 
+    // Проверяем переменные окружения
+    if (!process.env.EMAIL_HOST || !process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Missing environment variables:', {
+        EMAIL_HOST: !!process.env.EMAIL_HOST,
+        EMAIL_USER: !!process.env.EMAIL_USER,
+        EMAIL_PASS: !!process.env.EMAIL_PASS
+      });
+      return res.status(500).json({
+        success: false,
+        message: 'Email configuration is missing. Please contact administrator.'
+      });
+    }
+
     // Валидация
     if (!name || name.length < 2 || name.length > 50) {
       return res.status(400).json({
@@ -58,13 +71,16 @@ export default async function handler(req, res) {
     // Создаем transporter
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
+      port: parseInt(process.env.EMAIL_PORT) || 587,
       secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
+
+    // Проверяем соединение
+    await transporter.verify();
 
     // Создаем email контент
     const emailContent = `
@@ -104,6 +120,22 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Email sending error:', error);
+    
+    // Более детальная обработка ошибок
+    if (error.code === 'EAUTH') {
+      return res.status(500).json({
+        success: false,
+        message: 'Email authentication failed. Please check credentials.'
+      });
+    }
+    
+    if (error.code === 'ECONNECTION') {
+      return res.status(500).json({
+        success: false,
+        message: 'Email server connection failed. Please try again later.'
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: 'Failed to send message. Please try again later.'
