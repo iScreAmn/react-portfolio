@@ -25,6 +25,7 @@
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 10px;
+  display: flex;
 }
 
 .contact-list h3 svg {
