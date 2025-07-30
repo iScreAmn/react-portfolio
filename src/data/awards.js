@@ -1,19 +1,14 @@
 const awards = [
   {
-    year: "2021",
-    title: "Best Developer",
-    institution: "University Of Melbourne, NA",
+    year: "2020-2022",
+    title: "Frontend Developer",
+    institution: "Law Firm 'მართსაჯულება'",
   },
   {
-    year: "2020",
-    title: "Best Writter",
-    institution: "Online Typodev Soluation Ltd.",
-  },
-  {
-    year: "2019",
-    title: "Best Freelancer",
-    institution: "Fiver & Upwork Level 2 & Top Rated",
-  },
+    year: "2024-2025",
+    title: "Web Developer",
+    institution: "Freelancer",
+  }
 ];
   
 export default awards;

@@ -45,6 +45,13 @@
   /* width: 32%; */
 }
 
+/* Специальный стиль для awards - увеличиваем ширину */
+.education.awards-section {
+  min-width: 930px;
+  width: 100%;
+  max-width: 800px;
+}
+
 .education .label {
   color: #fff;
   font-weight: 400;
@@ -219,6 +226,13 @@
 .bar:hover {
   transform: scale(1.03);
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .education.awards-section {
+    min-width: 100%;
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 393px) {
