@@ -24,3 +24,9 @@
   bottom: 0;
   background: var(--second-color);
 }
+
+@media (max-width: 480px) {
+  .inner-title {
+    font-size: 47px;
+  }
+}
