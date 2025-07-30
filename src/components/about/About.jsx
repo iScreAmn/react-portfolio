@@ -32,19 +32,33 @@ const About = () => {
           >
             <img src={aboutImg} alt="about" />
           </motion.div>
-          <ProfileCard
-            name=""
-            title=""
-            handle="dimitri.j"
-            status="Online"
-            contactText="Contact Me"
-            innerGradient={true}
-            avatarUrl={aboutImg}
-            showUserInfo={true}
-            enableTilt={true}
-            enableMobileTilt={false}
-            onContactClick={() => window.open('https://t.me/iscreamn', '_blank')}
-          />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={{
+              hidden: { opacity: 0, x: -80 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.8, ease: "easeOut" },
+              },
+            }}
+          >
+            <ProfileCard
+              name=""
+              title=""
+              handle="dimitri.j"
+              status="Online"
+              contactText="Contact Me"
+              innerGradient={true}
+              avatarUrl={aboutImg}
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
+              onContactClick={() => window.open('https://t.me/iscreamn', '_blank')}
+            />
+          </motion.div>
           <div className="about-info">
             <div className="description">
               <motion.h3
@@ -79,16 +93,34 @@ const About = () => {
                 Take a look at my portfolio
               </motion.p>
             </div>
-            <ul className="professional-list">
+            <motion.ul 
+              className="professional-list"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.3,
+                    delayChildren: 0.2,
+                  },
+                },
+              }}
+            >
               {profList.map((item, index) => (
                 <motion.li
                   className="list-item"
                   key={item.id}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.5 }}
-                  custom={index}
-                  variants={slideInVariants("right", 0.6, 40, true)}
+                  variants={{
+                    hidden: { opacity: 0, x: -50 },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      transition: { duration: 0.6, ease: "easeOut" },
+                    },
+                  }}
                 >
                   <span className="number">
                     <AnimatedNumber
@@ -100,7 +132,7 @@ const About = () => {
                   <span className="text">{item.text}</span>
                 </motion.li>
               ))}
-            </ul>
+            </motion.ul>
             <motion.button
               onClick={handleDownloadCV}
               className="cv-btn"

@@ -18,7 +18,7 @@ const contactsData = [
   {
     id: 3,
     icon: FaLocationDot,
-    title: "Adress",
+    title: "Address",
     value: "Mikheil Tsinamdzgvrishvili str #148",
     link: "#",
   },
