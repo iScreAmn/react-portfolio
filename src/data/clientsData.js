@@ -4,23 +4,23 @@ const clientsData = [
   {
     id: 1,
     imgSrc: client1,
-    description: "Hey i'm Alexandra and he was doing me a good favor, good job mate, hope see u soon",
-    name: "Alexandra Lovegood",
-    position: "Graphic Designer",
+    description: "Сollaborated with Dimitri six months ago. His AI chatbot was efficient and professional. Perfectly matched our company’s exact needs",
+    name: "Alexandra",
+    position: "LaFee Designer",
   },
   {
     id: 2,
     imgSrc: client2,
-    description: "Hey i'm David and he was doing me a good favor, good job mate, hope see u soon",
-    name: "David Davidson",
-    position: "Web Designer",
+    description: "We worked with Dimitri on several projects. His frontend solutions improved legal workflows, accessibility, and client-facing platform reliability",
+    name: "Giorgi",
+    position: "Head Lawyer",
   },
   {
     id: 3,
     imgSrc: client3,
-    description: "Hey i'm Eva and he was doing me a good favor, good job mate, hope see u soon",
-    name: "Eva Hill",
-    position: "Marketing Manager",
+    description: "Enjoyed working with Dimitri. He developed our web-page ensuring stability, speed, and full functionality with excellent responsive performance",
+    name: "Elena",
+    position: "Old Tbilisi Narikala Manager",
   },
 ]
 
