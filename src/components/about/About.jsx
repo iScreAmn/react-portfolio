@@ -3,7 +3,7 @@ import { aboutImg } from "../../assets/images";
 import SectionTitle from "../section-title/SectionTitle";
 import { slideInVariants } from "../../utils/animation";
 import { profList } from "../../data/profList";
-import AnimatedNumber from "../AnimatedNumber/AnimatedNumber";
+import AnimatedNumber from "../widgets/animatedNumber/AnimatedNumber";
 import { FaDownload } from "react-icons/fa";
 import "./About.css";
 import ProfileCard from "../widgets/profileCard/ProfileCard";

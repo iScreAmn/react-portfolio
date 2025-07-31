@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Header, Footer, Home, About, SkillsInfo, Services, Contacts, Portfolio, GetInTouch, OurClients, SidePanel } from "./components/index"
+import { Header, Footer, Home, About, SkillsInfo, Services, Contacts, Portfolio, GetInTouch, Clients, SidePanel } from "./components/index"
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +22,7 @@ function App() {
           <Services/>
           <Portfolio/>
           <GetInTouch/>
-          <OurClients/>
+          <Clients/>
           <Contacts/>
       </main>
       <Footer/>
