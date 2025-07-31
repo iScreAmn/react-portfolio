@@ -11,6 +11,7 @@
     --old-third-color: #777;
 
     --nav-link-color: #1653e1;
+    --swiper-bullet-color: #626262;
 
     /*=======Hover colors=======*/
     --hover-color: #e19301;
@@ -60,6 +61,8 @@
   --third-color: #a9afc3;
 
   --nav-link-color: #e19301;
+  --swiper-bullet-color: #ffffff;
+
 
   /*=======Background colors=======*/
   --body-bg-color: #0e1b31;
