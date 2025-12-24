@@ -1,11 +1,15 @@
 .footer {
-  background: var(--second-color);
+  background: linear-gradient(135deg, #ffa500 0%, #e19301 100%);
   color: #fff;
   position: relative;
   width: 100%;
   margin: 0 auto;
   padding: 30px 0 10px;
   overflow: hidden;
+}
+
+.dark-theme .footer {
+  background: linear-gradient(135deg, #0a6fdc 0%, #0858b8 100%);
 }
 
 /* Ограничение области действия SplashCursor только в футере */

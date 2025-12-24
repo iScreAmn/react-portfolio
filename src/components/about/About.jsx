@@ -4,18 +4,15 @@ import SectionTitle from "../section-title/SectionTitle";
 import { slideInVariants } from "../../utils/animation";
 import { profList } from "../../data/profList";
 import AnimatedNumber from "../widgets/animatedNumber/AnimatedNumber";
-import { FaDownload } from "react-icons/fa";
 import "./About.css";
 import ProfileCard from "../widgets/profileCard/ProfileCard";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
-  const handleDownloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/CV_Dimitri-Jmukhadze.pdf";
-    link.download = "CV_Dimitri-Jmukhadze.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const navigate = useNavigate();
+
+  const goToAboutPage = () => {
+    navigate("/about");
   };
 
   return (
@@ -134,18 +131,15 @@ const About = () => {
               ))}
             </motion.ul>
             <motion.button
-              onClick={handleDownloadCV}
+              onClick={goToAboutPage}
               className="cv-btn"
-              custom={3}
-              variants={slideInVariants("bottom", 0.7, 60, true)}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>Download CV</span>
-              <FaDownload className="download-icon" />
+              <span>More about me</span>
             </motion.button>
           </div>
         </div>

@@ -1,8 +1,71 @@
-import {portfolio1, portfolio2, portfolio3, portfolio4, portfolio5, portfolio6, portfolio7, portfolio8, portfolio9 } from "../assets/images";
+import { 
+  portfolio1, 
+  portfolio2, 
+  portfolio3, 
+  portfolio4, 
+  portfolio5, 
+  portfolio6, 
+  portfolio7, 
+  portfolio8, 
+  portfolio9, 
+  portfolio10, 
+  portfolio11, 
+  portfolio12, 
+  portfolio13, 
+  portfolio14,
+  portfolio15,
+  portfolio16,
+  portfolio17,
+  portfolio18,
+  portfolio19,
+  portfolio20,
+  portfolio21,
+  portfolio22,
+  portfolio23,
+  portfolio24 } from "../assets/images";
 
 const portfolioData = [
   {
     id: 1,
+    slug: "Georgian Polygraph Services",
+    title: "Georgian Polygraph Services",
+    category: "Polygraph Services",
+    imgSrc: portfolio20,
+    href: "https://geopolser.ge/test",
+    year: "2025",
+    tags: ["Landing", "GPS", "Responsive"],
+    description:
+      "Landing for a GPS with a modern design and a responsive layout.",
+    gallery: [portfolio21, portfolio22, portfolio24, portfolio23 ],
+  },
+  {
+    id: 2,
+    slug: "Impera Design",
+    title: "Impera Design",
+    category: "Design Agency",
+    imgSrc: portfolio15,
+    href: "https://impera-design.vercel.app/",
+    year: "2025",
+    tags: ["Landing", "Design", "Responsive"],
+    description:
+      "Landing for a design agency with a modern design and a responsive layout.",
+    gallery: [portfolio16, portfolio17, portfolio18, portfolio19],
+  },
+  {
+    id: 3,
+    slug: "diagnoz-clinic",
+    title: "Diagnoz Clinic",
+    category: "Clinic Landing",
+    imgSrc: portfolio10,
+    href: "https://diagnoz-clinic.vercel.app/",
+    year: "2025",
+    tags: ["Landing", "Clinic", "Responsive"],
+    description:
+      "Landing for a clinic with a modern design and a responsive layout.",
+    gallery: [portfolio11, portfolio12, portfolio13, portfolio14],
+  },
+  {
+    id: 4,
     slug: "askchef",
     title: "AskChef",
     category: "Meal Planner App",
@@ -15,7 +78,7 @@ const portfolioData = [
     gallery: [portfolio1, portfolio1, portfolio1, portfolio1],
   },
   {
-    id: 2,
+    id: 5,
     slug: "lawfirm",
     title: "LawFirm",
     category: "Lawyer Bureau",
@@ -28,7 +91,7 @@ const portfolioData = [
     gallery: [portfolio2, portfolio2, portfolio2, portfolio2],
   },
   {
-    id: 3,
+    id: 6,
     slug: "old-tbilisi-narikala",
     title: "Old Tbilisi Narikala",
     category: "Apartment Rental",
@@ -41,7 +104,7 @@ const portfolioData = [
     gallery: [portfolio3, portfolio3, portfolio3, portfolio3],
   },
   {
-    id: 4,
+    id: 7,
     slug: "mesto-europe",
     title: "Mesto Europe",
     category: "Yandex Practicum",
@@ -54,7 +117,7 @@ const portfolioData = [
     gallery: [portfolio4, portfolio4, portfolio4],
   },
   {
-    id: 5,
+    id: 8,
     slug: "creative-space",
     title: "Creative Space",
     category: "Parallax",
@@ -67,7 +130,7 @@ const portfolioData = [
     gallery: [portfolio5, portfolio5, portfolio5],
   },
   {
-    id: 6,
+    id: 9,
     slug: "lafee-telegram-bot",
     title: "Telegram Bot",
     category: "LaFee Studio",
@@ -80,7 +143,7 @@ const portfolioData = [
     gallery: [portfolio6, portfolio6, portfolio6],
   },
   {
-    id: 7,
+    id: 10,
     slug: "ukrainian-travel",
     title: "Ukrainian Travel",
     category: "Travel Landing",
@@ -93,7 +156,7 @@ const portfolioData = [
     gallery: [portfolio7, portfolio7, portfolio7],
   },
   {
-    id: 8,
+    id: 11,
     slug: "burger-house",
     title: "Burger House",
     category: "Restaurant Landing",
@@ -106,7 +169,7 @@ const portfolioData = [
     gallery: [portfolio8, portfolio8, portfolio8],
   },
   {
-    id: 9,
+    id: 12,
     slug: "geo-trip",
     title: "GeoTrip",
     category: "Travel Landing",

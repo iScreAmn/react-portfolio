@@ -10,8 +10,8 @@ const Nav = ({ isMenuOpen, handleMenuClick }) => {
   const navItems = useMemo(
     () => [
       { id: "home", label: "home", type: "section" },
-      { id: "about", label: "about", type: "section" },
-      { id: "skills", label: "skills", type: "section" },
+      { id: "about", label: "about", type: "route", path: "/about" },
+      { id: "hobby", label: "hobby", type: "route", path: "/hobby" },
       { id: "services", label: "services", type: "section" },
       { id: "portfolio", label: "portfolio", type: "route", path: "/portfolio" },
       { id: "contact", label: "contact", type: "section" },
@@ -58,6 +58,11 @@ const Nav = ({ isMenuOpen, handleMenuClick }) => {
   useEffect(() => {
     if (location.pathname.startsWith("/portfolio")) {
       setActiveSection("portfolio");
+      return;
+    }
+
+    if (location.pathname.startsWith("/about")) {
+      setActiveSection("about");
       return;
     }
 

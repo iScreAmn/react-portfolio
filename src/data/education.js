@@ -12,7 +12,7 @@ const education = [
   {
     year: "2023-2024",
     degree: "Frontend Development",
-    institution: "Yandex Practicum Web Academy",
+    institution: "Yandex Practicum Academy",
   },
 ]
 
