@@ -3,76 +3,121 @@ import {portfolio1, portfolio2, portfolio3, portfolio4, portfolio5, portfolio6, 
 const portfolioData = [
   {
     id: 1,
+    slug: "askchef",
     title: "AskChef",
     category: "Meal Planner App",
     imgSrc: portfolio1,
     href: "https://askchef.vercel.app/",
-    description: "AskChef is a modern web app for planning a weekly menu, managing recipes, and automatically generating shopping lists. It includes an AI assistant for selecting recipes based on available ingredients."
+    year: "2024",
+    tags: ["React", "AI assistant", "Meal planning"],
+    description:
+      "AskChef - a web app for weekly meal planning, recipe management, and automatic shopping lists. An AI helper suggests recipes based on the products you have.",
+    gallery: [portfolio1, portfolio1, portfolio1, portfolio1],
   },
   {
     id: 2,
+    slug: "lawfirm",
     title: "LawFirm",
     category: "Lawyer Bureau",
     imgSrc: portfolio2,
     href: "https://martlmsajuleba.vercel.app/ka",
-    description: "A multi-page website for a Georgian law firm with support for three languages and a modern responsive design."
+    year: "2024",
+    tags: ["Multi-page", "i18n", "Brand site"],
+    description:
+      "Multi-page website for a Georgian law firm with three languages, responsive grid blocks, and lead-focused calls to action.",
+    gallery: [portfolio2, portfolio2, portfolio2, portfolio2],
   },
   {
     id: 3,
+    slug: "old-tbilisi-narikala",
     title: "Old Tbilisi Narikala",
     category: "Apartment Rental",
     imgSrc: portfolio3,
     href: "https://iscreamn.github.io/apartment-otn/",
-    description: "This is a modern, responsive website designed to showcase and promote the charming apartments located in the heart of Tbilisi"
+    year: "2023",
+    tags: ["Landing", "Booking CTA", "Responsive"],
+    description:
+      "Landing for apartments in the heart of Tbilisi with atmospheric visuals, quick booking CTAs, and a mobile-first layout.",
+    gallery: [portfolio3, portfolio3, portfolio3, portfolio3],
   },
   {
     id: 4,
+    slug: "mesto-europe",
     title: "Mesto Europe",
     category: "Yandex Practicum",
     imgSrc: portfolio4,
     href: "https://mesto-europe.vercel.app/",
-    description: "An interactive social service application for uploading and storing your photos. Built with vanilla JavaScript and Webpack as part of the Yandex Practicum Web Development program."
+    year: "2022",
+    tags: ["SPA", "Vanilla JS", "Webpack"],
+    description:
+      "Interactive photo sharing SPA with client-side validation, modal UX, and API integration built on vanilla JS and Webpack.",
+    gallery: [portfolio4, portfolio4, portfolio4],
   },
   {
     id: 5,
+    slug: "creative-space",
     title: "Creative Space",
-    category: "Paralax",
+    category: "Parallax",
     imgSrc: portfolio5,
     href: "https://iscreamn.github.io/creative-paralax/",
-    description: "Welcome to Creative Space – a unique digital environment where creativity meets technology."
+    year: "2023",
+    tags: ["Parallax", "Scroll FX", "Creative"],
+    description:
+      "Promo page with parallax effects and smooth scroll animations to keep users engaged through dynamic scenes.",
+    gallery: [portfolio5, portfolio5, portfolio5],
   },
   {
     id: 6,
+    slug: "lafee-telegram-bot",
     title: "Telegram Bot",
     category: "LaFee Studio",
     imgSrc: portfolio6,
     href: "https://t.me/laFee_remont_dizain_bot",
-    description: "This Telegram bot helps users of LaFee Studio to get personalized interior design solutions by answering a few simple questions. Built with GrammY framework, it provides an interactive questionnaire and visual inspiration for home renovation projects."
+    year: "2024",
+    tags: ["Telegram", "grammY", "Automation"],
+    description:
+      "Telegram bot for LaFee Studio: interactive questionnaire, inspiration feed, and lead capture built on grammY.",
+    gallery: [portfolio6, portfolio6, portfolio6],
   },
   {
     id: 7,
+    slug: "ukrainian-travel",
     title: "Ukrainian Travel",
-    category: "",
+    category: "Travel Landing",
     imgSrc: portfolio7,
     href: "https://iscreamn.github.io/ukrainian-travel/",
-    description: "Explore Ukraine – your portal to stunning landscapes, ancient heritage, and vibrant traditions in Europe’s hidden gem. From the Carpathian peaks to the Black Sea’s golden shores, Ukraine welcomes explorers with endless adventures."
+    year: "2021",
+    tags: ["Travel", "Storytelling", "Static site"],
+    description:
+      "Storytelling travel landing about Ukraine with lightweight layout, culture highlights, and fast loading.",
+    gallery: [portfolio7, portfolio7, portfolio7],
   },
   {
     id: 8,
+    slug: "burger-house",
     title: "Burger House",
-    category: "",
+    category: "Restaurant Landing",
     imgSrc: portfolio8,
     href: "https://iscreamn.github.io/burger-house-site/",
-    description: "New restaurant with modern burgers that will blow your mind. On the website, you can easily choose your favorite burger and place an order in the currency convenient for you."
+    year: "2021",
+    tags: ["Restaurant", "Menu", "Order CTA"],
+    description:
+      "One-page restaurant site with a burger menu, accent CTAs, and currency toggle for easier orders.",
+    gallery: [portfolio8, portfolio8, portfolio8],
   },
   {
     id: 9,
+    slug: "geo-trip",
     title: "GeoTrip",
-    category: "",
+    category: "Travel Landing",
     imgSrc: portfolio9,
     href: "https://iscreamn.github.io/site-geo-trip/",
-    description: "Discover Georgia is your gateway to exploring the breathtaking landscapes, rich history, and vibrant culture of one of the world's most enchanting destinations. From the majestic peaks of the Caucasus Mountains to the tranquil shores of the Black Sea, Georgia offers adventures for every traveler."
+    year: "2022",
+    tags: ["Travel", "Hero imagery", "Responsive"],
+    description:
+      "Travel promo about Georgia with bold hero imagery, responsive grid, and clear calls to action.",
+    gallery: [portfolio9, portfolio9, portfolio9],
   },
-]
+];
 
 export default portfolioData;

@@ -1,43 +1,34 @@
-import { useState } from "react";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { slideInVariants } from "../../utils/animation";
-import PortfolioModal from "./PortfolioModal";
 
-const PortfolioItem = ({ item, index, isLoadMoreItem = false, isHiding = false }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  
-  const cardClassName = `portfolio-img-card${isLoadMoreItem ? ' load-more-item' : ''}${isHiding ? ' hide-item' : ''}`;
-  
+const PortfolioItem = ({ item, index }) => {
   return (
-    <motion.div
-      className={cardClassName}
+    <motion.article
+      className="portfolio-img-card portfolio-grid__card"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
       custom={index}
       variants={slideInVariants("top", 0.4, 50, true)}
-      style={isLoadMoreItem ? { '--animation-order': index - 5 } : {}}
     >
-      <div className="img-card" onClick={openModal}>
-        <div className="overlay"></div>
-        <div className="inf">
-          <h3>{item.title}</h3>
-          <span>{item.category}</span>
+      <Link
+        to={`/portfolio/${item.slug}`}
+        className="portfolio-card__link"
+        aria-label={`Открыть проект ${item.title}`}
+      >
+        <div className="img-card">
+          <div className="overlay" />
+          <div className="inf">
+            <h3 className="portfolio-card__title">{item.title}</h3>
+            <span className="portfolio-card__category">
+              {item.category || "Project"}
+            </span>
+          </div>
+          <img src={item.imgSrc} alt={item.title} />
         </div>
-        <img src={item.imgSrc} alt={item.title} />
-      </div>
-      <PortfolioModal
-        item={item}
-        isModalOpen={isModalOpen}
-        closeModal={closeModal}
-      />
-    </motion.div>
+      </Link>
+    </motion.article>
   );
 };
 

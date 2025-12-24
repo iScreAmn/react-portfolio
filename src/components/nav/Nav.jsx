@@ -1,75 +1,112 @@
-import { useState, useEffect } from "react";
-import "./Nav.css"
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./Nav.css";
 
-const Nav = ({isMenuOpen, handleMenuClick}) => {
-  const items = ["home", "about", "skills", "services", "portfolio", "contact" ]
+const Nav = ({ isMenuOpen, handleMenuClick }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState("home");
-  
-  const handleNavClick = (target, menuClick) => {
-    // Принудительно сбрасываем эффект с предыдущей активной ссылки
-    const prevActiveLink = document.querySelector('.nav-link.active');
-    if (prevActiveLink) {
-      // Добавляем временный класс для сброса эффекта
-      prevActiveLink.classList.add('reset-effect');
-      
-      // Убираем временный класс через небольшую задержку
-      setTimeout(() => {
-        prevActiveLink.classList.remove('reset-effect');
-      }, 50);
-    }
-    
-    // Устанавливаем активную секцию
-    setActiveSection(target);
-    
-    // Сразу переходим к секции
+
+  const navItems = useMemo(
+    () => [
+      { id: "home", label: "home", type: "section" },
+      { id: "about", label: "about", type: "section" },
+      { id: "skills", label: "skills", type: "section" },
+      { id: "services", label: "services", type: "section" },
+      { id: "portfolio", label: "portfolio", type: "route", path: "/portfolio" },
+      { id: "contact", label: "contact", type: "section" },
+    ],
+    []
+  );
+
+  const scrollToSection = (target) => {
     const element = document.getElementById(target);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    
-    // Закрываем меню с небольшой задержкой для показа эффекта
-    setTimeout(() => {
-      menuClick();
-    }, 300); // Задержка только для закрытия меню
   };
 
-  // Отслеживание активной секции при прокрутке
+  const handleNavClick = (item, menuClick) => {
+    // Принудительно сбрасываем эффект с предыдущей активной ссылки
+    const prevActiveLink = document.querySelector(".nav-link.active");
+    if (prevActiveLink) {
+      prevActiveLink.classList.add("reset-effect");
+      setTimeout(() => {
+        prevActiveLink.classList.remove("reset-effect");
+      }, 50);
+    }
+
+    if (item.type === "route") {
+      setActiveSection(item.id);
+      navigate(item.path);
+      setTimeout(menuClick, 150);
+      return;
+    }
+
+    setActiveSection(item.id);
+
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: item.id } });
+      setTimeout(menuClick, 300);
+      return;
+    }
+
+    scrollToSection(item.id);
+    setTimeout(menuClick, 300);
+  };
+
   useEffect(() => {
+    if (location.pathname.startsWith("/portfolio")) {
+      setActiveSection("portfolio");
+      return;
+    }
+
     const handleScroll = () => {
-      const sections = items.map(item => document.getElementById(item));
+      const sectionItems = navItems.filter((item) => item.type === "section");
+      const sections = sectionItems.map((item) =>
+        document.getElementById(item.id)
+      );
+
       const scrollPosition = window.scrollY + 100;
 
       sections.forEach((section, index) => {
         if (section) {
           const sectionTop = section.offsetTop;
           const sectionHeight = section.offsetHeight;
-          
-          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            setActiveSection(items[index]);
+
+          if (
+            scrollPosition >= sectionTop &&
+            scrollPosition < sectionTop + sectionHeight
+          ) {
+            setActiveSection(sectionItems[index].id);
           }
         }
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [items]);
+    if (location.pathname === "/") {
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, [location.pathname, navItems]);
 
   return (
     <nav className={isMenuOpen ? "nav active" : "nav"}>
       <div className={isMenuOpen ? "nav-menu active" : "nav-menu"}>
-        {items.map((item, index) => (
-          <button 
-            key={index}
-            className={`nav-link ${activeSection === item ? 'active' : ''}`}
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            className={`nav-link ${activeSection === item.id ? "active" : ""}`}
             onClick={() => handleNavClick(item, handleMenuClick)}
-            data-hover-name={item.toUpperCase()}
-          >{item}
+            data-hover-name={item.label.toUpperCase()}
+          >
+            {item.label}
           </button>
         ))}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

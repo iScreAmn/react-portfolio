@@ -1,89 +1,80 @@
-import { useState } from "react";
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Portfolio.css";
 import portfolioData from "../../data/portfolioData";
-import SectionTitle from "../section-title/SectionTitle";
 import PortfolioItem from "./PortfolioItem";
-import LoadingCircleSpinner from "../widgets/loadingCircle/LoadingCircle";
 
 const Portfolio = () => {
-  const [visibleItems, setVisibleItems] = useState(6);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isHiding, setIsHiding] = useState(false);
-  const [showLoadingAnimation, setShowLoadingAnimation] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLoadMore = () => {
-    setIsLoading(true);
-    setShowLoadingAnimation(true);
-    
-    // Показываем анимацию загрузки на 1.5 секунды
-    setTimeout(() => {
-      setVisibleItems(portfolioData.length);
-      setIsLoading(false);
-      setShowLoadingAnimation(false);
-    }, 4000);
+  const chips = useMemo(() => {
+    const unique = new Set();
+    portfolioData.forEach((item) => {
+      unique.add(item.category || "Digital");
+    });
+    return Array.from(unique).slice(0, 6);
+  }, []);
+
+  const handleScrollToGrid = () => {
+    const grid = document.getElementById("portfolio-grid");
+    if (grid) {
+      grid.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
-  const handleShowLess = () => {
-    setIsLoading(true);
-    setIsHiding(true);
-    setVisibleItems(6);
-    setIsLoading(false);
-    setIsHiding(false);
+  const handleContact = () => {
+    navigate("/", { state: { scrollTo: "contact" } });
   };
-
-  const visiblePortfolioData = portfolioData.slice(0, visibleItems);
-  const hasMoreItems = visibleItems < portfolioData.length;
 
   return (
-    <section className="services section" id="portfolio">
-      <div className="container flex-center">
-        <SectionTitle title="Portfolio" subtitle="Portfolio" />
-        <div className="portfolio__wrapper">
-          {visiblePortfolioData.map((item, index) => {
-            const isLoadMoreItem = index >= 6;
-            const shouldHide = isHiding && index >= 6;
-            return (
-              <PortfolioItem 
-                key={item.id} 
-                item={item} 
-                index={index}
-                isLoadMoreItem={isLoadMoreItem}
-                isHiding={shouldHide}
-              />
-            );
-          })}
-        </div>
-        
-        {/* Анимация загрузки в пустом пространстве */}
-        {showLoadingAnimation && (
-          <div className="portfolio-loading-container">
-            <LoadingCircleSpinner />
+    <div className="portfolio-page">
+      <section className="portfolio-hero">
+        <div className="portfolio-hero__container">
+          <div className="portfolio-hero__eyebrow">Selected work</div>
+          <h1 className="portfolio-hero__title">
+            Digital products and brands with sharp detail
+          </h1>
+          <p className="portfolio-hero__subtitle">
+            Modern interfaces, clear information architecture and motion that
+            supports the product story. Every card opens a detailed page with a
+            gallery.
+          </p>
+
+          <div className="portfolio-hero__chips">
+            {chips.map((chip) => (
+              <span key={chip} className="portfolio-hero__chip">
+                {chip}
+              </span>
+            ))}
           </div>
-        )}
-        
-        <div className="load-more-container">
-          {hasMoreItems ? (
-            <button 
-              className="load-more-btn" 
-              onClick={handleLoadMore}
-              disabled={isLoading}
+
+          <div className="portfolio-hero__actions">
+            <button
+              className="portfolio-hero__btn portfolio-hero__btn--primary"
+              onClick={handleScrollToGrid}
             >
-              {isLoading ? "Loading..." : "Load More"}
+              View work
             </button>
-          ) 
-          
-          : visibleItems > 6 ? (
-            <button 
-              className="load-more-btn show-less-btn" 
-              onClick={handleShowLess}
-              disabled={isLoading}
+            <button
+              className="portfolio-hero__btn portfolio-hero__btn--ghost"
+              onClick={handleContact}
             >
-              {isLoading ? "Loading..." : "Show Less"}
+              Plan a project
             </button>
-          ) : null}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="portfolio-grid" id="portfolio-grid">
+        <div className="portfolio-grid__container">
+          <div className="portfolio-grid__list">
+            {portfolioData.map((item, index) => (
+              <PortfolioItem key={item.id} item={item} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
