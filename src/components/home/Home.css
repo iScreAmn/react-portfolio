@@ -138,11 +138,19 @@
   position: relative;
   height: 350px;
   width: 350px;
-  background-color: #05091063;
   border-radius: 50%;
-  background-image: var(--profile-img);
-  background-size: cover;
+  overflow: hidden;
   clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+  box-shadow: var(--box-shadow);
+  background: #0d0d12;
+}
+
+.circle__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #0d0d12;
 }
 
 @keyframes arrow-down {

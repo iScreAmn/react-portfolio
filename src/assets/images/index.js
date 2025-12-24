@@ -1,4 +1,5 @@
 import aboutImg from "./about-img-2.webp"
+import aboutImg2 from "./dj-cover.png"
 
 // Portfolio Images
 import portfolio1 from "./portfolio/askchef.webp"
@@ -95,4 +96,5 @@ export {
   hobby1,
   hobby2,
   hobby3,
+  aboutImg2,
 }

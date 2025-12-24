@@ -1,5 +1,6 @@
 import "./Home.css";
 import DecryptedText from "../widgets/decryptedText/DecryptedText";
+import { aboutImg2 } from "../../assets/images";
 
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -95,7 +96,9 @@ const Home = () => {
             <FaPaperPlane />
           </motion.a>
         </div>
-        <div className="circle"></div>
+        <div className="circle">
+          <img src={aboutImg2} alt="Profile" className="circle__img" />
+        </div>
         <motion.div
           className="home-img"
           initial="hidden"
