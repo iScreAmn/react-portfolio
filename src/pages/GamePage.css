@@ -90,12 +90,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 14px 22px;
   border-radius: 10px;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
   border: none;
+  text-decoration: none;
   transition: all 0.25s ease;
 }
 
@@ -114,6 +116,10 @@
   background: transparent;
   color: var(--first-color);
   border: 1px solid var(--liner-color);
+}
+
+.game-hero__btn svg {
+  font-size: 1.1em;
 }
 
 .game-hero__btn--ghost:hover {

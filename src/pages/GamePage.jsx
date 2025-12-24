@@ -1,13 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
 import { flameJumper2 } from "../assets/images";
 import "./GamePage.css";
 
 const GamePage = () => {
-  const navigate = useNavigate();
-
   const chips = ["Indie platformer", "Pixel art", "Web game", "Made with love"];
-
-  const goContact = () => navigate("/", { state: { scrollTo: "contact" } });
 
   return (
     <div className="game-page">
@@ -45,13 +41,14 @@ const GamePage = () => {
               >
                 Play now
               </a>
-              <button
+              <a
                 className="game-hero__btn game-hero__btn--ghost"
-                onClick={goContact}
-                type="button"
+                href="https://github.com/iScreAmn/game-jumper"
+                target="_blank"
+                rel="noreferrer"
               >
-                Discuss project
-              </button>
+                Star me <FaGithub />
+              </a>
             </div>
           </div>
 

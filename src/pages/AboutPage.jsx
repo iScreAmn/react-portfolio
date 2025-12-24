@@ -1,4 +1,5 @@
 import { aboutImg } from "../assets/images";
+import { FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
 import education from "../data/education";
 import workExperience from "../data/workExperience";
 import skills from "../data/skills";
@@ -43,14 +44,35 @@ const AboutPage = () => {
               >
                 Download CV
               </a>
-              <a
-                className="about-page__btn about-page__btn--ghost"
-                href="https://t.me/iscreamn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Contact
-              </a>
+              <div className="about-page__social">
+                <a
+                  className="about-page__social-btn"
+                  href="https://www.linkedin.com/in/dimitri-jmukhadze-2048b733a/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedinIn />
+                </a>
+                <a
+                  className="about-page__social-btn"
+                  href="https://github.com/iScreAmn/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                >
+                  <FaGithub />
+                </a>
+                <a
+                  className="about-page__social-btn"
+                  href="https://www.instagram.com/d.jmukhadze/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram />
+                </a>
+              </div>
             </div>
           </div>
 

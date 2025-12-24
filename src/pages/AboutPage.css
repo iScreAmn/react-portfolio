@@ -121,6 +121,48 @@
   transform: translateY(-1px);
 }
 
+.about-page__social {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.about-page__social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--card-bg-color);
+  border: 1px solid var(--liner-color);
+  color: var(--first-color);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.about-page__social-btn svg {
+  font-size: 1.2em;
+}
+
+.about-page__social-btn:hover {
+  background: var(--bg-transparent-color);
+  border-color: var(--second-color);
+  color: var(--second-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .about-page__social-btn {
+  background: var(--modal-bg-color);
+}
+
+.dark-theme .about-page__social-btn:hover {
+  border-color: var(--hover-color);
+  color: var(--hover-color);
+}
+
 .about-page__poster {
   border-radius: 16px;
   overflow: hidden;
