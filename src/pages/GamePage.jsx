@@ -1,9 +1,20 @@
+import { useState, useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
 import { flameJumper2 } from "../assets/images";
 import "./GamePage.css";
 
 const GamePage = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const chips = ["Indie platformer", "Pixel art", "Web game", "Made with love"];
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <div className="game-page">
@@ -33,14 +44,20 @@ const GamePage = () => {
             </div>
 
             <div className="game-hero__actions">
-              <a
-                className="game-hero__btn game-hero__btn--primary"
-                href="https://iscreamn.github.io/game-jumper/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Play now
-              </a>
+              {isMobile ? (
+                <span className="game-hero__btn game-hero__btn--primary game-hero__btn--disabled">
+                  Only on Desktop
+                </span>
+              ) : (
+                <a
+                  className="game-hero__btn game-hero__btn--primary"
+                  href="https://iscreamn.github.io/game-jumper/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Play now
+                </a>
+              )}
               <a
                 className="game-hero__btn game-hero__btn--ghost"
                 href="https://github.com/iScreAmn/game-jumper"

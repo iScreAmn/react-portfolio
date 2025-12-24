@@ -107,9 +107,15 @@
   box-shadow: var(--box-shadow);
 }
 
-.game-hero__btn--primary:hover {
+.game-hero__btn--primary:hover:not(.game-hero__btn--disabled) {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.game-hero__btn--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .game-hero__btn--ghost {
