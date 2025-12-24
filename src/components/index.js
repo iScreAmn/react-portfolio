@@ -10,5 +10,6 @@ export {default as Contacts} from "./contacts/Contacts"
 export {default as Footer} from "./footer/Footer"
 export {default as SidePanel} from "./widgets/sidePanel/SidePanel"
 export {default as HobbyTeaser} from "./hobby/HobbyTeaser"
+export {default as FeaturedPortfolio} from "./portfolio/FeaturedPortfolio"
 
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { hobby1, hobby2 } from "../assets/images";
+import { hobby1, hobby2, hobby3 } from "../assets/images";
 import "./HobbyPage.css";
 
 const chips = ["Drone filming", "Video making", "Storytelling", "Aerial visuals"];
@@ -132,6 +132,40 @@ const HobbyPage = () => {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="hobby-fly">
+        <div className="hobby-fly__container">
+          <div className="hobby-fly__content">
+            <span className="hobby-fly__eyebrow">Fly with me</span>
+            <h2 className="hobby-fly__title">
+              Book a drone session and let the world rotate around your idea.
+            </h2>
+            <p className="hobby-fly__text">
+              We plan light, movement, and transitions to deliver a cinematic
+              narrative: scouting, shooting, stabilizing, and polishing with a
+              short turnaround. Bring an event, project, or brand story and I
+              will capture it from above.
+            </p>
+            <div className="hobby-fly__actions">
+              <button
+                className="hobby-fly__btn hobby-fly__btn--primary"
+                type="button"
+              >
+                Book a flight
+              </button>
+              <button
+                className="hobby-fly__btn hobby-fly__btn--ghost"
+                type="button"
+              >
+                See the gallery
+              </button>
+            </div>
+          </div>
+          <div className="hobby-fly__visual">
+            <img src={hobby3} alt="Drone controller" />
           </div>
         </div>
       </section>
