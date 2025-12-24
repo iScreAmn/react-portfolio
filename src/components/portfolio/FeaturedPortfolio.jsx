@@ -22,7 +22,7 @@ const FeaturedPortfolio = () => {
             type="button"
             onClick={() => navigate("/portfolio")}
           >
-            посмотреть все
+            All Projects
           </button>
         </div>
 
