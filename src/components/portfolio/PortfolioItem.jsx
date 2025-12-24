@@ -1,17 +1,8 @@
-import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { slideInVariants } from "../../utils/animation";
 
 const PortfolioItem = ({ item, index }) => {
   return (
-    <motion.article
-      className="portfolio-img-card portfolio-grid__card"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-      custom={index}
-      variants={slideInVariants("top", 0.4, 50, true)}
-    >
+    <article className="portfolio-img-card portfolio-grid__card">
       <Link
         to={`/portfolio/${item.slug}`}
         className="portfolio-card__link"
@@ -28,7 +19,7 @@ const PortfolioItem = ({ item, index }) => {
           <img src={item.imgSrc} alt={item.title} />
         </div>
       </Link>
-    </motion.article>
+    </article>
   );
 };
 
