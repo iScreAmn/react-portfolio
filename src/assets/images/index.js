@@ -56,6 +56,12 @@ import hobby1 from "./hobby/drone1.png"
 import hobby2 from "./hobby/droneFly.png"
 import hobby3 from "./hobby/dronePult.png"
 
+// Services
+import service1 from "./web-art/standart.png"
+import service2 from "./web-art/premium.png"
+import service3 from "./web-art/comfort.png"
+
+
 export {
   aboutImg,
   flameJumper,
@@ -97,4 +103,7 @@ export {
   hobby2,
   hobby3,
   aboutImg2,
+  service1,
+  service2,
+  service3,
 }

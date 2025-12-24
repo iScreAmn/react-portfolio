@@ -11,9 +11,9 @@ const Nav = ({ isMenuOpen, handleMenuClick }) => {
     () => [
       { id: "home", label: "home", type: "section" },
       { id: "about", label: "about", type: "route", path: "/about" },
-      { id: "hobby", label: "hobby", type: "route", path: "/hobby" },
-      { id: "services", label: "services", type: "section" },
+      { id: "services", label: "services", type: "route", path: "/services" },
       { id: "portfolio", label: "portfolio", type: "route", path: "/portfolio" },
+      { id: "hobby", label: "hobby", type: "route", path: "/hobby" },
       { id: "contact", label: "contact", type: "section" },
     ],
     []
@@ -56,8 +56,18 @@ const Nav = ({ isMenuOpen, handleMenuClick }) => {
   };
 
   useEffect(() => {
+    if (location.pathname.startsWith("/services")) {
+      setActiveSection("services");
+      return;
+    }
+
     if (location.pathname.startsWith("/portfolio")) {
       setActiveSection("portfolio");
+      return;
+    }
+
+    if (location.pathname.startsWith("/hobby")) {
+      setActiveSection("hobby");
       return;
     }
 

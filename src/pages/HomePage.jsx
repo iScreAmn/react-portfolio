@@ -5,6 +5,7 @@ import {
   About,
   Services,
   HobbyTeaser,
+  FeaturedPortfolio,
   GetInTouch,
   Clients,
   Contacts,
@@ -39,6 +40,7 @@ const HomePage = () => {
     <>
       <Home />
       <About />
+      <FeaturedPortfolio />
       <Services />
       <HobbyTeaser />
       <GetInTouch />
