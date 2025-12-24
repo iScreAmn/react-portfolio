@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import {
   Home,
   About,
-  SkillsInfo,
   Services,
+  HobbyTeaser,
   GetInTouch,
   Clients,
   Contacts,
@@ -39,8 +39,8 @@ const HomePage = () => {
     <>
       <Home />
       <About />
-      <SkillsInfo />
       <Services />
+      <HobbyTeaser />
       <GetInTouch />
       <Clients />
       <Contacts />

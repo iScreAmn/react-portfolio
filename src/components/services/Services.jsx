@@ -1,13 +1,17 @@
 import "./Services.css";
 import { motion } from "motion/react";
-// import { slideInVariants } from "../../utils/animation";
+import { useNavigate } from "react-router-dom";
 import { flameJumper } from "../../assets/images";
-// import services from "../../data/services";
-// import ServiceItem from "./ServiceItem";
 import SectionTitle from "../section-title/SectionTitle";
 import { IoLogoGameControllerA } from "react-icons/io";
 
 const Services = () => {
+  const navigate = useNavigate();
+
+  const handlePlay = () => {
+    navigate("/game");
+  };
+
   return (
     <section className="services section" id="services">
       <div className="container flex-center">
@@ -61,18 +65,17 @@ const Services = () => {
               >
                 Flame Jumper
               </motion.h2>
-              <motion.a 
-                className="inner-info-link game-app" 
-                href="https://flamejumper.vercel.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <motion.button
+                type="button"
+                className="inner-info-link game-app"
+                onClick={handlePlay}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
               >
                 Let`s Play <IoLogoGameControllerA />
-              </motion.a>
+              </motion.button>
             </motion.div>
             <div className="services-app-img">
               <img src={flameJumper} alt="Flame Jumper" />
