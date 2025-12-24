@@ -65,7 +65,6 @@ const AboutPage = () => {
           <div className="about-page__block about-page__block--stack">
             <div className="about-page__block-header">
               <span className="about-page__eyebrow">Stack</span>
-              <h2 className="about-page__block-title">Core tools</h2>
             </div>
             <div className="about-page__tags">
               {skills.map((item) => (
@@ -78,8 +77,7 @@ const AboutPage = () => {
 
           <div className="about-page__block about-page__block--education">
             <div className="about-page__block-header">
-              <span className="about-page__eyebrow">Learning</span>
-              <h2 className="about-page__block-title">Education</h2>
+              <span className="about-page__eyebrow">Education</span>
             </div>
             <div className="about-page__cards">
               {education.map((item) => (
@@ -97,7 +95,6 @@ const AboutPage = () => {
           <div className="about-page__block about-page__block--experience">
             <div className="about-page__block-header">
               <span className="about-page__eyebrow">Experience</span>
-              <h2 className="about-page__block-title">Work history</h2>
             </div>
             <div className="about-page__cards about-page__cards--grid">
               {workExperience.map((item) => (

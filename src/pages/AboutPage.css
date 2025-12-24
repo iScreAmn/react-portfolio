@@ -152,6 +152,7 @@
   grid-template-areas:
     "experience stack"
     "experience education";
+  align-items: stretch;
 }
 
 .about-page__block {
@@ -167,6 +168,7 @@
   padding: 22px 22px 18px;
   display: grid;
   gap: 16px;
+  height: 100%;
 }
 
 .about-page__block--experience {
@@ -175,6 +177,7 @@
 
 .about-page__block--stack {
   grid-area: stack;
+  align-self: start;
 }
 
 .about-page__block--education {
@@ -226,6 +229,15 @@
 
 .about-page__cards--grid {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.about-page__block--experience .about-page__cards,
+.about-page__block--education .about-page__cards {
+  grid-template-columns: 1fr;
+}
+
+.about-page__block--stack {
+  align-self: start;
 }
 
 .about-page__card {
