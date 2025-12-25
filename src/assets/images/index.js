@@ -40,9 +40,11 @@ import flameJumper2 from "./portfolio/flame-jumper/game-presentation.gif"
 
 
 // Clients
-import client1 from "./client1.webp"
-import client2 from "./client2.webp"
-import client3 from "./client3.webp"
+import client1 from "./clients/alexandra.png"
+import client2 from "./clients/giorgi.png"
+import client3 from "./clients/elena.png"
+import client4 from "./clients/levan.png"
+import client5 from "./clients/natia.png"
 
 // Skills Logos
 import skillLogo1 from "./skills/css.webp"
@@ -60,6 +62,7 @@ import hobby3 from "./hobby/dronePult.png"
 import service1 from "./web-art/standart.png"
 import service2 from "./web-art/premium.png"
 import service3 from "./web-art/comfort.png"
+import project from "./web-art/project.png"
 
 
 export {
@@ -94,6 +97,8 @@ export {
   client1,
   client2,
   client3,
+  client4,
+  client5,
   skillLogo1,
   skillLogo2,
   skillLogo3,
@@ -106,4 +111,5 @@ export {
   service1,
   service2,
   service3,
+  project,
 }
