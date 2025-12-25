@@ -14,7 +14,7 @@ const Nav = ({ isMenuOpen, handleMenuClick }) => {
       { id: "services", label: "services", type: "route", path: "/services" },
       { id: "portfolio", label: "portfolio", type: "route", path: "/portfolio" },
       { id: "hobby", label: "hobby", type: "route", path: "/hobby" },
-      { id: "contact", label: "contact", type: "section" },
+      { id: "contact", label: "contact", type: "route", path: "/contacts" },
     ],
     []
   );
@@ -63,6 +63,11 @@ const Nav = ({ isMenuOpen, handleMenuClick }) => {
 
     if (location.pathname.startsWith("/portfolio")) {
       setActiveSection("portfolio");
+      return;
+    }
+
+    if (location.pathname.startsWith("/contacts")) {
+      setActiveSection("contact");
       return;
     }
 
