@@ -4,12 +4,12 @@ import {
   Home,
   About,
   Services,
-  HobbyTeaser,
+  // HobbyTeaser,
   FeaturedPortfolio,
   GetInTouch,
   Clients,
-  Contacts,
 } from "../components/index";
+import "./HomePage.css";
 
 const HomePage = () => {
   const location = useLocation();
@@ -37,16 +37,15 @@ const HomePage = () => {
   }, [location]);
 
   return (
-    <>
+    <div className="home-page">
       <Home />
       <About />
       <FeaturedPortfolio />
       <Services />
-      <HobbyTeaser />
-      <GetInTouch />
+      {/* <HobbyTeaser /> */}
       <Clients />
-      <Contacts />
-    </>
+      <GetInTouch />
+    </div>
   );
 };
 
