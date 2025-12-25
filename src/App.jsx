@@ -8,6 +8,7 @@ import GamePage from "./pages/GamePage";
 import AboutPage from "./pages/AboutPage";
 import HobbyPage from "./pages/HobbyPage";
 import ServicesPage from "./pages/ServicesPage";
+import ContactsPage from "./pages/ContactsPage";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,6 +43,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/hobby" element={<HobbyPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </main>
