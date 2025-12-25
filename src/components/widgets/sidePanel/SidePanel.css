@@ -19,6 +19,8 @@
 }
 
 .side-panel-btn {
+  position: fixed;
+  right: 0;
   width: 50px;
   height: 50px;
   background: var(--bg-transparent-color-01);
@@ -33,7 +35,7 @@
   font-size: 20px;
   color: var(--text-color);
   transition: all 0.3s ease;
-  position: relative;
+  z-index: 11;
   overflow: hidden;
 }
 
@@ -61,7 +63,7 @@
 }
 
 .side-panel-btn:active {
-  transform: translateX(0);
+  transform: translateX(0) translateY(-50%);
 }
 
 .side-panel-btn svg {
@@ -74,8 +76,33 @@
   transform: scale(1.1);
 }
 
+/* Специфичные стили для кнопки прокрутки */
+.scroll-btn {
+  top: 50%;
+  background: var(--bg-transparent-color-01);
+  color: #fff;
+  opacity: 0;
+  transform: translateX(100%) translateY(-50%);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-btn.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(-50%);
+  pointer-events: all;
+}
+
+.scroll-btn:hover {
+  background: var(--second-color-hover, #0056b3);
+}
+
 /* Специфичные стили для кнопки темы */
 .theme-btn {
+  top: calc(50% + 60px);
+  opacity: 1;
+  transform: translateX(0) translateY(-50%);
+  pointer-events: all;
   background: var(--bg-transparent-color-01);
 }
 
@@ -83,34 +110,138 @@
   background: var(--second-color-hover, #ffa500);
 }
 
-/* Специфичные стили для кнопки прокрутки */
-.scroll-btn {
-  background: var(--bg-transparent-color-01);
-  color: #fff;
-}
-
-.scroll-btn:hover {
-  background: var(--second-color-hover, #0056b3);
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+  .scroll-btn {
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+  }
+  
+  .scroll-btn.visible {
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .theme-btn {
+    top: calc(50% + 58px);
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .side-panel-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 19px;
+  }
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
-  .side-panel {
-    top: 30%;
-    gap: 50px;
+  .scroll-btn {
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+  }
+  
+  .scroll-btn.visible {
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .theme-btn {
+    top: calc(50% + 55px);
+    transform: translateX(0) translateY(-50%);
   }
   
   .side-panel-btn {
     width: 45px;
     height: 45px;
     font-size: 18px;
+    border-radius: 4px 0 0 4px;
   }
 }
 
+/* Адаптивность для маленьких планшетов и больших телефонов */
+@media (max-width: 600px) {
+  .scroll-btn {
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+  }
+  
+  .scroll-btn.visible {
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .theme-btn {
+    top: calc(50% + 52px);
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .side-panel-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+  }
+}
+
+/* Адаптивность для мобильных телефонов */
 @media (max-width: 480px) {
-  .side-panel {
-    top: 30%;
-    gap: 55px;
+  .scroll-btn {
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+  }
+  
+  .scroll-btn.visible {
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .theme-btn {
+    top: calc(50% + 50px);
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .side-panel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 3px 0 0 3px;
+  }
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 360px) {
+  .scroll-btn {
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+  }
+  
+  .scroll-btn.visible {
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .theme-btn {
+    top: calc(50% + 46px);
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .side-panel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    border-radius: 3px 0 0 3px;
+  }
+}
+
+/* Адаптивность для ландшафтной ориентации на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .scroll-btn {
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+  }
+  
+  .scroll-btn.visible {
+    transform: translateX(0) translateY(-50%);
+  }
+  
+  .theme-btn {
+    top: calc(50% + 50px);
+    transform: translateX(0) translateY(-50%);
   }
   
   .side-panel-btn {

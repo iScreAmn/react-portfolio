@@ -47,7 +47,15 @@ const SidePanel = ({ isMenuOpen }) => {
   }
 
   return (
-    <div className={`side-panel ${isVisible ? "visible" : ""}`}>
+    <>
+      <button
+        className={`side-panel-btn scroll-btn ${isVisible ? "visible" : ""}`}
+        onClick={scrollToTop}
+        aria-label="Прокрутить к началу страницы"
+      >
+        <FaArrowUp />
+      </button>
+      
       <button
         className="side-panel-btn theme-btn"
         onClick={toggleTheme}
@@ -55,15 +63,7 @@ const SidePanel = ({ isMenuOpen }) => {
       >
         {theme === "light" ? <FaMoon /> : <FaSun />}
       </button>
-      
-      <button
-        className="side-panel-btn scroll-btn"
-        onClick={scrollToTop}
-        aria-label="Прокрутить к началу страницы"
-      >
-        <FaArrowUp />
-      </button>
-    </div>
+    </>
   );
 };
 
