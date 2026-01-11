@@ -1,8 +1,7 @@
 .decrypted-text-wrapper {
   font-size: var(--normal-font-size);
   color: var(--third-color);
-  max-width: 350px;
-  width: 100%;
+  max-width: 410px;
   display: inline-block;
   white-space: pre-wrap;
 }
