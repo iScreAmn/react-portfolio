@@ -18,7 +18,6 @@ const icons = socialLinks.map((link, index) => {
 
 const Home = () => {
   const [homeData, setHomeData] = useState(fallbackData);
-  const [loading, setLoading] = useState(true);
 
   // Загружаем данные из Strapi при монтировании компонента
   useEffect(() => {
@@ -49,7 +48,6 @@ const Home = () => {
         console.log('❌ Using fallback data');
       }
       // Если данные не загрузились, используется fallback из aboutPageData.js
-      setLoading(false);
     };
 
     loadData();
@@ -57,16 +55,6 @@ const Home = () => {
 
   const ContactIcon = homeData.contactButton.icon;
   const ScrollIcon = homeData.scrollDown.icon;
-
-  if (loading) {
-    return (
-      <section className="home" id="home">
-        <div className="container home__wrapper">
-          <div className="home-info">Loading...</div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="home" id="home">
