@@ -2,10 +2,41 @@ import { aboutImg } from "../assets/images";
 import education from "../data/education";
 import workExperience from "../data/workExperience";
 import skills from "../data/skills";
-import { heroData, cvData, socialLinks, sectionLabels } from "../data/aboutPageData";
+import { heroData as fallbackHeroData, cvData, socialLinks, sectionLabels } from "../data/aboutPageData";
+import { useState, useEffect } from "react";
+import { fetchAboutHero } from "../services/strapi";
 import "./AboutPage.css";
 
 const AboutPage = () => {
+  const [heroData, setHeroData] = useState(fallbackHeroData);
+  const [posterImage, setPosterImage] = useState(aboutImg);
+
+  // Загружаем данные из Strapi при монтировании компонента
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await fetchAboutHero();
+      if (data?.title) {
+        // Обновляем state данными из Strapi
+        setHeroData({
+          eyebrow: data.eyebrow,
+          title: data.title,
+          subtitle: data.subtitle,
+          subtitleSecondary: data.subtitleSecondary,
+          // chips может быть JSON строкой или массивом
+          chips: typeof data.chips === 'string' ? JSON.parse(data.chips) : (data.chips || []),
+        });
+        
+        // Обновляем изображение если есть в Strapi
+        if (data.posterImageUrl) {
+          setPosterImage(data.posterImageUrl);
+        }
+      }
+      // Если данные не загрузились, используется fallback из aboutPageData.js
+    };
+
+    loadData();
+  }, []);
+
   return (
     <div className="about-page">
       <section className="about-page__hero">
@@ -57,7 +88,7 @@ const AboutPage = () => {
           </div>
 
           <div className="about-page__poster">
-            <img src={aboutImg} alt="Dimitri Jmukhadze portrait" />
+            <img src={posterImage} alt="Dimitri Jmukhadze portrait" />
           </div>
         </div>
       </section>

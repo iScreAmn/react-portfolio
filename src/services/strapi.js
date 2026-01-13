@@ -35,3 +35,27 @@ export const fetchHomeSection = async () => {
     return null;
   }
 };
+
+// Получает данные секции About Hero из Strapi CMS
+export const fetchAboutHero = async () => {
+  try {
+    const response = await strapiClient.get('/about-heroes?populate=posterImage');
+    const data = response.data.data[0];
+    
+    // Обрабатываем изображение - если есть, формируем полный URL
+    if (data?.posterImage) {
+      const imageUrl = data.posterImage.url || data.posterImage;
+      // Если URL относительный, добавляем базовый URL Strapi
+      data.posterImageUrl = imageUrl.startsWith('http') 
+        ? imageUrl 
+        : `${STRAPI_URL}${imageUrl}`;
+    }
+    
+    // Возвращаем первую запись (в Strapi v5 данные без вложенного attributes)
+    return data;
+  } catch (error) {
+    console.error('❌ Error fetching about hero:', error);
+    // Возвращаем null, чтобы использовать fallback данные
+    return null;
+  }
+};
