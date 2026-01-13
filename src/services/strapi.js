@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337';
+// Нормализуем URL - убираем trailing slash если есть
+const getStrapiUrl = () => {
+  const url = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337';
+  return url.endsWith('/') ? url.slice(0, -1) : url;
+};
+
+const STRAPI_URL = getStrapiUrl();
 const STRAPI_TOKEN = import.meta.env.VITE_STRAPI_TOKEN;
 
 const strapiClient = axios.create({
