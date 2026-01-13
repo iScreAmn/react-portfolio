@@ -88,7 +88,11 @@ const AboutPage = () => {
           </div>
 
           <div className="about-page__poster">
-            <img src={posterImage} alt="Dimitri Jmukhadze portrait" />
+            <img 
+              key={posterImage} 
+              src={posterImage} 
+              alt="Dimitri Jmukhadze portrait" 
+            />
           </div>
         </div>
       </section>

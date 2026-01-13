@@ -48,13 +48,21 @@ export const fetchAboutHero = async () => {
     
     const data = response.data.data[0];
     
-    // Обрабатываем изображение - если есть, формируем полный URL
+    // Обрабатываем изображение - если есть, формируем полный URL с cache busting
     if (data?.posterImage) {
       const imageUrl = data.posterImage.url || data.posterImage;
       // Если URL относительный, добавляем базовый URL Strapi
-      data.posterImageUrl = imageUrl.startsWith('http') 
+      let fullImageUrl = imageUrl.startsWith('http') 
         ? imageUrl 
         : `${STRAPI_URL}${imageUrl}`;
+      
+      // Добавляем cache busting параметр на основе updatedAt
+      // Это заставит браузер загружать новое изображение при обновлении
+      const separator = fullImageUrl.includes('?') ? '&' : '?';
+      const cacheBuster = data.updatedAt 
+        ? `v=${new Date(data.updatedAt).getTime()}` 
+        : `v=${Date.now()}`;
+      data.posterImageUrl = `${fullImageUrl}${separator}${cacheBuster}`;
     }
     
     // Возвращаем первую запись (в Strapi v5 данные без вложенного attributes)
