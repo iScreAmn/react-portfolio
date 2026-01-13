@@ -40,6 +40,12 @@ export const fetchHomeSection = async () => {
 export const fetchAboutHero = async () => {
   try {
     const response = await strapiClient.get('/about-heroes?populate=posterImage');
+    
+    // Проверяем что данные есть
+    if (!response.data?.data || response.data.data.length === 0) {
+      return null;
+    }
+    
     const data = response.data.data[0];
     
     // Обрабатываем изображение - если есть, формируем полный URL
@@ -54,6 +60,11 @@ export const fetchAboutHero = async () => {
     // Возвращаем первую запись (в Strapi v5 данные без вложенного attributes)
     return data;
   } catch (error) {
+    // 404 - это нормально, если Content Type еще не создан в продакшн
+    if (error.response?.status === 404) {
+      // Тихий fallback - не логируем ошибку
+      return null;
+    }
     console.error('❌ Error fetching about hero:', error);
     // Возвращаем null, чтобы использовать fallback данные
     return null;
