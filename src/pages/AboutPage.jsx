@@ -10,6 +10,7 @@ import "./AboutPage.css";
 const AboutPage = () => {
   const [heroData, setHeroData] = useState(fallbackHeroData);
   const [posterImage, setPosterImage] = useState(aboutImg);
+  const [imageKey, setImageKey] = useState(0);
 
   // Загружаем данные из Strapi при монтировании компонента
   useEffect(() => {
@@ -26,9 +27,26 @@ const AboutPage = () => {
           chips: typeof data.chips === 'string' ? JSON.parse(data.chips) : (data.chips || []),
         });
         
-        // Обновляем изображение если есть в Strapi
+        // Обновляем изображение если есть в Strapi с принудительной перезагрузкой
         if (data.posterImageUrl) {
-          setPosterImage(data.posterImageUrl);
+          // Предзагружаем изображение через новый Image объект для обхода кеша
+          const img = new Image();
+          const imageUrlWithCacheBuster = `${data.posterImageUrl}${data.posterImageUrl.includes('?') ? '&' : '?'}_nocache=${Date.now()}`;
+          
+          img.onload = () => {
+            // Изображение загружено, обновляем state
+            setImageKey(prev => prev + 1);
+            setPosterImage(imageUrlWithCacheBuster);
+          };
+          
+          img.onerror = () => {
+            // Если не загрузилось, пробуем оригинальный URL
+            setImageKey(prev => prev + 1);
+            setPosterImage(data.posterImageUrl);
+          };
+          
+          // Начинаем загрузку
+          img.src = imageUrlWithCacheBuster;
         }
       }
       // Если данные не загрузились, используется fallback из aboutPageData.js
@@ -89,9 +107,10 @@ const AboutPage = () => {
 
           <div className="about-page__poster">
             <img 
-              key={posterImage} 
-              src={posterImage} 
-              alt="Dimitri Jmukhadze portrait" 
+              key={`poster-${imageKey}`}
+              src={posterImage}
+              alt="Dimitri Jmukhadze portrait"
+              loading="eager"
             />
           </div>
         </div>
