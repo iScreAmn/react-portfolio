@@ -31,7 +31,7 @@ const portfolioData = [
     title: "Georgian Polygraph Services",
     category: "Polygraph Services",
     imgSrc: portfolio20,
-    href: "https://geopolser.ge/test",
+    href: "https://geopolser.ge",
     year: "2025",
     tags: ["Landing", "GPS", "Responsive"],
     description:
@@ -45,7 +45,7 @@ const portfolioData = [
     category: "Design Agency",
     imgSrc: portfolio15,
     href: "https://impera-design.vercel.app/",
-    year: "2025",
+    year: "2026",
     tags: ["Landing", "Design", "Responsive"],
     description:
       "Landing for a design agency with a modern design and a responsive layout.",

@@ -1,33 +1,6 @@
 import { useState } from "react";
 import "./ServicesPage.css";
-import { service1, service2, service3 } from "../assets/images";
-
-const packages = [
-  {
-    name: "Standart",
-    price: "from $200",
-    items: ["Landings", "Mini apps", "Chat Bots"],
-    accent: "starter",
-    image: service1,
-    text: "Quick launches, focused funnels, and micro experiences that convert. Solid build with minimal friction.",
-  },
-  {
-    name: "Comfort",
-    price: "from $500",
-    items: ["Multi-page", "Multilanguage", "Online store"],
-    accent: "pro",
-    image: service2,
-    text: "Scalable, multilingual campaigns and stores with easy CMS handoff and guided design QA.",
-  },
-  {
-    name: "Premium",
-    price: "Individual",
-    items: ["Custom UX/UI", "Animations", "Full support"],
-    accent: "premium",
-    image: service3,
-    text: "Full product partnerships: research, sprint design, advanced motion, and maintenance-ready delivery.",
-  },
-];
+import { packages, heroData, uiTexts } from "../data/servicesPageData";
 
 const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -52,27 +25,21 @@ const ServicesPage = () => {
       <section className="services-hero">
         <div className="services-hero__container">
           <div className="services-hero__content">
-            <div className="services-hero__eyebrow">Services</div>
-            <h1 className="services-hero__title">Design & Development Packages</h1>
+            <div className="services-hero__eyebrow">{heroData.eyebrow}</div>
+            <h1 className="services-hero__title">{heroData.title}</h1>
             <p className="services-hero__subtitle">
-              Modern UX/UI, clear delivery, and responsive builds. Pick a package
-              or request a bespoke flow — I handle design, animation, and
-              front-end implementation with clean handoff and support.
+              {heroData.subtitle}
             </p>
             <p className="services-hero__subtitle services-hero__subtitle--secondary">
-              Landing pages, multi-page sites, online stores, chatbots, and
-              custom animations. Built with performance budgets, accessibility,
-              and theme-ready design tokens.
+              {heroData.subtitleSecondary}
             </p>
           </div>
           <div className="services-hero__chips">
-            {["UX/UI", "Animations", "Responsive", "i18n", "E-commerce"].map(
-              (chip) => (
-                <span key={chip} className="services-hero__chip">
-                  {chip}
-                </span>
-              )
-            )}
+            {heroData.chips.map((chip) => (
+              <span key={chip} className="services-hero__chip">
+                {chip}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -106,7 +73,7 @@ const ServicesPage = () => {
                   type="button"
                   onClick={() => openModal(pkg)}
                 >
-                  Choose plan
+                  {uiTexts.choosePlan}
                 </button>
               </article>
             ))}
@@ -126,9 +93,9 @@ const ServicesPage = () => {
               type="button"
               className="services-modal__close"
               onClick={closeModal}
-              aria-label="Close"
+              aria-label={uiTexts.closeButton}
             >
-              ✕
+              {uiTexts.closeSymbol}
             </button>
             <div className="services-modal__body">
               <div className="services-modal__info">
@@ -149,15 +116,15 @@ const ServicesPage = () => {
                 autoComplete="off"
               >
                 <label className="services-modal__label">
-                  Name
+                  {uiTexts.formLabels.name}
                   <input type="text" name="name" required />
                 </label>
                 <label className="services-modal__label">
-                  Email
+                  {uiTexts.formLabels.email}
                   <input type="email" name="email" required />
                 </label>
                 <button className="services-modal__submit" type="submit">
-                  Request this service
+                  {uiTexts.submitButton}
                 </button>
               </form>
             </div>

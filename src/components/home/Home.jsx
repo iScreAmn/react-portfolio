@@ -1,34 +1,67 @@
 import "./Home.css";
 import DecryptedText from "../widgets/decryptedText/DecryptedText";
 import { aboutImg2 } from "../../assets/images";
-
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
-import { FaPaperPlane } from "react-icons/fa";
-import { FaArrowDownLong } from "react-icons/fa6";
+import { homeData as fallbackData, socialLinks } from "../../data/aboutPageData";
 import { motion } from "motion/react";
 import { iconVariants, slideInVariants } from "../../utils/animation";
+import { useState, useEffect } from "react";
+import { fetchHomeSection } from "../../services/strapi";
 
-const icons = [
-  {
-    id: 1,
-    href: "https://www.linkedin.com/in/dimitri-jmukhadze-2048b733a/",
-    icon: <FaLinkedinIn />,
-  },
-  {
-    id: 2,
-    href: "https://www.instagram.com/d.jmukhadze/",
-    icon: <FaInstagram />,
-  },
-  {
-    id: 3,
-    href: "https://github.com/iScreAmn/",
-    icon: <FaGithub />,
-  },
-];
+const icons = socialLinks.map((link, index) => {
+  const Icon = link.icon;
+  return {
+    id: index + 1,
+    href: link.href,
+    icon: <Icon />,
+  };
+});
 
 const Home = () => {
+  const [homeData, setHomeData] = useState(fallbackData);
+  const [loading, setLoading] = useState(true);
+
+  // Загружаем данные из Strapi при монтировании компонента
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await fetchHomeSection();
+      if (data?.greeting) {
+        // Обновляем state данными из Strapi
+        setHomeData({
+          greeting: data.greeting,
+          role: data.role,
+          description: data.description,
+          contactButton: {
+            text: data.contactButtonText,
+            href: data.contactButtonHref,
+            icon: fallbackData.contactButton.icon,
+          },
+          scrollDown: {
+            text: data.scrollDownText,
+            href: data.scrollDownHref,
+            icon: fallbackData.scrollDown.icon,
+          },
+        });
+      }
+      // Если данные не загрузились, используется fallback из aboutPageData.js
+      setLoading(false);
+    };
+
+    loadData();
+  }, []);
+
+  const ContactIcon = homeData.contactButton.icon;
+  const ScrollIcon = homeData.scrollDown.icon;
+
+  if (loading) {
+    return (
+      <section className="home" id="home">
+        <div className="container home__wrapper">
+          <div className="home-info">Loading...</div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="home" id="home">
       <div className="container home__wrapper">
@@ -57,7 +90,7 @@ const Home = () => {
             custom={0}
             variants={slideInVariants("left", 0.5, 100, true)}
           >
-            Hey, I am D.J
+            {homeData.greeting}
           </motion.h1>
           <motion.h3
             initial="hidden"
@@ -66,13 +99,13 @@ const Home = () => {
             custom={1}
             variants={slideInVariants("left", 0.7, 100, true)}
           >
-            Front-end Developer
+            {homeData.role}
           </motion.h3>
 
 
           <div className="decrypted-text-stable-container">
             <DecryptedText
-              text="I create stunning websites for your business, Highly experienced in web design and development."
+              text={homeData.description}
               animateOn="view"
               revealDirection="center"
               speed={20}
@@ -83,7 +116,7 @@ const Home = () => {
           </div>
 
           <motion.a
-            href="https://t.me/iscreamn"
+            href={homeData.contactButton.href}
             target="_blank"
             className="home-info-link inner-info-link"
             initial="hidden"
@@ -92,8 +125,8 @@ const Home = () => {
             custom={2}
             variants={slideInVariants("left", 0.9, 100, true)}
           >
-            Contact me
-            <FaPaperPlane />
+            {homeData.contactButton.text}
+            <ContactIcon />
           </motion.a>
         </div>
         <div className="circle">
@@ -109,9 +142,9 @@ const Home = () => {
           {/* <img src={lightImg} alt="Profile Photo" /> */}
         </motion.div>
       </div>
-      <a href="#about" className="scroll-down">
-        Scroll-Down
-        <FaArrowDownLong className="arrow-icon" />
+      <a href={homeData.scrollDown.href} className="scroll-down">
+        {homeData.scrollDown.text}
+        <ScrollIcon className="arrow-icon" />
       </a>
     </section>
   );

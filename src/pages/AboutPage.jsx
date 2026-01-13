@@ -1,11 +1,9 @@
 import { aboutImg } from "../assets/images";
-import { FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
 import education from "../data/education";
 import workExperience from "../data/workExperience";
 import skills from "../data/skills";
+import { heroData, cvData, socialLinks, sectionLabels } from "../data/aboutPageData";
 import "./AboutPage.css";
-
-const chips = ["Frontend", "Web apps", "Animations", "UX first", "Responsive"];
 
 const AboutPage = () => {
   return (
@@ -13,23 +11,17 @@ const AboutPage = () => {
       <section className="about-page__hero">
         <div className="about-page__container">
           <div className="about-page__content">
-            <div className="about-page__eyebrow">About</div>
-            <h1 className="about-page__title">Dimitri Jmukhadze</h1>
+            <div className="about-page__eyebrow">{heroData.eyebrow}</div>
+            <h1 className="about-page__title">{heroData.title}</h1>
             <p className="about-page__subtitle">
-              Front-end developer focused on fast, responsive web apps and
-              product thinking. I design and ship modern interfaces with smooth
-              motion, clean layout systems, and maintainable code. I care about
-              accessibility, performance budgets, and readable design tokens for
-              both light and dark themes.
+              {heroData.subtitle}
             </p>
             <p className="about-page__subtitle about-page__subtitle--secondary">
-              I deliver landing pages, SaaS dashboards, promo sites, and custom
-              UI widgets. I build design-consistent systems, animate with intent
-              (not noise), and iterate quickly with stakeholders.
+              {heroData.subtitleSecondary}
             </p>
 
             <div className="about-page__chips">
-              {chips.map((chip) => (
+              {heroData.chips.map((chip) => (
                 <span className="about-page__chip" key={chip}>
                   {chip}
                 </span>
@@ -39,39 +31,27 @@ const AboutPage = () => {
             <div className="about-page__actions">
               <a
                 className="about-page__btn about-page__btn--primary"
-                href="/CV_Dimitri-Jmukhadze.pdf"
+                href={cvData.filePath}
                 download
               >
-                Download CV
+                {cvData.downloadText}
               </a>
               <div className="about-page__social">
-                <a
-                  className="about-page__social-btn"
-                  href="https://www.linkedin.com/in/dimitri-jmukhadze-2048b733a/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedinIn />
-                </a>
-                <a
-                  className="about-page__social-btn"
-                  href="https://github.com/iScreAmn/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  className="about-page__social-btn"
-                  href="https://www.instagram.com/d.jmukhadze/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                >
-                  <FaInstagram />
-                </a>
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.ariaLabel}
+                      className="about-page__social-btn"
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={link.ariaLabel}
+                    >
+                      <Icon />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -86,7 +66,7 @@ const AboutPage = () => {
         <div className="about-page__container about-page__details-container">
           <div className="about-page__block about-page__block--stack">
             <div className="about-page__block-header">
-              <span className="about-page__eyebrow">Stack</span>
+              <span className="about-page__eyebrow">{sectionLabels.stack}</span>
             </div>
             <div className="about-page__tags">
               {skills.map((item) => (
@@ -99,7 +79,7 @@ const AboutPage = () => {
 
           <div className="about-page__block about-page__block--education">
             <div className="about-page__block-header">
-              <span className="about-page__eyebrow">Education</span>
+              <span className="about-page__eyebrow">{sectionLabels.education}</span>
             </div>
             <div className="about-page__cards">
               {education.map((item) => (
@@ -116,7 +96,7 @@ const AboutPage = () => {
 
           <div className="about-page__block about-page__block--experience">
             <div className="about-page__block-header">
-              <span className="about-page__eyebrow">Experience</span>
+              <span className="about-page__eyebrow">{sectionLabels.experience}</span>
             </div>
             <div className="about-page__cards about-page__cards--grid">
               {workExperience.map((item) => (
