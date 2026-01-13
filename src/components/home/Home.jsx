@@ -23,8 +23,12 @@ const Home = () => {
   // Загружаем данные из Strapi при монтировании компонента
   useEffect(() => {
     const loadData = async () => {
+      console.log('🔵 Loading home data from Strapi...');
+      console.log('🔵 Strapi URL:', import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337');
       const data = await fetchHomeSection();
+      console.log('🔵 Received data:', data);
       if (data?.greeting) {
+        console.log('✅ Using Strapi data');
         // Обновляем state данными из Strapi
         setHomeData({
           greeting: data.greeting,
@@ -41,6 +45,8 @@ const Home = () => {
             icon: fallbackData.scrollDown.icon,
           },
         });
+      } else {
+        console.log('❌ Using fallback data');
       }
       // Если данные не загрузились, используется fallback из aboutPageData.js
       setLoading(false);
