@@ -31,13 +31,6 @@ const ProjectPage = () => {
     setCurrentIndex(0);
   }, [slug]);
 
-  const handleScrollToGallery = () => {
-    const section = document.getElementById("project-gallery");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   const openModalAt = (index) => {
     setCurrentIndex(index);
     setIsModalOpen(true);
@@ -127,7 +120,7 @@ const ProjectPage = () => {
             <div className="project-hero__actions">
               <button
                 className="project-hero__btn project-hero__btn--primary"
-                onClick={handleScrollToGallery}
+                onClick={() => openModalAt(0)}
               >
                 View gallery
               </button>
@@ -138,7 +131,7 @@ const ProjectPage = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Open live
+                  View Page
                 </a>
               )}
             </div>
