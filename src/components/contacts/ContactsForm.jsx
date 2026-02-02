@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaPaperPlane, FaCheck, FaExclamationTriangle, FaSpinner } from "react-icons/fa";
+import { MdOutlineArrowDropDown } from "react-icons/md";
 import { motion, AnimatePresence } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
 import "./ContactsForm.css";
@@ -7,16 +8,15 @@ import "./ContactsForm.css";
 const ContactsForm = () => {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    subject: "",
+    contactMethod: "",
+    contactValue: "",
     message: "",
-    captcha: ""
+    agreeToPrivacy: false
   });
   
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  const [captchaValue, setCaptchaValue] = useState("portfolio2024");
 
   const validateField = (name, value) => {
     switch (name) {
@@ -25,35 +25,42 @@ const ContactsForm = () => {
         if (value.length < 2) return "Name must be at least 2 characters";
         if (!/^[a-zA-Z\s]+$/.test(value)) return "Name can only contain letters and spaces";
         return "";
-      case "email":
-        if (!value.trim()) return "Email is required";
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Please enter a valid email";
+      case "contactMethod":
+        if (!value.trim()) return "Choose a contact method";
         return "";
-      case "subject":
-        if (!value.trim()) return "Subject is required";
-        if (value.length < 5) return "Subject must be at least 5 characters";
+      case "contactValue": {
+        const method = formData.contactMethod;
+        if (!value.trim()) return method === "Email" ? "Email is required" : "Phone is required";
+        if (method === "Email") {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Enter a valid email";
+        } else {
+          if (value.replace(/\D/g, "").length < 10) return "Enter a valid phone number (at least 10 digits)";
+        }
         return "";
+      }
       case "message":
         if (!value.trim()) return "Message is required";
         if (value.length < 10) return "Message must be at least 10 characters";
         return "";
-      case "captcha":
-        if (!value.trim()) return "Please complete the CAPTCHA";
-        if (value !== captchaValue) return "CAPTCHA verification failed";
-        return "";
+      case "agreeToPrivacy":
+        return value ? "" : "You must agree to the processing of personal data";
       default:
         return "";
     }
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    let finalValue = type === "checkbox" ? checked : value;
     
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+    if (name === "contactValue" && formData.contactMethod !== "Email") {
+      finalValue = value.replace(/[^\d+]/g, "").replace(/\+/g, (match, offset) => offset === 0 ? match : "");
     }
+    
+    const next = { ...formData, [name]: finalValue };
+    if (name === "contactMethod") next.contactValue = "";
+    setFormData(next);
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
@@ -66,6 +73,23 @@ const ContactsForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const PRIVACY_LINK = "/privacy";
+
+  const contactValueValid =
+    !formData.contactMethod
+      ? false
+      : formData.contactMethod === "Email"
+        ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.contactValue.trim())
+        : formData.contactValue.replace(/\D/g, "").length >= 10;
+
+  const isFormValid =
+    formData.name.trim().length >= 2 &&
+    /^[a-zA-Z\s]+$/.test(formData.name) &&
+    formData.contactMethod.trim() !== "" &&
+    contactValueValid &&
+    formData.message.trim().length >= 10 &&
+    formData.agreeToPrivacy === true;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -75,23 +99,23 @@ const ContactsForm = () => {
     setSubmitStatus(null);
     
     try {
-      const response = await fetch('/api/contact', {
+      const apiBase = import.meta.env.VITE_API_URL ?? '';
+      const response = await fetch(`${apiBase}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, captcha: "portfolio2024" }),
       });
       
       const data = await response.json();
       
       if (data.success) {
         setSubmitStatus('success');
-        setFormData({ name: "", email: "", subject: "", message: "", captcha: "" });
-        setCaptchaValue("portfolio" + Math.floor(Math.random() * 1000));
+        setFormData({ name: "", contactMethod: "", contactValue: "", message: "", agreeToPrivacy: false });
       } else {
         setSubmitStatus('error');
-        if (data.errors) {
+        if (data.errors?.length) {
           const serverErrors = {};
           data.errors.forEach(error => {
             serverErrors[error.path] = error.msg;
@@ -104,12 +128,6 @@ const ContactsForm = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const generateCaptcha = () => {
-    const newValue = "portfolio" + Math.floor(Math.random() * 1000);
-    setCaptchaValue(newValue);
-    setFormData(prev => ({ ...prev, captcha: "" }));
   };
 
   return (
@@ -154,7 +172,7 @@ const ContactsForm = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className={errors.name ? "error" : ""}
+              className={`contact-field ${errors.name ? "error" : ""}`}
             />
             {errors.name && (
               <motion.span
@@ -176,45 +194,70 @@ const ContactsForm = () => {
           custom={2}
           variants={slideInVariants("top", 0.7, 50, true)}
         >
-          <div className="input-group">
-            <input
-              placeholder="Email"
-              type="email"
-              name="email"
-              value={formData.email}
+          <div className="input-group contact-select-wrapper">
+            <select
+              name="contactMethod"
+              value={formData.contactMethod}
               onChange={handleInputChange}
-              className={errors.email ? "error" : ""}
-            />
-            {errors.email && (
+              className={`contact-field contact-field--select ${errors.contactMethod ? "error" : ""}`}
+            >
+              <option value="" disabled>
+                Preferred contact method
+              </option>
+              <option value="Telegram">Telegram</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Email">Email</option>
+            </select>
+            <motion.span
+              className="contact-select-icon"
+              animate={{ y: [0, 2, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <MdOutlineArrowDropDown />
+            </motion.span>
+            {errors.contactMethod && (
               <motion.span
                 className="error-message"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                {errors.email}
-              </motion.span>
-            )}
-          </div>
-          <div className="input-group">
-            <input
-              placeholder="Subject"
-              type="text"
-              name="subject"
-              value={formData.subject}
-              onChange={handleInputChange}
-              className={errors.subject ? "error" : ""}
-            />
-            {errors.subject && (
-              <motion.span
-                className="error-message"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                {errors.subject}
+                {errors.contactMethod}
               </motion.span>
             )}
           </div>
         </motion.div>
+
+        <AnimatePresence>
+          {formData.contactMethod && (
+            <motion.div
+              className="contact-value-row"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="input-group">
+                <input
+                  type={formData.contactMethod === "Email" ? "email" : "tel"}
+                  name="contactValue"
+                  value={formData.contactValue}
+                  onChange={handleInputChange}
+                  placeholder={formData.contactMethod === "Email" ? "Your email" : "Your phone number"}
+                  className={`contact-field ${errors.contactValue ? "error" : ""}`}
+                />
+                {errors.contactValue && (
+                  <motion.span
+                    className="error-message"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {errors.contactValue}
+                  </motion.span>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="third-row">
           <motion.div
@@ -230,7 +273,7 @@ const ContactsForm = () => {
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              className={errors.message ? "error" : ""}
+              className={`contact-field ${errors.message ? "error" : ""}`}
             />
             {errors.message && (
               <motion.span
@@ -244,57 +287,49 @@ const ContactsForm = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          className="captcha-row"
+        <motion.label
+          className={`contact-privacy ${errors.agreeToPrivacy ? "contact-privacy--error" : ""}`}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           custom={4}
           variants={slideInVariants("top", 0.7, 50, true)}
         >
-          <div className="captcha-container">
-            <div className="captcha-display">
-              <span>{captchaValue}</span>
-              <button
-                type="button"
-                className="refresh-captcha"
-                onClick={generateCaptcha}
-                title="Refresh CAPTCHA"
-              >
-                ↻
-              </button>
-            </div>
-            <input
-              placeholder="Enter CAPTCHA"
-              type="text"
-              name="captcha"
-              value={formData.captcha}
-              onChange={handleInputChange}
-              className={errors.captcha ? "error" : ""}
-            />
-            {errors.captcha && (
-              <motion.span
-                className="error-message"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                {errors.captcha}
-              </motion.span>
-            )}
-          </div>
-        </motion.div>
+          <input
+            type="checkbox"
+            name="agreeToPrivacy"
+            checked={formData.agreeToPrivacy}
+            onChange={handleInputChange}
+            className="contact-privacy__input"
+          />
+          <span className="contact-privacy__text">
+            By clicking the button, you agree to the terms of{" "}
+            <a href={PRIVACY_LINK} className="contact-privacy__link" target="_blank" rel="noopener noreferrer">
+              processing of personal data
+            </a>
+          </span>
+        </motion.label>
+        {errors.agreeToPrivacy && (
+          <motion.span
+            className="error-message contact-privacy__error"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            {errors.agreeToPrivacy}
+          </motion.span>
+        )}
 
         <motion.button
-          className={`contact-btn inner-info-link ${isSubmitting ? "submitting" : ""}`}
+          className={`contact-btn inner-info-link ${isSubmitting ? "submitting" : ""} ${!isFormValid ? "contact-btn--disabled" : ""}`}
           type="submit"
-          disabled={isSubmitting}
+          disabled={!isFormValid || isSubmitting}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           custom={5}
           variants={slideInVariants("top", 0.7, 50, true)}
-          whileHover={!isSubmitting ? { scale: 1.05 } : {}}
-          whileTap={!isSubmitting ? { scale: 0.95 } : {}}
+          whileHover={isFormValid && !isSubmitting ? { scale: 1.05 } : {}}
+          whileTap={isFormValid && !isSubmitting ? { scale: 0.95 } : {}}
         >
           {isSubmitting ? (
             <>

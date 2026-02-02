@@ -31,9 +31,9 @@ const portfolioData = [
     title: "Georgian Polygraph Services",
     category: "Polygraph Services",
     imgSrc: portfolio20,
-    href: "https://geopolser.ge",
+    href: "https://www.geopolser.ge",
     year: "2025",
-    tags: ["Landing", "GPS", "Responsive"],
+    tags: ["Multi-page", "Brand Style", "Responsive"],
     description:
       "Landing for a GPS with a modern design and a responsive layout.",
     gallery: [portfolio21, portfolio22, portfolio24, portfolio23 ],
@@ -44,9 +44,9 @@ const portfolioData = [
     title: "Impera Design",
     category: "Design Agency",
     imgSrc: portfolio15,
-    href: "https://impera-design.vercel.app/",
+    href: "https://www.impera-design.ru/",
     year: "2026",
-    tags: ["Landing", "Design", "Responsive"],
+    tags: ["Multi-page", "Design", "Responsive"],
     description:
       "Landing for a design agency with a modern design and a responsive layout.",
     gallery: [portfolio16, portfolio17, portfolio18, portfolio19],
@@ -59,7 +59,7 @@ const portfolioData = [
     imgSrc: portfolio10,
     href: "https://diagnoz-clinic.vercel.app/",
     year: "2025",
-    tags: ["Landing", "Clinic", "Responsive"],
+    tags: ["Multi-page", "Clinic", "Responsive"],
     description:
       "Landing for a clinic with a modern design and a responsive layout.",
     gallery: [portfolio11, portfolio12, portfolio13, portfolio14],
