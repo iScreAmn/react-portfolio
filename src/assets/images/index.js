@@ -33,6 +33,13 @@ import portfolio22 from "./portfolio/gps/2.png"
 import portfolio23 from "./portfolio/gps/3.png"
 import portfolio24 from "./portfolio/gps/4.png"
 
+// Aurora Coffee & Roasters
+import portfolio25 from "./portfolio/coffee-shop/aurora.webp"
+import portfolio26 from "./portfolio/coffee-shop/1.webp"
+import portfolio27 from "./portfolio/coffee-shop/2.webp"
+import portfolio28 from "./portfolio/coffee-shop/3.webp"
+import portfolio29 from "./portfolio/coffee-shop/4.webp"
+
 // Flame Jumper
 import flameJumper from "./flameJumper.jpg"
 import flameJumper1 from "./portfolio/flame-jumper/flame-jumper.png"
@@ -92,6 +99,11 @@ export {
   portfolio22,
   portfolio23,
   portfolio24,
+  portfolio25,
+  portfolio26,
+  portfolio27,
+  portfolio28,
+  portfolio29,
   flameJumper1,
   flameJumper2,
   client1,

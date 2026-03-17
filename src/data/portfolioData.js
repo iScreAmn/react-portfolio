@@ -22,7 +22,12 @@ import {
   portfolio21,
   portfolio22,
   portfolio23,
-  portfolio24 } from "../assets/images";
+  portfolio24,
+  portfolio25,
+  portfolio26,
+  portfolio27,
+  portfolio28,
+  portfolio29 } from "../assets/images";
 
 const portfolioData = [
   {
@@ -35,7 +40,7 @@ const portfolioData = [
     year: "2025",
     tags: ["Multi-page", "Brand Style", "Responsive"],
     description:
-      "Landing for a GPS with a modern design and a responsive layout.",
+      "Multi-page website for a GPS with a modern design and a responsive layout.",
     gallery: [portfolio21, portfolio22, portfolio24, portfolio23 ],
   },
   {
@@ -48,7 +53,7 @@ const portfolioData = [
     year: "2026",
     tags: ["Multi-page", "Design", "Responsive"],
     description:
-      "Landing for a design agency with a modern design and a responsive layout.",
+      "Multi-page website for a design agency with a modern design and a responsive layout.",
     gallery: [portfolio16, portfolio17, portfolio18, portfolio19],
   },
   {
@@ -61,11 +66,24 @@ const portfolioData = [
     year: "2025",
     tags: ["Multi-page", "Clinic", "Responsive"],
     description:
-      "Landing for a clinic with a modern design and a responsive layout.",
+      "Multi-page website for a clinic with a modern design and a responsive layout.",
     gallery: [portfolio11, portfolio12, portfolio13, portfolio14],
   },
   {
     id: 4,
+    slug: "aurora-coffee-roasters",
+    title: "Aurora",
+    category: "Coffee & Roasters",
+    imgSrc: portfolio25,
+    href: "https://github.com/iScreAmn/coffe-shop",
+    year: "2026",
+    tags: ["Next.js", "Coffee Shop", "Responsive"],
+    description:
+      "Multi-page website for a coffee shop and roastery with a warm visual style, product storytelling, and a responsive layout.",
+    gallery: [portfolio26, portfolio27, portfolio28, portfolio29],
+  },
+  {
+    id: 5,
     slug: "askchef",
     title: "AskChef",
     category: "Meal Planner App",
@@ -78,7 +96,7 @@ const portfolioData = [
     gallery: [portfolio1, portfolio1, portfolio1, portfolio1],
   },
   {
-    id: 5,
+    id: 6,
     slug: "lawfirm",
     title: "LawFirm",
     category: "Lawyer Bureau",
@@ -91,7 +109,7 @@ const portfolioData = [
     gallery: [portfolio2, portfolio2, portfolio2, portfolio2],
   },
   {
-    id: 6,
+    id: 7,
     slug: "old-tbilisi-narikala",
     title: "Old Tbilisi Narikala",
     category: "Apartment Rental",
@@ -104,7 +122,7 @@ const portfolioData = [
     gallery: [portfolio3, portfolio3, portfolio3, portfolio3],
   },
   {
-    id: 7,
+    id: 8,
     slug: "mesto-europe",
     title: "Mesto Europe",
     category: "Yandex Practicum",
@@ -117,7 +135,7 @@ const portfolioData = [
     gallery: [portfolio4, portfolio4, portfolio4],
   },
   {
-    id: 8,
+    id: 9,
     slug: "creative-space",
     title: "Creative Space",
     category: "Parallax",
@@ -130,7 +148,7 @@ const portfolioData = [
     gallery: [portfolio5, portfolio5, portfolio5],
   },
   {
-    id: 9,
+    id: 10,
     slug: "lafee-telegram-bot",
     title: "Telegram Bot",
     category: "LaFee Studio",
@@ -143,7 +161,7 @@ const portfolioData = [
     gallery: [portfolio6, portfolio6, portfolio6],
   },
   {
-    id: 10,
+    id: 11,
     slug: "ukrainian-travel",
     title: "Ukrainian Travel",
     category: "Travel Landing",
@@ -156,7 +174,7 @@ const portfolioData = [
     gallery: [portfolio7, portfolio7, portfolio7],
   },
   {
-    id: 11,
+    id: 12,
     slug: "burger-house",
     title: "Burger House",
     category: "Restaurant Landing",
@@ -169,7 +187,7 @@ const portfolioData = [
     gallery: [portfolio8, portfolio8, portfolio8],
   },
   {
-    id: 12,
+    id: 13,
     slug: "geo-trip",
     title: "GeoTrip",
     category: "Travel Landing",
