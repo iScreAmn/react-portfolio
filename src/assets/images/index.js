@@ -66,10 +66,10 @@ import hobby2 from "./hobby/droneFly.png"
 import hobby3 from "./hobby/dronePult.png"
 
 // Services
-import service1 from "./web-art/standart.png"
-import service2 from "./web-art/premium.png"
-import service3 from "./web-art/comfort.png"
-import project from "./web-art/project.png"
+import service1 from "./web-art/standart.webp"
+import service2 from "./web-art/premium.webp"
+import service3 from "./web-art/comfort.webp"
+import project from "./web-art/project.webp"
 
 
 export {

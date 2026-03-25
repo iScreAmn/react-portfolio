@@ -129,7 +129,7 @@
   position: absolute;
   top: 50px;
   right: 0;
-  width: 150px;
+  width: 120px;
   height: 100%;
   max-width: 60%;
   object-fit: contain;
@@ -290,6 +290,8 @@
   border: 1px solid rgba(22, 83, 225, 0.25);
   color: var(--first-color);
   font-size: 0.9rem;
+  width: fit-content;
+  justify-self: start;
 }
 
 .services-modal__title {

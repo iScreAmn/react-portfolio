@@ -11,7 +11,7 @@ export const packages = [
   },
   {
     name: "Comfort",
-    price: "from $500",
+    price: "from $600",
     items: ["Multi-page", "Multilanguage", "Online store"],
     accent: "pro",
     image: service2,
