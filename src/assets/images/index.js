@@ -13,21 +13,21 @@ import portfolio8 from "./portfolio/burgerhouse.webp"
 import portfolio9 from "./portfolio/geotrip.webp"
 
 // Diagnoz Clinic
-import portfolio10 from "./portfolio/diagnoz/diagnoz-cover.png"
+import portfolio10 from "./portfolio/diagnoz/diagnoz-cover.webp"
 import portfolio11 from "./portfolio/diagnoz/1.png"
 import portfolio12 from "./portfolio/diagnoz/2.png"
 import portfolio13 from "./portfolio/diagnoz/3.png"
 import portfolio14 from "./portfolio/diagnoz/4.png"
 
 // Impera Design
-import portfolio15 from "./portfolio/impera/impera-cover.png"
+import portfolio15 from "./portfolio/impera/impera-cover.webp"
 import portfolio16 from "./portfolio/impera/1.png"
 import portfolio17 from "./portfolio/impera/2.png"
 import portfolio18 from "./portfolio/impera/3.png"
 import portfolio19 from "./portfolio/impera/4.png"
 
 // GPS
-import portfolio20 from "./portfolio/gps/gps-cover.png"
+import portfolio20 from "./portfolio/gps/gps-cover.webp"
 import portfolio21 from "./portfolio/gps/gps1.webp"
 import portfolio22 from "./portfolio/gps/gps2.webp"
 import portfolio23 from "./portfolio/gps/gps3.webp"
