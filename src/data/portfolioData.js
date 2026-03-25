@@ -38,9 +38,9 @@ const portfolioData = [
     imgSrc: portfolio20,
     href: "https://www.geopolser.ge",
     year: "2025",
-    tags: ["Multi-page", "Brand Style", "Responsive"],
+    tags: ["React", "Node.js", "Rest API"],
     description:
-      "Multi-page website for a GPS with a modern design and a responsive layout.",
+      "Multi-page website for a Georgian Polygraph Services with a modern design and a responsive layout.",
     gallery: [portfolio21, portfolio22, portfolio24, portfolio23 ],
   },
   {
