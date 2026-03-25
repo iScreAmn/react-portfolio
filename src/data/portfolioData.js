@@ -51,7 +51,7 @@ const portfolioData = [
     imgSrc: portfolio15,
     href: "https://www.impera-design.ru/",
     year: "2026",
-    tags: ["Multi-page", "Design", "Responsive"],
+    tags: ["Multi-page", "Commercial Design", "Responsive"],
     description:
       "Multi-page website for a design agency with a modern design and a responsive layout.",
     gallery: [portfolio16, portfolio17, portfolio18, portfolio19],
@@ -62,9 +62,9 @@ const portfolioData = [
     title: "Diagnoz Clinic",
     category: "Private Clinic",
     imgSrc: portfolio10,
-    href: "https://diagnoz-clinic.vercel.app/",
+    href: "https://diagnoz.ge",
     year: "2025",
-    tags: ["Multi-page", "Clinic", "Responsive"],
+    tags: ["Multi-page", "Medical Clinic", "Responsive"],
     description:
       "Multi-page website for a clinic with a modern design and a responsive layout.",
     gallery: [portfolio11, portfolio12, portfolio13, portfolio14],
