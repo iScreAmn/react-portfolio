@@ -30,8 +30,8 @@ export const packages = [
 export const heroData = {
   eyebrow: "Services",
   title: "Design & Development Packages",
-  subtitle: "Modern UX/UI, clear delivery, and responsive builds. Pick a package or request a bespoke flow — I handle design, animation, and front-end implementation with clean handoff and support.",
-  subtitleSecondary: "Landing pages, multi-page sites, online stores, chatbots, and custom animations. Built with performance budgets, accessibility, and theme-ready design tokens.",
+  subtitle: "Modern UX/UI, clear delivery, and responsive builds. Pick a package or request a bespoke flow. I handle design, animation, and front-end implementation with clean handoff and support.",
+  subtitleSecondary: "Landing pages, multi-page sites, online stores, chatbots. Built with performance budgets, accessibility, and theme-ready design tokens.",
   chips: ["UX/UI", "Animations", "Responsive", "i18n", "E-commerce"],
 };
 

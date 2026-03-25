@@ -131,8 +131,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 130px;
+  height: 52px;
   border-radius: 10px;
   background: var(--card-bg-color);
   border: 1px solid var(--liner-color);
@@ -147,7 +147,7 @@
 }
 
 .about-page__social-btn:hover {
-  background: var(--bg-transparent-color);
+  background: linear-gradient(171.6deg, var(--second-color) 11.462%, var(--hover-color) 97.358%);
   border-color: var(--second-color);
   color: var(--second-color);
   transform: translateY(-2px);
@@ -260,7 +260,6 @@
   background: var(--bg-transparent-color);
   border: 1px solid var(--liner-color);
   color: var(--first-color);
-  box-shadow: var(--box-shadow);
 }
 
 .about-page__cards {

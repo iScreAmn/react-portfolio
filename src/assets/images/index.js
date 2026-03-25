@@ -28,10 +28,10 @@ import portfolio19 from "./portfolio/impera/4.png"
 
 // GPS
 import portfolio20 from "./portfolio/gps/gps-cover.png"
-import portfolio21 from "./portfolio/gps/1.png"
-import portfolio22 from "./portfolio/gps/2.png"
-import portfolio23 from "./portfolio/gps/3.png"
-import portfolio24 from "./portfolio/gps/4.png"
+import portfolio21 from "./portfolio/gps/gps1.webp"
+import portfolio22 from "./portfolio/gps/gps2.webp"
+import portfolio23 from "./portfolio/gps/gps3.webp"
+import portfolio24 from "./portfolio/gps/gps4.webp"
 
 // Aurora Coffee & Roasters
 import portfolio25 from "./portfolio/coffee-shop/aurora.webp"
