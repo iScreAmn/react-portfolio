@@ -21,7 +21,7 @@ export const heroData = {
   eyebrow: "About",
   title: "Dimitri Jmukhadze",
   subtitle: "Front-end developer focused on fast, responsive web apps and product thinking. I design and ship modern interfaces with smooth motion, clean layout systems, and maintainable code. I care about accessibility, performance budgets, and readable design tokens for both light and dark themes.",
-  subtitleSecondary: "I deliver landing pages, SaaS dashboards, promo sites, and custom UI widgets. I build design-consistent systems, animate with intent (not noise), and iterate quickly with stakeholders.",
+  subtitleSecondary: "I build user-focused web interfaces, from SaaS dashboards to promotional platforms and custom UI components. My approach combines consistent design systems, meaningful animation, and fast, collaborative iteration.",
   chips: ["Frontend", "Web apps", "Animations", "UX first", "Responsive"],
 };
 
