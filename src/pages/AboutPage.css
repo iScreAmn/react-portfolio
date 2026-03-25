@@ -35,7 +35,7 @@
   display: inline-flex;
   align-items: center;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--first-color);
@@ -180,7 +180,7 @@
 
 .about-page__details {
   background: var(--card-bg-color);
-  padding: 40px 0 120px;
+  padding: 0 0 120px;
 }
 
 .dark-theme .about-page__details {
@@ -317,10 +317,10 @@
   display: inline-flex;
   align-items: center;
   padding: 8px 12px;
-  border-radius: 999px;
+  border-radius: 10px;
   background: var(--bg-transparent-color);
   border: 1px solid var(--liner-color);
-  font-size: 0.9rem;
+  font-size: 12px;
 }
 
 .about-page__meta {
@@ -391,12 +391,25 @@
     font-size: clamp(1.8rem, 5vw, 2.2rem);
   }
 
+  .about-page__social {
+    justify-content: center;
+  }
+
+  .about-page__social-btn {
+    width: 100%;
+  }
+
   .about-page__chips {
     gap: 8px;
   }
 
   .about-page__chip {
     padding: 8px 12px;
+  }
+
+  .about-page__card-top {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
