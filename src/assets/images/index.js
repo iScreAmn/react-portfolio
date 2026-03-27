@@ -70,11 +70,13 @@ import service1 from "./web-art/standart.webp"
 import service2 from "./web-art/premium.webp"
 import service3 from "./web-art/comfort.webp"
 import project from "./web-art/project.webp"
+import abonent from "./generated-vertical.png"
 
 
 export {
   aboutImg,
   flameJumper,
+  abonent,
   portfolio1,
   portfolio2,
   portfolio3,

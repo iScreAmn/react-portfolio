@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
 import "./ServicesPage.css";
-import { packages, heroData, uiTexts } from "../data/servicesPageData";
+import { packages, heroData, uiTexts, supportCtaData } from "../data/servicesPageData";
 
 const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -77,6 +78,52 @@ const ServicesPage = () => {
                 </button>
               </article>
             ))}
+          </div>
+
+          <div className="services-support-cta">
+            <div className="services-support-cta__content">
+              <span className="services-support-cta__eyebrow">
+                {supportCtaData.eyebrow}
+              </span>
+              <h2 className="services-support-cta__title">
+                {supportCtaData.title}
+              </h2>
+              <p className="services-support-cta__text">
+                {supportCtaData.description}
+              </p>
+
+              <details className="services-support-cta__dropdown">
+                <summary className="services-support-cta__summary">
+                  <span>{supportCtaData.maintenance.title}</span>
+                  <span className="services-support-cta__summary-actions">
+                    <strong>{supportCtaData.maintenance.price}</strong>
+                    <IoIosArrowDown
+                      className="services-support-cta__summary-icon"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </summary>
+
+                <div className="services-support-cta__dropdown-body">
+                  <p className="services-support-cta__includes">
+                    {supportCtaData.maintenance.includesLabel}
+                  </p>
+                  <ul className="services-support-cta__list">
+                    {supportCtaData.maintenance.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+            </div>
+
+            <div className="services-support-cta__media">
+              <img
+                src={supportCtaData.image}
+                alt={supportCtaData.imageAlt}
+                className="services-support-cta__image"
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { service1, service2, service3 } from "../assets/images";
+import { service1, service2, service3, abonent } from "../assets/images";
 
 export const packages = [
   {
@@ -44,5 +44,26 @@ export const uiTexts = {
     email: "Email",
   },
   submitButton: "Request this service",
+};
+
+export const supportCtaData = {
+  eyebrow: "Ongoing website support",
+  title: "Need website support after launch?",
+  description:
+    "I also offer monthly support for websites I build, so updates, fixes, and small improvements can be handled fast without starting a new project from scratch.",
+  maintenance: {
+    title: "Website Maintenance",
+    price: "$100/month",
+    includesLabel: "Includes:",
+    items: [
+      "Unlimited minor edits and content adjustments",
+      "Fast technical support and issue handling",
+      "Content updates and ongoing improvements",
+      "Small feature enhancements and fixes",
+      "General maintenance (hosting support, bug fixes, and basic SEO optimization)",
+    ],
+  },
+  image: abonent,
+  imageAlt: "Website maintenance support",
 };
 
