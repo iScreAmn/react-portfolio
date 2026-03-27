@@ -5,6 +5,7 @@ import { packages, heroData, uiTexts, supportCtaData } from "../data/servicesPag
 
 const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState(null);
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
 
   const openModal = (pkg) => {
     setSelectedService(pkg);
@@ -23,110 +24,127 @@ const ServicesPage = () => {
 
   return (
     <div className="services-page">
-      <section className="services-hero">
-        <div className="services-hero__container">
-          <div className="services-hero__content">
-            <div className="services-hero__eyebrow">{heroData.eyebrow}</div>
-            <h1 className="services-hero__title">{heroData.title}</h1>
-            <p className="services-hero__subtitle">
-              {heroData.subtitle}
-            </p>
-            <p className="services-hero__subtitle services-hero__subtitle--secondary">
-              {heroData.subtitleSecondary}
-            </p>
-          </div>
-          <div className="services-hero__chips">
-            {heroData.chips.map((chip) => (
-              <span key={chip} className="services-hero__chip">
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="services-packages">
-        <div className="services-packages__container">
-          <div className="services-packages__grid">
-            {packages.map((pkg) => (
-              <article
-                className={`services-card services-card--${pkg.accent}`}
-                key={pkg.name}
-              >
-                <img
-                  src={pkg.image}
-                  alt={pkg.name}
-                  className="services-card__image"
-                />
-                <div className="services-card__header">
-                  <span className="services-card__pill">{pkg.price}</span>
-                  <h3 className="services-card__title">{pkg.name}</h3>
-                </div>
-                <ul className="services-card__list">
-                  {pkg.items.map((item) => (
-                    <li key={item} className="services-card__item">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className="services-card__btn"
-                  type="button"
-                  onClick={() => openModal(pkg)}
-                >
-                  {uiTexts.choosePlan}
-                </button>
-              </article>
-            ))}
-          </div>
-
-          <div className="services-support-cta">
-            <div className="services-support-cta__content">
-              <span className="services-support-cta__eyebrow">
-                {supportCtaData.eyebrow}
-              </span>
-              <h2 className="services-support-cta__title">
-                {supportCtaData.title}
-              </h2>
-              <p className="services-support-cta__text">
-                {supportCtaData.description}
+      <div className="services-intro">
+        <section className="services-hero">
+          <div className="services-hero__container">
+            <div className="services-hero__content">
+              <div className="services-hero__eyebrow">{heroData.eyebrow}</div>
+              <h1 className="services-hero__title">{heroData.title}</h1>
+              <p className="services-hero__subtitle">
+                {heroData.subtitle}
               </p>
+              <p className="services-hero__subtitle services-hero__subtitle--secondary">
+                {heroData.subtitleSecondary}
+              </p>
+            </div>
+            <div className="services-hero__chips">
+              {heroData.chips.map((chip) => (
+                <span key={chip} className="services-hero__chip">
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <details className="services-support-cta__dropdown">
-                <summary className="services-support-cta__summary">
-                  <span>{supportCtaData.maintenance.title}</span>
-                  <span className="services-support-cta__summary-actions">
-                    <strong>{supportCtaData.maintenance.price}</strong>
-                    <IoIosArrowDown
-                      className="services-support-cta__summary-icon"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </summary>
-
-                <div className="services-support-cta__dropdown-body">
-                  <p className="services-support-cta__includes">
-                    {supportCtaData.maintenance.includesLabel}
-                  </p>
-                  <ul className="services-support-cta__list">
-                    {supportCtaData.maintenance.items.map((item) => (
-                      <li key={item}>{item}</li>
+        <section className="services-packages">
+          <div className="services-packages__container">
+            <div className="services-packages__grid">
+              {packages.map((pkg) => (
+                <article
+                  className={`services-card services-card--${pkg.accent}`}
+                  key={pkg.name}
+                >
+                  <img
+                    src={pkg.image}
+                    alt={pkg.name}
+                    className="services-card__image"
+                  />
+                  <div className="services-card__header">
+                    <span className="services-card__pill">{pkg.price}</span>
+                    <h3 className="services-card__title">{pkg.name}</h3>
+                  </div>
+                  <ul className="services-card__list">
+                    {pkg.items.map((item) => (
+                      <li key={item} className="services-card__item">
+                        {item}
+                      </li>
                     ))}
                   </ul>
-                </div>
-              </details>
+                  <button
+                    className="services-card__btn"
+                    type="button"
+                    onClick={() => openModal(pkg)}
+                  >
+                    {uiTexts.choosePlan}
+                  </button>
+                </article>
+              ))}
             </div>
 
-            <div className="services-support-cta__media">
-              <img
-                src={supportCtaData.image}
-                alt={supportCtaData.imageAlt}
-                className="services-support-cta__image"
-              />
+            <div className="services-support-cta">
+              <div className="services-support-cta__content">
+                <span className="services-support-cta__eyebrow">
+                  {supportCtaData.eyebrow}
+                </span>
+                <h2 className="services-support-cta__title">
+                  {supportCtaData.title}
+                </h2>
+                <p className="services-support-cta__text">
+                  {supportCtaData.description}
+                </p>
+
+                <div
+                  className={`services-support-cta__dropdown ${
+                    isSupportOpen ? "is-open" : ""
+                  }`}
+                >
+                  <button
+                    type="button"
+                    className="services-support-cta__summary"
+                    onClick={() => setIsSupportOpen((prev) => !prev)}
+                    aria-expanded={isSupportOpen}
+                    aria-controls="services-support-cta-panel"
+                  >
+                    <span>{supportCtaData.maintenance.title}</span>
+                    <span className="services-support-cta__summary-actions">
+                      <strong>{supportCtaData.maintenance.price}</strong>
+                      <IoIosArrowDown
+                        className="services-support-cta__summary-icon"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </button>
+
+                  <div
+                    id="services-support-cta-panel"
+                    className="services-support-cta__dropdown-panel"
+                  >
+                    <div className="services-support-cta__dropdown-body">
+                      <p className="services-support-cta__includes">
+                        {supportCtaData.maintenance.includesLabel}
+                      </p>
+                      <ul className="services-support-cta__list">
+                        {supportCtaData.maintenance.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="services-support-cta__media">
+                <img
+                  src={supportCtaData.image}
+                  alt={supportCtaData.imageAlt}
+                  className="services-support-cta__image"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {selectedService && (
         <div className="services-modal">

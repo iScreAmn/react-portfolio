@@ -47,7 +47,7 @@ export const uiTexts = {
 };
 
 export const supportCtaData = {
-  eyebrow: "Ongoing website support",
+  eyebrow: "Website support",
   title: "Need website support after launch?",
   description:
     "I also offer monthly support for websites I build, so updates, fixes, and small improvements can be handled fast without starting a new project from scratch.",
