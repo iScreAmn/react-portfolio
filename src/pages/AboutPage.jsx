@@ -1,8 +1,13 @@
 import { aboutImg } from "../assets/images";
-import education from "../data/education";
-import workExperience from "../data/workExperience";
-import skills from "../data/skills";
-import { heroData as fallbackHeroData, cvData, socialLinks, sectionLabels } from "../data/aboutPageData";
+import {
+  heroData as fallbackHeroData,
+  cvData,
+  socialLinks,
+  sectionLabels,
+  workExperience,
+  skills,
+  education,
+} from "../data/aboutPageData";
 import { useState, useEffect } from "react";
 import { fetchAboutHero } from "../services/strapi";
 import "./AboutPage.css";

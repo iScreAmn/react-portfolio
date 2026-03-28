@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { aboutImg } from "../../assets/images";
 import SectionTitle from "../section-title/SectionTitle";
 import { slideInVariants } from "../../utils/animation";
-import { profList } from "../../data/profList";
+import { profList, aboutSectionData } from "../../data/homeData";
 import AnimatedNumber from "../widgets/animatedNumber/AnimatedNumber";
 import "./About.css";
 import ProfileCard from "../widgets/profileCard/ProfileCard";
@@ -12,13 +12,16 @@ const About = () => {
   const navigate = useNavigate();
 
   const goToAboutPage = () => {
-    navigate("/about");
+    navigate(aboutSectionData.moreAboutButton.path);
   };
 
   return (
     <section className="about section" id="about">
       <div className="container flex-center">
-        <SectionTitle title="About me" subtitle="About me" />
+        <SectionTitle
+          title={aboutSectionData.sectionTitle}
+          subtitle={aboutSectionData.sectionSubtitle}
+        />
         <div className="about__wrapper">
           <motion.div
             className="about-img none"
@@ -65,7 +68,7 @@ const About = () => {
                 custom={0}
                 variants={slideInVariants("right", 0.5, 50, true)}
               >
-                I`m Dimitri Jmukhadze
+                {aboutSectionData.heading}
               </motion.h3>
               <motion.h4
                 initial="hidden"
@@ -74,7 +77,9 @@ const About = () => {
                 custom={0}
                 variants={slideInVariants("left", 0.5, 50, true)}
               >
-                <span>Front-End Developer</span> based in <span>Georgia</span>
+                <span>{aboutSectionData.taglineRole}</span>
+                {aboutSectionData.taglineBetween}
+                <span>{aboutSectionData.taglineLocation}</span>
               </motion.h4>
               <motion.p
                 initial="hidden"
@@ -83,11 +88,7 @@ const About = () => {
                 custom={0}
                 variants={slideInVariants("left", 0.5, 50, true)}
               >
-                I build custom solutions for clients, focusing on crafting
-                sleek, modern websites, web applications, and e-commerce
-                platforms. I&apos;m driven by a passion for creating engaging
-                digital experiences through thoughtful and impactful design.
-                Take a look at my portfolio
+                {aboutSectionData.description}
               </motion.p>
             </div>
             <motion.ul 
@@ -139,7 +140,7 @@ const About = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>More about me</span>
+              <span>{aboutSectionData.moreAboutButton.text}</span>
             </motion.button>
           </div>
         </div>

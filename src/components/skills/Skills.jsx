@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { skillsVariants, sectionVariants } from "../../utils/animation";
-import skills from "../../data/skills";
+import { skills } from "../../data/aboutPageData";
 
 const Skills = () => {
   return (

@@ -1,21 +1,25 @@
 import "./Services.css";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { flameJumper } from "../../assets/images";
 import SectionTitle from "../section-title/SectionTitle";
-import { IoLogoGameControllerA } from "react-icons/io";
+import { servicesSectionData } from "../../data/homeData";
 
 const Services = () => {
   const navigate = useNavigate();
+  const { gameSpotlight } = servicesSectionData;
+  const PlayIcon = gameSpotlight.playButton.icon;
 
   const handlePlay = () => {
-    navigate("/game");
+    navigate(gameSpotlight.playButton.path);
   };
 
   return (
     <section className="services section" id="services">
       <div className="container flex-center">
-        <SectionTitle title="Recent Project" subtitle="Recent Project" />
+        <SectionTitle
+          title={servicesSectionData.sectionTitle}
+          subtitle={servicesSectionData.sectionSubtitle}
+        />
         <div className="services__wrapper">
           {/* <motion.h3
             className="services-description"
@@ -47,7 +51,7 @@ const Services = () => {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
               >
-                Check it out
+                {gameSpotlight.eyebrow}
               </motion.h4>
               <motion.h3
                 initial={{ opacity: 0, y: 20 }}
@@ -55,7 +59,7 @@ const Services = () => {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               >
-                Game developed by me
+                {gameSpotlight.subtitle}
               </motion.h3>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -63,7 +67,7 @@ const Services = () => {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
               >
-                Flame Jumper
+                {gameSpotlight.title}
               </motion.h2>
               <motion.button
                 type="button"
@@ -74,11 +78,14 @@ const Services = () => {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
               >
-                Let`s Play <IoLogoGameControllerA />
+                {gameSpotlight.playButton.text} <PlayIcon />
               </motion.button>
             </motion.div>
             <div className="services-app-img">
-              <img src={flameJumper} alt="Flame Jumper" />
+              <img
+                src={gameSpotlight.imageSrc}
+                alt={gameSpotlight.imageAlt}
+              />
             </div>
           </motion.div>
           <ul className="services-list">

@@ -1,28 +1,38 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import portfolioData from "../../data/portfolioData";
+import { featuredPortfolioSectionData } from "../../data/homeData";
 import "./FeaturedPortfolio.css";
 
 const FeaturedPortfolio = () => {
   const navigate = useNavigate();
-  const featured = useMemo(() => portfolioData.slice(0, 3), []);
+  const featured = useMemo(
+    () =>
+      portfolioData.slice(0, featuredPortfolioSectionData.featuredCount),
+    []
+  );
 
   return (
     <section className="featured-portfolio section" id="featured-portfolio">
       <div className="featured-portfolio__container">
         <div className="featured-portfolio__header">
-          <div className="featured-portfolio__eyebrow">Selected work</div>
-          <h2 className="featured-portfolio__title">Recent cases I’m proud of</h2>
+          <div className="featured-portfolio__eyebrow">
+            {featuredPortfolioSectionData.eyebrow}
+          </div>
+          <h2 className="featured-portfolio__title">
+            {featuredPortfolioSectionData.title}
+          </h2>
           <p className="featured-portfolio__subtitle">
-            Modern launches with attention to micro-interactions, responsive grids, and intentional copy.
-            Each card links to the full case study.
+            {featuredPortfolioSectionData.subtitle}
           </p>
           <button
             className="featured-portfolio__btn"
             type="button"
-            onClick={() => navigate("/portfolio")}
+            onClick={() =>
+              navigate(featuredPortfolioSectionData.allProjectsButton.path)
+            }
           >
-            All Projects
+            {featuredPortfolioSectionData.allProjectsButton.text}
           </button>
         </div>
 

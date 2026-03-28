@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { educationVariants, sectionVariants } from "../../utils/animation";
-import education from "../../data/education";
+import { education } from "../../data/aboutPageData";
 
 const Education = () => {
   return (

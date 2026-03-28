@@ -1,5 +1,5 @@
 import "./Clients.css";
-import clientsData from "../../data/clientsData";
+import { clientsData } from "../../data/homeData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";

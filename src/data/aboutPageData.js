@@ -1,22 +1,5 @@
-import { FaLinkedinIn, FaInstagram, FaGithub, FaPaperPlane } from "react-icons/fa";
-import { FaArrowDownLong } from "react-icons/fa6";
+import { FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
 import cvFile from "../assets/docs/Dimitri_Jmukhadze_CV.pdf";
-
-export const homeData = {
-  greeting: "Hey, I am D.J",
-  role: "Front-end Developer",
-  description: "I create stunning websites for your business, Highly experienced in web design and development",
-  contactButton: {
-    text: "Contact me",
-    href: "https://t.me/iscreamn",
-    icon: FaPaperPlane,
-  },
-  scrollDown: {
-    text: "Scroll-Down",
-    href: "#about",
-    icon: FaArrowDownLong,
-  },
-};
 
 export const heroData = {
   eyebrow: "About",
@@ -55,3 +38,65 @@ export const sectionLabels = {
   experience: "Experience",
 };
 
+export const workExperience = [
+  {
+    title: "Georgian Polygraph Services",
+    employmentType: "Full Time | Office",
+    period: "2025 - 2026",
+    company: "Full Stack Developer",
+    description:
+      "I develop web applications that help businesses operate more efficiently. I write code that integrates banking payment systems and automates financial workflows.",
+  },
+  {
+    title: "Web Developer",
+    employmentType: "Freelance",
+    period: "2020 - 2025",
+    company: "Freelance",
+    description:
+      "As a freelance developer, I collaborated with businesses to create custom web applications and interfaces. I focus on delivering practical solutions, integrating third-party services, and iterating quickly based on real user needs.",
+  },
+  {
+    title: "System Engineer",
+    employmentType: "Full Time | Remote",
+    period: "2019 - 2020",
+    company: "Creative Space",
+    description:
+      "I worked with software environments and network infrastructure, from setup and configuration to monitoring and optimization. I ensured reliable performance, secure systems, and smooth operation across all services.",
+  },
+];
+
+export const skills = [
+  { skill: "JavaScript", level: "" },
+  { skill: "React", level: "" },
+  { skill: "Next.js", level: "" },
+  { skill: "Node.js", level: "" },
+  { skill: "Express.js", level: "" },
+  { skill: "CSS", level: "" },
+  { skill: "Vue", level: "" },
+  { skill: "TypeScript", level: "" },
+  { skill: "GIT", level: "" },
+  { skill: "AI Automation", level: "" },
+];
+
+export const education = [
+  {
+    year: "2024-2025",
+    degree: "Backend & Docker.",
+    institution: "Microsoft Academy",
+  },
+  {
+    year: "2023-2024",
+    degree: "Frontend Development",
+    institution: "Practicum Academy",
+  },
+  {
+    year: "2019-2020",
+    degree: "Web Development",
+    institution: "Information Technologies Institute",
+  },
+  {
+    year: "2017-2018",
+    degree: "Network & System Engineer",
+    institution: "Pulsar IT Academy",
+  },
+];

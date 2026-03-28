@@ -1,7 +1,8 @@
 import "./Home.css";
 import DecryptedText from "../widgets/decryptedText/DecryptedText";
 import { aboutImg2 } from "../../assets/images";
-import { homeData as fallbackData, socialLinks } from "../../data/aboutPageData";
+import { homeData as fallbackData } from "../../data/homeData";
+import { socialLinks } from "../../data/aboutPageData";
 import { motion } from "motion/react";
 import { iconVariants, slideInVariants } from "../../utils/animation";
 import { useState, useEffect } from "react";
