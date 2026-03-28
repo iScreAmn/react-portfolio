@@ -1,23 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 import "./Nav.css";
 
 const Nav = ({ isMenuOpen, handleMenuClick }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("home");
-
-  const navItems = useMemo(
-    () => [
-      { id: "home", label: "home", type: "section" },
-      { id: "about", label: "about", type: "route", path: "/about" },
-      { id: "services", label: "services", type: "route", path: "/services" },
-      { id: "portfolio", label: "portfolio", type: "route", path: "/portfolio" },
-      { id: "hobby", label: "hobby", type: "route", path: "/hobby" },
-      { id: "contact", label: "contact", type: "route", path: "/contacts" },
-    ],
-    []
-  );
+  const { navItems } = useLocaleHomeData();
 
   const scrollToSection = (target) => {
     const element = document.getElementById(target);
@@ -27,7 +17,6 @@ const Nav = ({ isMenuOpen, handleMenuClick }) => {
   };
 
   const handleNavClick = (item, menuClick) => {
-    // Принудительно сбрасываем эффект с предыдущей активной ссылки
     const prevActiveLink = document.querySelector(".nav-link.active");
     if (prevActiveLink) {
       prevActiveLink.classList.add("reset-effect");

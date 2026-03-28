@@ -8,7 +8,16 @@ import {
   client4,
   client5,
   flameJumper,
-} from "../assets/images";
+} from "../../assets/images";
+
+export const navItems = [
+  { id: "home", label: "home", type: "section" },
+  { id: "about", label: "about", type: "route", path: "/about" },
+  { id: "services", label: "services", type: "route", path: "/services" },
+  { id: "portfolio", label: "portfolio", type: "route", path: "/portfolio" },
+  { id: "hobby", label: "hobby", type: "route", path: "/hobby" },
+  { id: "contact", label: "contact", type: "route", path: "/contacts" },
+];
 
 export const homeData = {
   greeting: "Hey, I am D.J",
@@ -87,6 +96,11 @@ export const servicesSectionData = {
     imageSrc: flameJumper,
     imageAlt: "Flame Jumper",
   },
+};
+
+export const clientsSectionData = {
+  sectionTitle: "Trusted By",
+  sectionSubtitle: "Trusted By",
 };
 
 export const clientsData = [

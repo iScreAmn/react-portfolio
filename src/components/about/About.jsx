@@ -2,13 +2,14 @@ import { motion } from "motion/react";
 import { aboutImg } from "../../assets/images";
 import SectionTitle from "../section-title/SectionTitle";
 import { slideInVariants } from "../../utils/animation";
-import { profList, aboutSectionData } from "../../data/homeData";
 import AnimatedNumber from "../widgets/animatedNumber/AnimatedNumber";
 import "./About.css";
 import ProfileCard from "../widgets/profileCard/ProfileCard";
 import { useNavigate } from "react-router-dom";
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 
 const About = () => {
+  const { profList, aboutSectionData } = useLocaleHomeData();
   const navigate = useNavigate();
 
   const goToAboutPage = () => {

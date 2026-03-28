@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { educationVariants, sectionVariants } from "../../utils/animation";
-import { education } from "../../data/aboutData";
+import { useLocaleAboutData } from "../../hooks/useLocaleAboutData";
 
 const Education = () => {
+  const { education } = useLocaleAboutData();
   return (
     <motion.div 
       className="education"

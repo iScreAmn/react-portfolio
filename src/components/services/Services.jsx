@@ -2,9 +2,10 @@ import "./Services.css";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import SectionTitle from "../section-title/SectionTitle";
-import { servicesSectionData } from "../../data/homeData";
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 
 const Services = () => {
+  const { servicesSectionData } = useLocaleHomeData();
   const navigate = useNavigate();
   const { gameSpotlight } = servicesSectionData;
   const PlayIcon = gameSpotlight.playButton.icon;

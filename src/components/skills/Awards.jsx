@@ -1,8 +1,10 @@
-import { awards } from "../../data/aboutData";
 import { motion } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
+import { useLocaleAboutData } from "../../hooks/useLocaleAboutData";
 
 const Awards = () => {
+  const { awards } = useLocaleAboutData();
+
   return (
     <div className="education awards-section">
       {/* <h4 className="label">Awards</h4> */}
