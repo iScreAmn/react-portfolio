@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import "./ServicesPage.css";
-import { packages, heroData, uiTexts, supportCtaData } from "../../data/services";
+import { useLocale } from "../../context/LocaleContext";
+import * as englishServicesData from "../../data/english/services";
+import * as russianServicesData from "../../data/russian/services";
+
+const servicesDataByLocale = {
+  en: englishServicesData,
+  ru: russianServicesData,
+};
 
 const ServicesPage = () => {
+  const { locale } = useLocale();
   const [selectedService, setSelectedService] = useState(null);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const {
+    packages,
+    heroData,
+    uiTexts,
+    supportCtaData,
+  } = servicesDataByLocale[locale] ?? englishServicesData;
 
   const openModal = (pkg) => {
     setSelectedService(pkg);
@@ -16,6 +30,15 @@ const ServicesPage = () => {
     setSelectedService(null);
     document.body.classList.remove("no-scroll");
   };
+
+  useEffect(() => {
+    setSelectedService(null);
+    document.body.classList.remove("no-scroll");
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [locale]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
