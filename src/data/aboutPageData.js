@@ -1,5 +1,6 @@
 import { FaLinkedinIn, FaInstagram, FaGithub, FaPaperPlane } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
+import cvFile from "../assets/docs/Dimitri_Jmukhadze_CV.pdf";
 
 export const homeData = {
   greeting: "Hey, I am D.J",
@@ -27,7 +28,7 @@ export const heroData = {
 
 export const cvData = {
   downloadText: "Download CV",
-  filePath: "/CV_Dimitri-Jmukhadze.pdf",
+  filePath: cvFile,
 };
 
 export const socialLinks = [

@@ -1,5 +1,13 @@
 import { service1, service2, service3, abonent } from "../assets/images";
 
+export const heroData = {
+  eyebrow: "Services",
+  title: "Development Packages",
+  subtitle: "Modern UI/UX website development with clean code, scalable structure, and responsive performance. Choose a package or request a custom solution. I handle front-end, integrations, and technical optimization with smooth delivery and support.",
+  subtitleSecondary: "Landing pages, multi-page sites, online stores, chatbots. Built with performance budgets, accessibility, and theme-ready design tokens.",
+  chips: ["UX/UI", "Animations", "Responsive", "i18n", "E-commerce"],
+};
+
 export const packages = [
   {
     name: "Standart",
@@ -26,14 +34,6 @@ export const packages = [
     text: "Full product partnerships: research, sprint design, advanced motion, and maintenance-ready delivery.",
   },
 ];
-
-export const heroData = {
-  eyebrow: "Services",
-  title: "Design & Development Packages",
-  subtitle: "Modern UX/UI, clear delivery, and responsive builds. Pick a package or request a bespoke flow. I handle design, animation, and front-end implementation with clean handoff and support.",
-  subtitleSecondary: "Landing pages, multi-page sites, online stores, chatbots. Built with performance budgets, accessibility, and theme-ready design tokens.",
-  chips: ["UX/UI", "Animations", "Responsive", "i18n", "E-commerce"],
-};
 
 export const uiTexts = {
   choosePlan: "Choose plan",

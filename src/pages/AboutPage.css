@@ -329,6 +329,7 @@
 
 .about-page__meta--dim {
   font-size: 0.9rem;
+  opacity: 0.7;
 }
 
 .about-page__card-title {
