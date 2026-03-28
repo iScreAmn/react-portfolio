@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
-import { workExperience } from "../../data/aboutPageData";
+import { workExperience } from "../../data/aboutData";
 
 const WorkExperience = () => {
   return (

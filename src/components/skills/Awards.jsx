@@ -1,4 +1,4 @@
-import awards from "../../data/awards";
+import { awards } from "../../data/aboutData";
 import { motion } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
 

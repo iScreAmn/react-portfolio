@@ -2,7 +2,7 @@ import "./Home.css";
 import DecryptedText from "../widgets/decryptedText/DecryptedText";
 import { aboutImg2 } from "../../assets/images";
 import { homeData as fallbackData } from "../../data/homeData";
-import { socialLinks } from "../../data/aboutPageData";
+import { socialLinks } from "../../data/aboutData";
 import { motion } from "motion/react";
 import { iconVariants, slideInVariants } from "../../utils/animation";
 import { useState, useEffect } from "react";
@@ -48,7 +48,7 @@ const Home = () => {
       } else {
         console.log('❌ Using fallback data');
       }
-      // Если данные не загрузились, используется fallback из aboutPageData.js
+      // Если данные не загрузились, используется fallback из homeData.js
     };
 
     loadData();

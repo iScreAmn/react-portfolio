@@ -21,17 +21,7 @@ const Services = () => {
           subtitle={servicesSectionData.sectionSubtitle}
         />
         <div className="services__wrapper">
-          {/* <motion.h3
-            className="services-description"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            custom={1}
-            variants={slideInVariants("top", 0.7, 50, true)}
-          >
-            Recent Projects
-          </motion.h3> */}
-          <motion.div 
+          <motion.div
             className="services-app"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -88,9 +78,6 @@ const Services = () => {
               />
             </div>
           </motion.div>
-          <ul className="services-list">
-            {/* <ServiceItem services={services} /> */}
-          </ul>
         </div>
       </div>
     </section>
