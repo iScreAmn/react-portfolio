@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import "./ServicesPage.css";
-import { packages, heroData, uiTexts, supportCtaData } from "../data/servicesPageData";
+import { packages, heroData, uiTexts, supportCtaData } from "../../data/services";
 
 const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState(null);

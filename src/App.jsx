@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Header, Footer, SidePanel } from "./components/index";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import Portfolio from "./components/portfolio/Portfolio";
-import ProjectPage from "./pages/ProjectPage";
-import GamePage from "./pages/GamePage";
-import AboutPage from "./pages/AboutPage";
-import HobbyPage from "./pages/HobbyPage";
-import ServicesPage from "./pages/ServicesPage";
-import ContactsPage from "./pages/ContactsPage";
+import ProjectPage from "./pages/ProjectPage/ProjectPage";
+import GamePage from "./pages/GamePage/GamePage";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import HobbyPage from "./pages/HobbyPage/HobbyPage";
+import ServicesPage from "./pages/ServicesPage/ServicesPage";
+import ContactsPage from "./pages/ContactsPage/ContactsPage";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

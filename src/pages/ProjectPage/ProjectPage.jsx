@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
-import portfolioData from "../data/portfolioData";
+import portfolioData from "../../data/portfolioData";
 import "./ProjectPage.css";
 
 const ProjectPage = () => {

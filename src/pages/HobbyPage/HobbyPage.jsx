@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { hobby1, hobby2, hobby3 } from "../assets/images";
+import { hobby1, hobby2, hobby3 } from "../../assets/images";
 import "./HobbyPage.css";
 
 const chips = ["Drone filming", "Video making", "Storytelling", "Aerial visuals"];

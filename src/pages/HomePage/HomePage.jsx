@@ -8,7 +8,7 @@ import {
   FeaturedPortfolio,
   GetInTouch,
   Clients,
-} from "../components/index";
+} from "../../components/index";
 import "./HomePage.css";
 
 const HomePage = () => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
-import { flameJumper2 } from "../assets/images";
+import { flameJumper2 } from "../../assets/images";
 import "./GamePage.css";
 
 const GamePage = () => {

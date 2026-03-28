@@ -1,4 +1,4 @@
-import { aboutImg } from "../assets/images";
+import { aboutImg } from "../../assets/images";
 import {
   heroData as fallbackHeroData,
   cvData,
@@ -7,9 +7,9 @@ import {
   workExperience,
   skills,
   education,
-} from "../data/aboutPageData";
+} from "../../data/aboutData";
 import { useState, useEffect } from "react";
-import { fetchAboutHero } from "../services/strapi";
+import { fetchAboutHero } from "../../services/strapi";
 import "./AboutPage.css";
 
 const AboutPage = () => {
@@ -54,7 +54,7 @@ const AboutPage = () => {
           img.src = imageUrlWithCacheBuster;
         }
       }
-      // Если данные не загрузились, используется fallback из aboutPageData.js
+      // Если данные не загрузились, используется fallback из aboutData.js
     };
 
     loadData();

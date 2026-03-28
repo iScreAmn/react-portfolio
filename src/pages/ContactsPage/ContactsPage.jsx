@@ -1,5 +1,5 @@
-import ContactsForm from "../components/contacts/ContactsForm";
-import contactsData from "../data/contactsData";
+import ContactsForm from "../../components/contacts/ContactsForm";
+import contactsData from "../../data/contactsData";
 import "./ContactsPage.css";
 
 const ContactsPage = () => {
