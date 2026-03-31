@@ -29,7 +29,7 @@ const Clients = () => {
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={30}
-            slidesperView={1}
+            slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
             loop={true}
