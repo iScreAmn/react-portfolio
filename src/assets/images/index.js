@@ -53,6 +53,17 @@ import client3 from "./clients/elena.png"
 import client4 from "./clients/levan.png"
 import client5 from "./clients/natia.png"
 
+// Brands
+import brand1 from "./clients/brands/askchef.png"
+import brand2 from "./clients/brands/balu-logo.png"
+import brand3 from "./clients/brands/BurgerHouse.png"
+import brand4 from "./clients/brands/coffe-shop-logo.png"
+import brand5 from "./clients/brands/diagnoz.png"
+import brand6 from "./clients/brands/gps_logo.png"
+import brand7 from "./clients/brands/impera.webp"
+import brand8 from "./clients/brands/lawfirm.webp"
+import brand9 from "./clients/brands/main-logo.webp"
+
 // Skills Logos
 import skillLogo1 from "./skills/css.webp"
 import skillLogo2 from "./skills/html.webp"
@@ -113,6 +124,15 @@ export {
   client3,
   client4,
   client5,
+  brand1,
+  brand2,
+  brand3,
+  brand4,
+  brand5,
+  brand6,
+  brand7,
+  brand8,
+  brand9,
   skillLogo1,
   skillLogo2,
   skillLogo3,

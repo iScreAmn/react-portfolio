@@ -143,8 +143,8 @@ input.check-toggle-round-flat:checked + label::after {
 
 .nav-link {
   font-weight: 500;
-  font-size: var(--normal-font-size);
-  text-transform: capitalize;
+  font-size: 14px;
+  text-transform: uppercase;
   color: var(--first-color);
   transition: .3s linear;
   cursor: pointer;

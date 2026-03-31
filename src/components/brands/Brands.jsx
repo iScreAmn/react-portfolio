@@ -26,7 +26,7 @@ const Brands = () => {
     { logo: brand9, name: 'Portfolio', url: '#' },
   ];
 
-  const duplicatedBrands = [...brands, ...brands];
+  const duplicatedBrands = [...brands, ...brands, ...brands, ...brands];
 
   const renderBrandItem = (brand, index) => (
     <div
