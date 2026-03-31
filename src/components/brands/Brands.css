@@ -86,6 +86,14 @@
   transform: scale(1.15);
 }
 
+.brands__item--dark-hover:hover .brands__logo {
+  filter: grayscale(100%) invert(100%) brightness(0.22) contrast(1.05);
+}
+
+.dark-theme .brands__item--dark-hover:hover .brands__logo {
+  filter: grayscale(0%) brightness(1);
+}
+
 @keyframes scrollBrands {
   0% {
     transform: translateX(0);

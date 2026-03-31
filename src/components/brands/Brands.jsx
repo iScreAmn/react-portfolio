@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   brand1, 
   brand2, 
@@ -16,8 +15,8 @@ import './Brands.css';
 const Brands = () => {
   const brands = [
     { logo: brand1, name: 'AskChef', url: '#' },
-    { logo: brand2, name: 'Balu', url: '#' },
-    { logo: brand3, name: 'Burger House', url: '#' },
+    { logo: brand2, name: 'Balu', url: '#', darkOnLightHover: true },
+    { logo: brand3, name: 'Burger House', url: '#', darkOnLightHover: true },
     { logo: brand4, name: 'Coffee Shop', url: '#' },
     { logo: brand5, name: 'Diagnoz', url: '#' },
     { logo: brand6, name: 'GPS', url: '#' },
@@ -31,7 +30,7 @@ const Brands = () => {
   const renderBrandItem = (brand, index) => (
     <div
       key={`${brand.name}-${index}`}
-      className="brands__item"
+      className={`brands__item ${brand.darkOnLightHover ? 'brands__item--dark-hover' : ''}`}
       aria-label={brand.name}
     >
       <img
@@ -48,7 +47,7 @@ const Brands = () => {
       <div className="container brands__container">
         <div className="brands__header">
           <h2 className="inner-title">Trusted Brands</h2>
-          <h3 className="inner-subtitle">Clients I've Worked With</h3>
+          <h3 className="inner-subtitle">Clients I&apos;ve Worked With</h3>
         </div>
         <div className="brands__carousel">
           <div className="brands__track">
