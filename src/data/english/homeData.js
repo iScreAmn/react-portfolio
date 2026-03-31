@@ -98,6 +98,11 @@ export const servicesSectionData = {
   },
 };
 
+export const brandsSectionData = {
+  sectionTitle: "Trusted by Clients",
+  sectionSubtitle: "Brands I've Worked With",
+};
+
 export const clientsSectionData = {
   sectionTitle: "Trusted By",
   sectionSubtitle: "Trusted By",

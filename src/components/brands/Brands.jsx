@@ -1,0 +1,65 @@
+import React from 'react';
+import { 
+  brand1, 
+  brand2, 
+  brand3, 
+  brand4, 
+  brand5, 
+  brand6, 
+  brand7, 
+  brand8, 
+  brand9 
+} from '../../assets/images';
+import '../section-title/SectionTitle.css';
+import './Brands.css';
+
+const Brands = () => {
+  const brands = [
+    { logo: brand1, name: 'AskChef', url: '#' },
+    { logo: brand2, name: 'Balu', url: '#' },
+    { logo: brand3, name: 'Burger House', url: '#' },
+    { logo: brand4, name: 'Coffee Shop', url: '#' },
+    { logo: brand5, name: 'Diagnoz', url: '#' },
+    { logo: brand6, name: 'GPS', url: '#' },
+    { logo: brand7, name: 'Impera', url: '#' },
+    { logo: brand8, name: 'Law Firm', url: '#' },
+    { logo: brand9, name: 'Portfolio', url: '#' },
+  ];
+
+  const duplicatedBrands = [...brands, ...brands];
+
+  const renderBrandItem = (brand, index) => (
+    <div
+      key={`${brand.name}-${index}`}
+      className="brands__item"
+      aria-label={brand.name}
+    >
+      <img
+        src={brand.logo}
+        alt={brand.name}
+        className="brands__logo"
+        loading="lazy"
+      />
+    </div>
+  );
+
+  return (
+    <section className="brands" id="brands">
+      <div className="container brands__container">
+        <div className="brands__header">
+          <h2 className="inner-title">Trusted Brands</h2>
+          <h3 className="inner-subtitle">Clients I've Worked With</h3>
+        </div>
+        <div className="brands__carousel">
+          <div className="brands__track">
+            {duplicatedBrands.map((brand, index) => 
+              renderBrandItem(brand, index)
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Brands;

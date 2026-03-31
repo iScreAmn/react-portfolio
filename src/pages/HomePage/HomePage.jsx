@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import {
   Home,
   About,
+  Brands,
   Services,
   // HobbyTeaser,
   FeaturedPortfolio,
@@ -40,6 +41,7 @@ const HomePage = () => {
     <div className="home-page">
       <Home />
       <About />
+      <Brands />
       <FeaturedPortfolio />
       <Services />
       {/* <HobbyTeaser /> */}
