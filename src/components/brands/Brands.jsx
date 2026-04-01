@@ -17,10 +17,10 @@ const Brands = () => {
     { logo: brand1, name: 'AskChef', url: '#' },
     { logo: brand2, name: 'Balu', url: '#', darkOnLightHover: true },
     { logo: brand3, name: 'Burger House', url: '#', darkOnLightHover: true },
-    { logo: brand4, name: 'Coffee Shop', url: '#' },
+    { logo: brand4, name: 'Coffee Shop', url: '#', darkOnLightHover: true }, 
     { logo: brand5, name: 'Diagnoz', url: '#' },
     { logo: brand6, name: 'GPS', url: '#' },
-    { logo: brand7, name: 'Impera', url: '#' },
+    { logo: brand7, name: 'Impera', url: '#', darkOnLightHover: true},
     { logo: brand8, name: 'Law Firm', url: '#' },
     { logo: brand9, name: 'Portfolio', url: '#' },
   ];

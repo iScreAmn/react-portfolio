@@ -60,8 +60,8 @@ import brand3 from "./clients/brands/BurgerHouse.png"
 import brand4 from "./clients/brands/coffe-shop-logo.png"
 import brand5 from "./clients/brands/diagnoz.png"
 import brand6 from "./clients/brands/gps_logo.png"
-import brand7 from "./clients/brands/impera.webp"
-import brand8 from "./clients/brands/lawfirm.webp"
+import brand7 from "./clients/brands/impera.png"
+import brand8 from "./clients/brands/lawfirm.png"
 import brand9 from "./clients/brands/main-logo.webp"
 
 // Skills Logos

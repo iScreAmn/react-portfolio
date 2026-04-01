@@ -57,6 +57,7 @@
     var(--body-bg-color) 0%,
     var(--body-bg-color) 20%,
     transparent 100%);
+    
 }
 
 .brands__track {
@@ -66,6 +67,7 @@
   will-change: transform;
   width: fit-content;
   animation: scrollBrands 40s linear infinite;
+  /* animation: none */
 }
 
 .brands__item {
@@ -80,7 +82,7 @@
 }
 
 .brands__logo {
-  max-width: 120px;
+  max-width: 150px;
   max-height: 80px;
   width: auto;
   height: auto;
