@@ -42,3 +42,89 @@
   background: #f9fafb;
   min-height: calc(100vh - 250px);
 }
+
+/* ─── Shared filter bar ───────────────────────────────────────────────────── */
+.analytics-filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 24px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.analytics-filter-bar__range {
+  display: flex;
+  gap: 4px;
+}
+
+.analytics-filter-bar__segments {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.analytics-filter-bar__input {
+  padding: 6px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+  outline: none;
+  width: 130px;
+  transition: border-color 0.2s;
+}
+
+.analytics-filter-bar__input:focus {
+  border-color: #ffa500;
+}
+
+.analytics-filter-bar__select {
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+  background: white;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.analytics-filter-bar__select:focus {
+  border-color: #ffa500;
+}
+
+.analytics-filter-bar__clear {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.analytics-filter-bar__clear:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .analytics-filter-bar {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .analytics-filter-bar__segments {
+    margin-left: 0;
+  }
+
+  .analytics-filter-bar__input {
+    width: 100px;
+  }
+}

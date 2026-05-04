@@ -1,25 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './SessionsView.css';
 import { FaTrash } from "react-icons/fa";
 
-const SessionsView = ({ apiUrl, token }) => {
+const SessionsView = ({ apiUrl, token, filters }) => {
   const [sessions, setSessions] = useState([]);
   const [selectedSession, setSelectedSession] = useState(null);
   const [sessionDetail, setSessionDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [detailLoading, setDetailLoading] = useState(false);
-  const [dateRange, setDateRange] = useState('7d');
   const [error, setError] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
 
-  useEffect(() => {
-    fetchSessions();
-  }, [dateRange, apiUrl, token]);
-
-  const fetchSessions = async () => {
+  const fetchSessions = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${apiUrl}/api/analytics/sessions?range=${dateRange}&limit=100`, {
+      const params = new URLSearchParams({ range: filters.range, limit: 100 });
+      if (filters.country) params.set('country', filters.country);
+      if (filters.device) params.set('device', filters.device);
+      if (filters.browser) params.set('browser', filters.browser);
+      if (filters.source) params.set('source', filters.source);
+
+      const response = await fetch(`${apiUrl}/api/analytics/sessions?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -38,7 +42,11 @@ const SessionsView = ({ apiUrl, token }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [apiUrl, token, filters]);
+
+  useEffect(() => {
+    fetchSessions();
+  }, [fetchSessions]);
 
   const fetchSessionDetail = async (sessionId) => {
     setDetailLoading(true);
@@ -70,10 +78,8 @@ const SessionsView = ({ apiUrl, token }) => {
   };
 
   const handleDeleteSession = async (sessionId) => {
-    if (!confirm('Удалить эту сессию? Это действие нельзя отменить!')) {
-      return;
-    }
-
+    setDeleting(true);
+    setDeleteError('');
     try {
       const response = await fetch(`${apiUrl}/api/analytics/sessions/${sessionId}`, {
         method: 'DELETE',
@@ -86,13 +92,16 @@ const SessionsView = ({ apiUrl, token }) => {
         setSessions(sessions.filter((s) => s.sessionId !== sessionId));
         setSelectedSession(null);
         setSessionDetail(null);
+        setShowDeleteModal(false);
       } else {
-        const result = await response.json();
-        alert(result.message || 'Ошибка удаления');
+        const result = await response.json().catch(() => ({}));
+        setDeleteError(result.message || 'Ошибка удаления');
       }
     } catch (err) {
       console.error('Failed to delete session:', err);
-      alert('Ошибка сети');
+      setDeleteError('Ошибка сети');
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -155,26 +164,6 @@ const SessionsView = ({ apiUrl, token }) => {
     <div className="sessions-view">
       <div className="sessions-header">
         <h2 className="sessions-title">Сессии пользователей</h2>
-        <div className="sessions-filters">
-          <button
-            onClick={() => setDateRange('7d')}
-            className={`sessions-filter-btn ${dateRange === '7d' ? 'active' : ''}`}
-          >
-            7 дней
-          </button>
-          <button
-            onClick={() => setDateRange('30d')}
-            className={`sessions-filter-btn ${dateRange === '30d' ? 'active' : ''}`}
-          >
-            30 дней
-          </button>
-          <button
-            onClick={() => setDateRange('90d')}
-            className={`sessions-filter-btn ${dateRange === '90d' ? 'active' : ''}`}
-          >
-            90 дней
-          </button>
-        </div>
       </div>
 
       <div className="sessions-layout">
@@ -252,7 +241,10 @@ const SessionsView = ({ apiUrl, token }) => {
               <div className="session-detail-header">
                 <h3 className="session-detail-title">Детали сессии</h3>
                 <button
-                  onClick={() => handleDeleteSession(sessionDetail.sessionId)}
+                  onClick={() => {
+                    setDeleteError('');
+                    setShowDeleteModal(true);
+                  }}
                   className="session-detail-delete-btn"
                   title="Удалить сессию"
                 >
@@ -363,6 +355,35 @@ const SessionsView = ({ apiUrl, token }) => {
           )}
         </div>
       </div>
+      {showDeleteModal && sessionDetail && (
+        <div className="sessions-delete-modal-overlay" onClick={() => !deleting && setShowDeleteModal(false)}>
+          <div className="sessions-delete-modal" onClick={(e) => e.stopPropagation()}>
+            <h3 className="sessions-delete-modal__title">Подтверждение удаления</h3>
+            <p className="sessions-delete-modal__text">
+              Удалить выбранную сессию? Это действие нельзя отменить.
+            </p>
+            {deleteError && <p className="sessions-delete-modal__error">{deleteError}</p>}
+            <div className="sessions-delete-modal__actions">
+              <button
+                type="button"
+                className="sessions-delete-modal__btn sessions-delete-modal__btn--cancel"
+                onClick={() => setShowDeleteModal(false)}
+                disabled={deleting}
+              >
+                Отмена
+              </button>
+              <button
+                type="button"
+                className="sessions-delete-modal__btn sessions-delete-modal__btn--danger"
+                onClick={() => handleDeleteSession(sessionDetail.sessionId)}
+                disabled={deleting}
+              >
+                {deleting ? 'Удаление...' : 'Удалить'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

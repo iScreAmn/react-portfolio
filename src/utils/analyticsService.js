@@ -245,21 +245,21 @@ class AnalyticsService {
     };
   }
 
-  track(eventType, data = {}) {
-    if (!this.isInitialized) {
-      this.init();
-    }
-
+  _buildEvent({ category, action, label, params, legacyType, legacyData }) {
     const pathname = window.location.pathname || '/';
-    if (pathname.startsWith('/admin')) {
-      return;
-    }
-
     const trafficSource = this.getTrafficSource();
 
-    const event = {
-      type: eventType,
-      data,
+    return {
+      // legacy field kept for backward compat on ingest
+      type: legacyType || `${category}:${action}`,
+      data: legacyData,
+
+      // canonical structured fields
+      category,
+      action,
+      label,
+      params,
+
       timestamp: Date.now(),
       sessionId: this.sessionId,
       userId: this.userId,
@@ -273,12 +273,49 @@ class AnalyticsService {
       locale: navigator.language || navigator.userLanguage,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
+  }
 
+  _push(event) {
     this.buffer.push(event);
-
     if (this.buffer.length >= this.maxBufferSize) {
       this.flush();
     }
+  }
+
+  // Canonical structured tracking. Preferred for new code.
+  trackStructured({ category, action, label = '', params = {} }) {
+    if (!this.isInitialized) this.init();
+    const pathname = window.location.pathname || '/';
+    if (pathname.startsWith('/admin')) return;
+
+    this._push(this._buildEvent({ category, action, label, params }));
+  }
+
+  // Legacy track — maps old (type, data) to canonical format.
+  // category: 'legacy', action: <type>, label: page/element if present.
+  track(eventType, data = {}) {
+    if (!this.isInitialized) {
+      this.init();
+    }
+
+    const pathname = window.location.pathname || '/';
+    if (pathname.startsWith('/admin')) {
+      return;
+    }
+
+    const category = data.category || 'legacy';
+    const action = data.action || eventType;
+    const label = data.label ?? (data.page || data.element || '');
+    const params = data.params ?? { ...data };
+
+    this._push(this._buildEvent({
+      category,
+      action,
+      label,
+      params,
+      legacyType: eventType,
+      legacyData: data,
+    }));
   }
 
   flush(useBeacon = false) {

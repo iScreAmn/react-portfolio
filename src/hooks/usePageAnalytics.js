@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { analytics } from '../utils/analyticsService';
-import { trackPageView } from '../utils/analyticsTrackers';
+import { navigation } from '../utils/analyticsTrackers';
 
 const isTrackablePath = (pathname) => !String(pathname || '').startsWith('/admin');
 
@@ -15,6 +15,6 @@ export function usePageAnalytics() {
   useEffect(() => {
     if (!isTrackablePath(location.pathname)) return;
     analytics.init();
-    trackPageView(location.pathname + location.search);
+    navigation.pageView(location.pathname + location.search);
   }, [location.pathname, location.search]);
 }
