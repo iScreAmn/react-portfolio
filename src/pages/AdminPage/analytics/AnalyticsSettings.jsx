@@ -3,7 +3,7 @@ import './AnalyticsSettings.css';
 import { IoRefresh } from "react-icons/io5";
 import { CiWarning } from "react-icons/ci";
 
-const AnalyticsSettings = ({ apiUrl, token }) => {
+const AnalyticsSettings = ({ apiUrl, token, onLogout }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [showDeleteAllConfirm, setShowDeleteAllConfirm] = useState(false);
@@ -91,13 +91,21 @@ const AnalyticsSettings = ({ apiUrl, token }) => {
     <div className="analytics-settings">
       <div className="analytics-settings-header">
         <h2 className="analytics-settings-title">Управление данными</h2>
-        <button 
-          onClick={fetchAnalyticsInfo} 
-          className="analytics-settings-refresh"
-          disabled={loading}
-        >
-          <IoRefresh /> Refresh
-        </button>
+        <div className="analytics-settings-header__actions">
+          <button
+            type="button"
+            onClick={fetchAnalyticsInfo}
+            className="analytics-settings-refresh"
+            disabled={loading}
+          >
+            <IoRefresh /> Refresh
+          </button>
+          {typeof onLogout === 'function' && (
+            <button type="button" className="admin-page__logout" onClick={onLogout}>
+              Logout
+            </button>
+          )}
+        </div>
       </div>
 
       {message && (

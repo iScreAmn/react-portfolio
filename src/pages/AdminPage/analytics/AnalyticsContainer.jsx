@@ -11,7 +11,7 @@ const DEVICE_OPTIONS = ['desktop', 'mobile', 'tablet'];
 const BROWSER_OPTIONS = ['Chrome', 'Safari', 'Firefox', 'Edge', 'Opera'];
 const SOURCE_OPTIONS = ['direct', 'search', 'social', 'referral', 'internal'];
 
-const AnalyticsContainer = ({ apiUrl, token }) => {
+const AnalyticsContainer = ({ apiUrl, token, onLogout }) => {
   const [activeTab, setActiveTab] = useState('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filters, setFilters] = useState({
@@ -159,7 +159,7 @@ const AnalyticsContainer = ({ apiUrl, token }) => {
           <SessionsView apiUrl={apiUrl} token={token} filters={filters} />
         )}
         {activeTab === 'settings' && (
-          <AnalyticsSettings apiUrl={apiUrl} token={token} />
+          <AnalyticsSettings apiUrl={apiUrl} token={token} onLogout={onLogout} />
         )}
       </div>
     </div>

@@ -226,6 +226,26 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  gap: 12px;
+}
+
+.session-detail-back-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.session-detail-back-btn:hover {
+  background: #e5e7eb;
 }
 
 .session-detail-title {
@@ -233,6 +253,7 @@
   font-weight: 600;
   color: #111827;
   margin: 0;
+  flex: 1;
 }
 
 .session-detail-delete-btn {
@@ -410,9 +431,33 @@
     font-size: 22px;
   }
 
+  .sessions-layout {
+    display: block;
+  }
+
   .sessions-list {
     padding: 12px;
-    max-height: 400px;
+    max-height: none;
+    margin-bottom: 0;
+  }
+
+  .sessions-list--hidden-mobile {
+    display: none;
+  }
+
+  .session-detail {
+    display: none;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .session-detail--visible-mobile {
+    display: block;
+  }
+
+  .session-detail-back-btn {
+    display: flex;
   }
 
   .sessions-list-header {
@@ -444,28 +489,43 @@
     font-size: 12px;
   }
 
-  .session-detail {
+  .session-detail-content {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
     padding: 16px;
-    min-height: auto;
+  }
+
+  .session-detail-empty {
+    display: none;
+  }
+
+  .session-detail-loading {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 40px 16px;
   }
 
   .session-detail-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
+  }
+
+  .session-detail-back-btn {
+    order: -1;
+    flex-basis: 100%;
   }
 
   .session-detail-title {
     font-size: 18px;
+    flex: 1;
   }
 
   .session-detail-delete-btn {
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
   }
 
   .session-detail-section {

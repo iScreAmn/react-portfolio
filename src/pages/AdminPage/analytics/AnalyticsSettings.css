@@ -11,6 +11,13 @@
   margin-bottom: 32px;
 }
 
+.analytics-settings-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .analytics-settings-title {
   font-size: 28px;
   font-weight: 600;
@@ -313,8 +320,13 @@
     font-size: 20px;
   }
 
-  .analytics-settings-refresh {
-    align-self: flex-start;
+  .analytics-settings-header__actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .analytics-settings-header__actions .admin-page__logout {
+    margin-left: auto;
   }
 
   .analytics-settings-info {

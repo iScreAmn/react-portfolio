@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import './SessionsView.css';
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaArrowLeft } from "react-icons/fa";
 
 const SessionsView = ({ apiUrl, token, filters }) => {
   const [sessions, setSessions] = useState([]);
@@ -75,6 +75,11 @@ const SessionsView = ({ apiUrl, token, filters }) => {
   const handleSessionClick = (session) => {
     setSelectedSession(session);
     fetchSessionDetail(session.sessionId);
+  };
+
+  const handleBackToList = () => {
+    setSelectedSession(null);
+    setSessionDetail(null);
   };
 
   const handleDeleteSession = async (sessionId) => {
@@ -167,7 +172,7 @@ const SessionsView = ({ apiUrl, token, filters }) => {
       </div>
 
       <div className="sessions-layout">
-        <div className="sessions-list">
+        <div className={`sessions-list ${selectedSession ? 'sessions-list--hidden-mobile' : ''}`}>
           <div className="sessions-list-header">
             <span>Всего сессий: {sessions.length}</span>
           </div>
@@ -225,7 +230,7 @@ const SessionsView = ({ apiUrl, token, filters }) => {
           ))}
         </div>
 
-        <div className="session-detail">
+        <div className={`session-detail ${selectedSession ? 'session-detail--visible-mobile' : ''}`}>
           {!selectedSession && (
             <div className="session-detail-empty">
               <p>Выберите сессию для просмотра деталей</p>
@@ -239,6 +244,13 @@ const SessionsView = ({ apiUrl, token, filters }) => {
           {selectedSession && !detailLoading && sessionDetail && (
             <div className="session-detail-content">
               <div className="session-detail-header">
+                <button
+                  onClick={handleBackToList}
+                  className="session-detail-back-btn"
+                  title="Назад к списку"
+                >
+                  <FaArrowLeft /> Назад
+                </button>
                 <h3 className="session-detail-title">Детали сессии</h3>
                 <button
                   onClick={() => {

@@ -111,13 +111,7 @@ export default function Admin() {
 
   return (
     <div className="admin-page">
-      <div className="admin-page__bar">
-        <span className="admin-page__label">Configuration and analytics</span>
-        <button type="button" className="admin-page__logout" onClick={logout}>
-          Logout
-        </button>
-      </div>
-      <AnalyticsContainer apiUrl={apiUrl} token={token} />
+      <AnalyticsContainer apiUrl={apiUrl} token={token} onLogout={logout} />
     </div>
   );
 }
