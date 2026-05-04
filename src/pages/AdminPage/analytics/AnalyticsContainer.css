@@ -1,0 +1,42 @@
+.analytics-container-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.analytics-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 0;
+  background: white;
+  padding: 0 24px;
+}
+
+.analytics-tab {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  top: 2px;
+}
+
+.analytics-tab:hover {
+  color: #047857;
+  background: #f9fafb;
+}
+
+.analytics-tab.active {
+  color: #047857;
+  border-bottom-color: #047857;
+}
+
+.analytics-content {
+  background: #f9fafb;
+  min-height: calc(100vh - 250px);
+}
