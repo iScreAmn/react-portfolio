@@ -3,6 +3,9 @@ import AnalyticsDashboard from './AnalyticsDashboard';
 import SessionsView from './SessionsView';
 import AnalyticsSettings from './AnalyticsSettings';
 import './AnalyticsContainer.css';
+import { MdOutlineAnalytics } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
 
 const AnalyticsContainer = ({ apiUrl, token }) => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -14,19 +17,19 @@ const AnalyticsContainer = ({ apiUrl, token }) => {
           className={`analytics-tab ${activeTab === 'overview' ? 'active' : ''}`}
           onClick={() => setActiveTab('overview')}
         >
-          📊 Обзор
+          <MdOutlineAnalytics /> Overview
         </button>
         <button
           className={`analytics-tab ${activeTab === 'sessions' ? 'active' : ''}`}
           onClick={() => setActiveTab('sessions')}
         >
-          👥 Сессии пользователей
+          <FaUsers /> Users Sessions
         </button>
         <button
           className={`analytics-tab ${activeTab === 'settings' ? 'active' : ''}`}
           onClick={() => setActiveTab('settings')}
         >
-          ⚙️ Настройки
+          <IoMdSettings /> Settings
         </button>
       </div>
 

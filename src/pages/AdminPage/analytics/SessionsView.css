@@ -74,9 +74,9 @@
 }
 
 .sessions-filter-btn.active {
-  background: #047857;
+  background: #ffa500;
   color: white;
-  border-color: #047857;
+  border-color: #ffa500;
 }
 
 .sessions-layout {

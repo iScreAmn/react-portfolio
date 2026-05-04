@@ -73,9 +73,9 @@
 }
 
 .analytics-filter-btn.active {
-  background: #047857;
+  background: #ffa500;
   color: white;
-  border-color: #047857;
+  border-color: #ffa500;
 }
 
 .analytics-grid {
@@ -195,7 +195,7 @@
 .analytics-chart__bar {
   width: 100%;
   max-width: 32px;
-  background: linear-gradient(180deg, #047857 0%, #059669 100%);
+  background: linear-gradient(180deg, #ffa500 0%, #2e6ddafa 100%);
   border-radius: 4px 4px 0 0;
   transition: all 0.3s;
   cursor: pointer;

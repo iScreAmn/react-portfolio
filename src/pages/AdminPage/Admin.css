@@ -19,16 +19,16 @@
 }
 
 .admin-page__logout {
-  padding: 8px 14px;
+  padding: 10px 20px;
   font-size: 13px;
-  border: 1px solid #d1d5db;
   border-radius: 6px;
-  background: #fff;
+  color: #fff;
+  background: #ffa500;
   cursor: pointer;
 }
 
 .admin-page__logout:hover {
-  background: #f9fafb;
+  background: #c68101;
 }
 
 .admin-gate {
@@ -93,7 +93,7 @@
   font-size: 15px;
   font-weight: 500;
   color: #fff;
-  background: #047857;
+  background: #ffa500;
   border: none;
   border-radius: 8px;
   cursor: pointer;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './SessionsView.css';
+import { FaTrash } from "react-icons/fa";
 
 const SessionsView = ({ apiUrl, token }) => {
   const [sessions, setSessions] = useState([]);
@@ -255,7 +256,7 @@ const SessionsView = ({ apiUrl, token }) => {
                   className="session-detail-delete-btn"
                   title="Удалить сессию"
                 >
-                  🗑️ Удалить
+                  <FaTrash /> Delete
                 </button>
               </div>
               

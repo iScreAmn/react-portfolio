@@ -74,14 +74,14 @@ export default function Admin() {
     return (
       <div className="admin-gate">
         <div className="admin-gate__card">
-          <h1 className="admin-gate__title">Аналитика</h1>
+          <h1 className="admin-gate__title">Admin Panel</h1>
           <p className="admin-gate__hint">
-            Вход по учётной записи администратора.
+            Login to access the analytics.
           </p>
           <input
             type="text"
             className="admin-gate__input"
-            placeholder="Логин"
+            placeholder="Login"
             value={login}
             onChange={(e) => setLogin(e.target.value)}
             autoComplete="username"
@@ -89,7 +89,7 @@ export default function Admin() {
           <input
             type="password"
             className="admin-gate__input"
-            placeholder="Пароль"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && tryAuth()}
@@ -102,7 +102,7 @@ export default function Admin() {
             onClick={tryAuth}
             disabled={submitting}
           >
-            {submitting ? 'Вход…' : 'Войти'}
+            {submitting ? 'Entering...' : 'Enter'}
           </button>
         </div>
       </div>
@@ -112,9 +112,9 @@ export default function Admin() {
   return (
     <div className="admin-page">
       <div className="admin-page__bar">
-        <span className="admin-page__label">Конфигурация и аналитика</span>
+        <span className="admin-page__label">Configuration and analytics</span>
         <button type="button" className="admin-page__logout" onClick={logout}>
-          Выйти
+          Logout
         </button>
       </div>
       <AnalyticsContainer apiUrl={apiUrl} token={token} />

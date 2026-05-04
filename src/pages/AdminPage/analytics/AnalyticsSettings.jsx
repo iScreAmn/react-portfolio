@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import './AnalyticsSettings.css';
+import { IoRefresh } from "react-icons/io5";
+import { CiWarning } from "react-icons/ci";
 
 const AnalyticsSettings = ({ apiUrl, token }) => {
   const [loading, setLoading] = useState(false);
@@ -94,7 +96,7 @@ const AnalyticsSettings = ({ apiUrl, token }) => {
           className="analytics-settings-refresh"
           disabled={loading}
         >
-          🔄 Обновить
+          <IoRefresh /> Refresh
         </button>
       </div>
 
@@ -120,7 +122,7 @@ const AnalyticsSettings = ({ apiUrl, token }) => {
       <div className="analytics-settings-section">
         <h3 className="analytics-settings-section-title">Удаление данных</h3>
         <p className="analytics-settings-section-desc">
-          ⚠️ Внимание: удаленные данные невозможно восстановить
+          <CiWarning/> Внимание: удаленные данные невозможно восстановить
         </p>
 
         <div className="analytics-settings-actions">
