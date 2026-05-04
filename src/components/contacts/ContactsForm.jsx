@@ -3,6 +3,7 @@ import { FaPaperPlane, FaCheck, FaExclamationTriangle, FaSpinner } from "react-i
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { motion, AnimatePresence } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
+import { getApiBase } from "../../utils/apiBase";
 import "./ContactsForm.css";
 
 const ContactsForm = () => {
@@ -99,7 +100,7 @@ const ContactsForm = () => {
     setSubmitStatus(null);
     
     try {
-      const apiBase = import.meta.env.VITE_API_URL ?? '';
+      const apiBase = getApiBase();
       const response = await fetch(`${apiBase}/api/contact`, {
         method: 'POST',
         headers: {
