@@ -44,6 +44,57 @@ class AnalyticsService {
     this.userId = userId;
   }
 
+  normalizeHost(host = '') {
+    return String(host || '').trim().toLowerCase().replace(/^www\./, '');
+  }
+
+  getTrafficSource() {
+    const currentHost = this.normalizeHost(window.location.hostname);
+    const referrer = String(document.referrer || '').trim();
+
+    if (!referrer) {
+      return {
+        channel: 'direct',
+        sourceType: 'direct',
+        sourceHost: null,
+        sourceUrl: null,
+      };
+    }
+
+    try {
+      const referrerUrl = new URL(referrer);
+      const sourceHost = this.normalizeHost(referrerUrl.hostname);
+
+      if (!sourceHost || sourceHost === currentHost) {
+        return {
+          channel: 'internal',
+          sourceType: 'internal',
+          sourceHost,
+          sourceUrl: referrer,
+        };
+      }
+
+      const searchHosts = ['google.', 'yandex.', 'bing.', 'duckduckgo.', 'search.yahoo.', 'baidu.'];
+      const socialHosts = ['t.me', 'telegram.', 'facebook.', 'instagram.', 'x.com', 'twitter.', 'linkedin.', 'vk.com'];
+      const isSearch = searchHosts.some((pattern) => sourceHost.includes(pattern));
+      const isSocial = socialHosts.some((pattern) => sourceHost.includes(pattern));
+
+      return {
+        channel: 'external',
+        sourceType: isSearch ? 'search' : (isSocial ? 'social' : 'referral'),
+        sourceHost,
+        sourceUrl: referrer,
+      };
+    } catch {
+      return {
+        channel: 'external',
+        sourceType: 'referral',
+        sourceHost: null,
+        sourceUrl: referrer,
+      };
+    }
+  }
+
   getDeviceInfo() {
     const ua = navigator.userAgent;
     const platform = navigator.platform || '';
@@ -119,6 +170,8 @@ class AnalyticsService {
       return;
     }
 
+    const trafficSource = this.getTrafficSource();
+
     const event = {
       type: eventType,
       data,
@@ -128,7 +181,8 @@ class AnalyticsService {
       url: pathname,
       hostname: window.location.hostname || '',
       origin: window.location.origin || '',
-      referrer: document.referrer || null,
+      referrer: trafficSource.sourceUrl,
+      trafficSource,
       userAgent: navigator.userAgent,
       device: this.getDeviceInfo(),
       locale: navigator.language || navigator.userLanguage,

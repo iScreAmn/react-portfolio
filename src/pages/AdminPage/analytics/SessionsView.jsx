@@ -112,6 +112,23 @@ const SessionsView = ({ apiUrl, token }) => {
     return '💻';
   };
 
+  const getSourceLabel = (session) => {
+    if (!session) return 'Прямой заход';
+
+    const sourceHost = session.sourceHost || session.trafficSource?.sourceHost;
+
+    if (session.sourceType === 'direct') return 'Прямой заход';
+    if (session.sourceType === 'search') return `Поиск: ${sourceHost || 'unknown'}`;
+    if (session.sourceType === 'social') return `Соцсеть: ${sourceHost || 'unknown'}`;
+    if (session.sourceType === 'referral') return `Переход: ${sourceHost || 'unknown'}`;
+    if (session.sourceType === 'internal') return `Внутренний переход: ${sourceHost || 'same-site'}`;
+
+    if (session.referrer) return `Переход: ${session.referrer}`;
+    return 'Прямой заход';
+  };
+
+  const getSourceUrl = (session) => session?.trafficSource?.sourceUrl || session?.referrer || null;
+
   if (loading) {
     return (
       <div className="sessions-view">
@@ -190,6 +207,10 @@ const SessionsView = ({ apiUrl, token }) => {
                   <span className="session-card__value">
                     {[session.country, session.city].filter(Boolean).join(', ') || 'N/A'}
                   </span>
+                </div>
+                <div className="session-card__row">
+                  <span className="session-card__label">Источник:</span>
+                  <span className="session-card__value">{getSourceLabel(session)}</span>
                 </div>
                 <div className="session-card__row">
                   <span className="session-card__label">Время:</span>
@@ -281,21 +302,25 @@ const SessionsView = ({ apiUrl, token }) => {
                     <span className="session-detail-label">Часовой пояс:</span>
                     <span className="session-detail-value">{sessionDetail.timezone}</span>
                   </div>
+                  <div className="session-detail-item session-detail-item--full">
+                    <span className="session-detail-label">Источник трафика:</span>
+                    <span className="session-detail-value">{getSourceLabel(sessionDetail)}</span>
+                  </div>
                   <div className="session-detail-item">
                     <span className="session-detail-label">Длительность:</span>
                     <span className="session-detail-value">{sessionDetail.durationFormatted}</span>
                   </div>
                 </div>
-                {sessionDetail.referrer && (
+                {getSourceUrl(sessionDetail) && (
                   <div className="session-detail-item session-detail-item--full">
-                    <span className="session-detail-label">Источник перехода:</span>
+                    <span className="session-detail-label">URL источника:</span>
                     <a 
-                      href={sessionDetail.referrer} 
+                      href={getSourceUrl(sessionDetail)} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="session-detail-link"
                     >
-                      {sessionDetail.referrer}
+                      {getSourceUrl(sessionDetail)}
                     </a>
                   </div>
                 )}
