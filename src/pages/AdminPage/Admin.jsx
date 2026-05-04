@@ -3,11 +3,11 @@ import { getApiBase } from '../../utils/apiBase';
 import AnalyticsContainer from './analytics/AnalyticsContainer';
 import './Admin.css';
 
-const TOKEN_KEY = 'portfolio_analytics_admin_jwt';
+const TOKEN_KEY = 'admin_jwt';
 
 function getStoredToken() {
   try {
-    return sessionStorage.getItem(TOKEN_KEY) || '';
+    return localStorage.getItem(TOKEN_KEY) || '';
   } catch {
     return '';
   }
@@ -43,13 +43,13 @@ export default function Admin() {
       if (!res.ok) {
         throw new Error(body.message || `HTTP ${res.status}`);
       }
-      const t = body.token;
+      const t = body?.data?.token || body?.token;
       if (!t) {
-        throw new Error('Нет токена в ответе');
+        throw new Error(body.message || 'Нет токена в ответе');
       }
       setToken(t);
       try {
-        sessionStorage.setItem(TOKEN_KEY, t);
+        localStorage.setItem(TOKEN_KEY, t);
       } catch {
         /* ignore */
       }
@@ -64,7 +64,7 @@ export default function Admin() {
   const logout = () => {
     setToken('');
     try {
-      sessionStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(TOKEN_KEY);
     } catch {
       /* ignore */
     }
@@ -76,9 +76,7 @@ export default function Admin() {
         <div className="admin-gate__card">
           <h1 className="admin-gate__title">Аналитика</h1>
           <p className="admin-gate__hint">
-            Вход по учётной записи администратора (сервер:{' '}
-            <code>ADMIN_LOGIN</code>, <code>ADMIN_PASSWORD_HASH</code> или{' '}
-            <code>ADMIN_PASSWORD</code>, <code>JWT_SECRET</code>).
+            Вход по учётной записи администратора.
           </p>
           <input
             type="text"
