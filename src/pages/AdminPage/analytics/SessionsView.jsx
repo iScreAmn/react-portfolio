@@ -186,6 +186,12 @@ const SessionsView = ({ apiUrl, token }) => {
                   <span className="session-card__value">{session.ip || 'N/A'}</span>
                 </div>
                 <div className="session-card__row">
+                  <span className="session-card__label">Локация:</span>
+                  <span className="session-card__value">
+                    {[session.country, session.city].filter(Boolean).join(', ') || 'N/A'}
+                  </span>
+                </div>
+                <div className="session-card__row">
                   <span className="session-card__label">Время:</span>
                   <span className="session-card__value">{formatDate(session.start)}</span>
                 </div>
@@ -258,6 +264,14 @@ const SessionsView = ({ apiUrl, token }) => {
                   <div className="session-detail-item">
                     <span className="session-detail-label">IP:</span>
                     <span className="session-detail-value">{sessionDetail.ip || 'N/A'}</span>
+                  </div>
+                  <div className="session-detail-item">
+                    <span className="session-detail-label">Страна:</span>
+                    <span className="session-detail-value">{sessionDetail.country || 'N/A'}</span>
+                  </div>
+                  <div className="session-detail-item">
+                    <span className="session-detail-label">Город:</span>
+                    <span className="session-detail-value">{sessionDetail.city || 'N/A'}</span>
                   </div>
                   <div className="session-detail-item">
                     <span className="session-detail-label">Локаль:</span>

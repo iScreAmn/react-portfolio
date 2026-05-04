@@ -114,13 +114,20 @@ class AnalyticsService {
       this.init();
     }
 
+    const pathname = window.location.pathname || '/';
+    if (pathname.startsWith('/admin')) {
+      return;
+    }
+
     const event = {
       type: eventType,
       data,
       timestamp: Date.now(),
       sessionId: this.sessionId,
       userId: this.userId,
-      url: window.location.pathname,
+      url: pathname,
+      hostname: window.location.hostname || '',
+      origin: window.location.origin || '',
       referrer: document.referrer || null,
       userAgent: navigator.userAgent,
       device: this.getDeviceInfo(),
