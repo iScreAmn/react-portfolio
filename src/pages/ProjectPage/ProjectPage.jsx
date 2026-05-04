@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 import portfolioData from "../../data/portfolioData";
+import { portfolio } from "../../utils/analyticsTrackers";
 import "./ProjectPage.css";
 
 const ProjectPage = () => {
@@ -29,9 +30,15 @@ const ProjectPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setCurrentIndex(0);
+    if (project) {
+      portfolio.projectView(project.slug, project.title);
+    }
   }, [slug]);
 
   const openModalAt = (index) => {
+    if (!isModalOpen && project) {
+      portfolio.galleryOpen(project.slug);
+    }
     setCurrentIndex(index);
     setIsModalOpen(true);
     document.body.classList.add("no-scroll");
@@ -130,6 +137,7 @@ const ProjectPage = () => {
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => portfolio.liveLinkClick(project.slug, project.href)}
                 >
                   View Page
                 </a>

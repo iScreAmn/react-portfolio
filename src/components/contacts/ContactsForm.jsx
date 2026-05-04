@@ -4,6 +4,7 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import { motion, AnimatePresence } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
 import { getApiBase } from "../../utils/apiBase";
+import { contact } from "../../utils/analyticsTrackers";
 import "./ContactsForm.css";
 
 const ContactsForm = () => {
@@ -113,9 +114,11 @@ const ContactsForm = () => {
       
       if (data.success) {
         setSubmitStatus('success');
+        contact.formSubmit('success', formData.contactMethod);
         setFormData({ name: "", contactMethod: "", contactValue: "", message: "", agreeToPrivacy: false });
       } else {
         setSubmitStatus('error');
+        contact.formSubmit('error', formData.contactMethod);
         if (data.errors?.length) {
           const serverErrors = {};
           data.errors.forEach(error => {
@@ -126,6 +129,7 @@ const ContactsForm = () => {
       }
     } catch (error) {
       setSubmitStatus('error');
+      contact.formSubmit('error', formData.contactMethod);
     } finally {
       setIsSubmitting(false);
     }
