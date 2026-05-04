@@ -339,25 +339,97 @@
     padding: 16px;
   }
 
+  .analytics-header {
+    margin-bottom: 20px;
+  }
+
   .analytics-title {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  .analytics-grid {
+    gap: 16px;
+  }
+
+  .analytics-card {
+    padding: 16px;
+  }
+
+  .analytics-card__header {
+    margin-bottom: 12px;
+  }
+
+  .analytics-card__title {
+    font-size: 12px;
   }
 
   .analytics-card__value {
     font-size: 28px;
   }
 
-  .hourly-chart__plot {
-    height: 170px;
+  .analytics-card__content {
+    max-height: 250px;
+  }
+
+  .analytics-list__item {
+    padding: 10px 0;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
+  }
+
+  .analytics-list__name {
+    font-size: 13px;
+  }
+
+  .analytics-list__value {
+    font-size: 13px;
+  }
+
+  .analytics-events-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .analytics-events-select {
+    width: 100%;
+  }
+
+  .analytics-events-clear {
+    width: 100%;
+  }
+
+  .analytics-event-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .analytics-event-action {
+    font-size: 12px;
+  }
+
+  .analytics-event-label {
+    font-size: 11px;
+  }
+
+  .hourly-chart__plot {
+    height: 160px;
+    gap: 3px;
     padding: 10px 8px 8px 8px;
   }
 
   .hourly-chart__x-axis {
-    gap: 4px;
+    gap: 3px;
+    margin-top: 6px;
   }
 
   .hourly-chart__x-label {
-    font-size: 9px;
+    font-size: 8px;
+  }
+
+  .hourly-chart__tooltip {
+    font-size: 11px;
+    padding: 5px 7px;
   }
 }

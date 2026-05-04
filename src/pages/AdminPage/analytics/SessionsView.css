@@ -397,6 +397,135 @@
   }
 }
 
+@media (max-width: 768px) {
+  .sessions-view {
+    padding: 16px;
+  }
+
+  .sessions-header {
+    margin-bottom: 16px;
+  }
+
+  .sessions-title {
+    font-size: 22px;
+  }
+
+  .sessions-list {
+    padding: 12px;
+    max-height: 400px;
+  }
+
+  .sessions-list-header {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .session-card {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  .session-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .session-card__device {
+    font-size: 13px;
+  }
+
+  .session-card__duration {
+    font-size: 11px;
+    align-self: flex-start;
+  }
+
+  .session-card__row {
+    font-size: 12px;
+  }
+
+  .session-detail {
+    padding: 16px;
+    min-height: auto;
+  }
+
+  .session-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .session-detail-title {
+    font-size: 18px;
+  }
+
+  .session-detail-delete-btn {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .session-detail-section {
+    margin-bottom: 24px;
+  }
+
+  .session-detail-section-title {
+    font-size: 15px;
+  }
+
+  .session-detail-item {
+    gap: 2px;
+  }
+
+  .session-detail-label {
+    font-size: 12px;
+  }
+
+  .session-detail-value {
+    font-size: 13px;
+  }
+
+  .session-detail-page {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .session-detail-events {
+    max-height: 350px;
+  }
+
+  .session-event {
+    padding: 10px;
+  }
+
+  .session-event__type {
+    font-size: 12px;
+  }
+
+  .session-event__time {
+    font-size: 11px;
+  }
+
+  .session-event__url {
+    font-size: 11px;
+  }
+
+  .sessions-delete-modal {
+    padding: 18px;
+  }
+
+  .sessions-delete-modal__title {
+    font-size: 18px;
+  }
+
+  .sessions-delete-modal__text {
+    font-size: 13px;
+  }
+}
+
 .sessions-delete-modal-overlay {
   position: fixed;
   inset: 0;

@@ -102,3 +102,32 @@
 .admin-gate__btn:hover {
   background: #059669;
 }
+
+@media (max-width: 768px) {
+  .admin-page__bar {
+    padding: 10px 16px;
+  }
+
+  .admin-page__label {
+    font-size: 13px;
+    display: none;
+  }
+
+  .admin-page__logout {
+    padding: 8px 16px;
+    font-size: 12px;
+    margin-left: auto;
+  }
+
+  .admin-gate {
+    padding: 16px;
+  }
+
+  .admin-gate__card {
+    padding: 22px;
+  }
+
+  .admin-gate__title {
+    font-size: 20px;
+  }
+}

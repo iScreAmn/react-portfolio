@@ -3,7 +3,7 @@ import AnalyticsDashboard from './AnalyticsDashboard';
 import SessionsView from './SessionsView';
 import AnalyticsSettings from './AnalyticsSettings';
 import './AnalyticsContainer.css';
-import { MdOutlineAnalytics } from "react-icons/md";
+import { MdOutlineAnalytics, MdMenu, MdClose } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 
@@ -13,6 +13,7 @@ const SOURCE_OPTIONS = ['direct', 'search', 'social', 'referral', 'internal'];
 
 const AnalyticsContainer = ({ apiUrl, token }) => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filters, setFilters] = useState({
     range: '7d',
     country: '',
@@ -24,27 +25,47 @@ const AnalyticsContainer = ({ apiUrl, token }) => {
   const updateFilter = (key, value) =>
     setFilters((prev) => ({ ...prev, [key]: value }));
 
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <div className="analytics-container-wrapper">
-      <div className="analytics-tabs">
+      <div className="analytics-tabs-wrapper">
         <button
-          className={`analytics-tab ${activeTab === 'overview' ? 'active' : ''}`}
-          onClick={() => setActiveTab('overview')}
+          className="analytics-mobile-burger"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
         >
-          <MdOutlineAnalytics /> Overview
+          {mobileMenuOpen ? <MdClose /> : <MdMenu />}
+          <span className="analytics-mobile-burger__text">
+            {activeTab === 'overview' && 'Overview'}
+            {activeTab === 'sessions' && 'Sessions'}
+            {activeTab === 'settings' && 'Settings'}
+          </span>
         </button>
-        <button
-          className={`analytics-tab ${activeTab === 'sessions' ? 'active' : ''}`}
-          onClick={() => setActiveTab('sessions')}
-        >
-          <FaUsers /> Users Sessions
-        </button>
-        <button
-          className={`analytics-tab ${activeTab === 'settings' ? 'active' : ''}`}
-          onClick={() => setActiveTab('settings')}
-        >
-          <IoMdSettings /> Settings
-        </button>
+
+        <div className={`analytics-tabs ${mobileMenuOpen ? 'analytics-tabs--open' : ''}`}>
+          <button
+            className={`analytics-tab ${activeTab === 'overview' ? 'active' : ''}`}
+            onClick={() => handleTabChange('overview')}
+          >
+            <MdOutlineAnalytics /> Overview
+          </button>
+          <button
+            className={`analytics-tab ${activeTab === 'sessions' ? 'active' : ''}`}
+            onClick={() => handleTabChange('sessions')}
+          >
+            <FaUsers /> Users Sessions
+          </button>
+          <button
+            className={`analytics-tab ${activeTab === 'settings' ? 'active' : ''}`}
+            onClick={() => handleTabChange('settings')}
+          >
+            <IoMdSettings /> Settings
+          </button>
+        </div>
       </div>
 
       {activeTab !== 'settings' && (
