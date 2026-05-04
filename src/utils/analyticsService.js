@@ -12,6 +12,8 @@ class AnalyticsService {
     this.apiUrl = '';
   }
 
+  static FIRST_SOURCE_STORAGE_KEY = 'analytics_first_traffic_source';
+
   setApiUrl(url) {
     this.apiUrl = url;
   }
@@ -48,17 +50,89 @@ class AnalyticsService {
     return String(host || '').trim().toLowerCase().replace(/^www\./, '');
   }
 
+  getUtmParams() {
+    try {
+      const params = new URLSearchParams(window.location.search || '');
+      const utmSource = String(params.get('utm_source') || '').trim();
+      const utmMedium = String(params.get('utm_medium') || '').trim();
+      const utmCampaign = String(params.get('utm_campaign') || '').trim();
+
+      return {
+        utmSource,
+        utmMedium,
+        utmCampaign,
+        hasUtm: Boolean(utmSource || utmMedium || utmCampaign),
+      };
+    } catch {
+      return {
+        utmSource: '',
+        utmMedium: '',
+        utmCampaign: '',
+        hasUtm: false,
+      };
+    }
+  }
+
+  getStoredFirstSource() {
+    try {
+      const raw = sessionStorage.getItem(AnalyticsService.FIRST_SOURCE_STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object') return null;
+      return parsed;
+    } catch {
+      return null;
+    }
+  }
+
+  saveFirstSource(source) {
+    try {
+      sessionStorage.setItem(AnalyticsService.FIRST_SOURCE_STORAGE_KEY, JSON.stringify(source));
+    } catch {
+      // ignore storage errors
+    }
+  }
+
+  resolveSourceTypeByMedium(medium = '') {
+    const value = String(medium || '').trim().toLowerCase();
+    if (!value) return 'referral';
+    if (['search', 'organic', 'seo', 'cpc', 'ppc'].includes(value)) return 'search';
+    if (['social', 'social_media', 'smm', 'messenger'].includes(value)) return 'social';
+    if (['direct', '(none)', 'none'].includes(value)) return 'direct';
+    return 'referral';
+  }
+
   getTrafficSource() {
     const currentHost = this.normalizeHost(window.location.hostname);
     const referrer = String(document.referrer || '').trim();
+    const { utmSource, utmMedium, utmCampaign, hasUtm } = this.getUtmParams();
+
+    if (hasUtm) {
+      const detectedByUtm = {
+        channel: 'external',
+        sourceType: this.resolveSourceTypeByMedium(utmMedium),
+        sourceHost: this.normalizeHost(utmSource) || utmSource || null,
+        sourceUrl: referrer || null,
+        utmSource: utmSource || null,
+        utmMedium: utmMedium || null,
+        utmCampaign: utmCampaign || null,
+      };
+      this.saveFirstSource(detectedByUtm);
+      return detectedByUtm;
+    }
+
+    const storedFirstSource = this.getStoredFirstSource();
+    if (storedFirstSource) return storedFirstSource;
 
     if (!referrer) {
-      return {
+      const directSource = {
         channel: 'direct',
         sourceType: 'direct',
         sourceHost: null,
         sourceUrl: null,
       };
+      this.saveFirstSource(directSource);
+      return directSource;
     }
 
     try {
@@ -66,12 +140,14 @@ class AnalyticsService {
       const sourceHost = this.normalizeHost(referrerUrl.hostname);
 
       if (!sourceHost || sourceHost === currentHost) {
-        return {
+        const internalSource = {
           channel: 'internal',
           sourceType: 'internal',
           sourceHost,
           sourceUrl: referrer,
         };
+        this.saveFirstSource(internalSource);
+        return internalSource;
       }
 
       const searchHosts = ['google.', 'yandex.', 'bing.', 'duckduckgo.', 'search.yahoo.', 'baidu.'];
@@ -79,19 +155,23 @@ class AnalyticsService {
       const isSearch = searchHosts.some((pattern) => sourceHost.includes(pattern));
       const isSocial = socialHosts.some((pattern) => sourceHost.includes(pattern));
 
-      return {
+      const detectedByReferrer = {
         channel: 'external',
         sourceType: isSearch ? 'search' : (isSocial ? 'social' : 'referral'),
         sourceHost,
         sourceUrl: referrer,
       };
+      this.saveFirstSource(detectedByReferrer);
+      return detectedByReferrer;
     } catch {
-      return {
+      const invalidReferrerSource = {
         channel: 'external',
         sourceType: 'referral',
         sourceHost: null,
         sourceUrl: referrer,
       };
+      this.saveFirstSource(invalidReferrerSource);
+      return invalidReferrerSource;
     }
   }
 
