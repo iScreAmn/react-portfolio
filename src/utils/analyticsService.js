@@ -106,17 +106,63 @@ class AnalyticsService {
     const currentHost = this.normalizeHost(window.location.hostname);
     const referrer = String(document.referrer || '').trim();
     const { utmSource, utmMedium, utmCampaign, hasUtm } = this.getUtmParams();
+    const withUtmMeta = (source) => ({
+      ...source,
+      utmSource: utmSource || null,
+      utmMedium: utmMedium || null,
+      utmCampaign: utmCampaign || null,
+    });
+
+    try {
+      if (referrer) {
+        const referrerUrl = new URL(referrer);
+        const sourceHost = this.normalizeHost(referrerUrl.hostname);
+
+        if (!sourceHost || sourceHost === currentHost) {
+          const internalSource = withUtmMeta({
+            channel: 'internal',
+            sourceType: 'internal',
+            sourceHost,
+            sourceUrl: referrer,
+          });
+          this.saveFirstSource(internalSource);
+          return internalSource;
+        }
+
+        const searchHosts = ['google.', 'yandex.', 'bing.', 'duckduckgo.', 'search.yahoo.', 'baidu.'];
+        const socialHosts = ['t.me', 'telegram.', 'facebook.', 'instagram.', 'x.com', 'twitter.', 'linkedin.', 'vk.com'];
+        const isSearch = searchHosts.some((pattern) => sourceHost.includes(pattern));
+        const isSocial = socialHosts.some((pattern) => sourceHost.includes(pattern));
+
+        const detectedByReferrer = withUtmMeta({
+          channel: 'external',
+          sourceType: isSearch ? 'search' : (isSocial ? 'social' : 'referral'),
+          sourceHost,
+          sourceUrl: referrer,
+        });
+        this.saveFirstSource(detectedByReferrer);
+        return detectedByReferrer;
+      }
+    } catch {
+      if (referrer) {
+        const invalidReferrerSource = withUtmMeta({
+          channel: 'external',
+          sourceType: 'referral',
+          sourceHost: null,
+          sourceUrl: referrer,
+        });
+        this.saveFirstSource(invalidReferrerSource);
+        return invalidReferrerSource;
+      }
+    }
 
     if (hasUtm) {
-      const detectedByUtm = {
+      const detectedByUtm = withUtmMeta({
         channel: 'external',
         sourceType: this.resolveSourceTypeByMedium(utmMedium),
         sourceHost: this.normalizeHost(utmSource) || utmSource || null,
-        sourceUrl: referrer || null,
-        utmSource: utmSource || null,
-        utmMedium: utmMedium || null,
-        utmCampaign: utmCampaign || null,
-      };
+        sourceUrl: null,
+      });
       this.saveFirstSource(detectedByUtm);
       return detectedByUtm;
     }
@@ -124,55 +170,14 @@ class AnalyticsService {
     const storedFirstSource = this.getStoredFirstSource();
     if (storedFirstSource) return storedFirstSource;
 
-    if (!referrer) {
-      const directSource = {
-        channel: 'direct',
-        sourceType: 'direct',
-        sourceHost: null,
-        sourceUrl: null,
-      };
-      this.saveFirstSource(directSource);
-      return directSource;
-    }
-
-    try {
-      const referrerUrl = new URL(referrer);
-      const sourceHost = this.normalizeHost(referrerUrl.hostname);
-
-      if (!sourceHost || sourceHost === currentHost) {
-        const internalSource = {
-          channel: 'internal',
-          sourceType: 'internal',
-          sourceHost,
-          sourceUrl: referrer,
-        };
-        this.saveFirstSource(internalSource);
-        return internalSource;
-      }
-
-      const searchHosts = ['google.', 'yandex.', 'bing.', 'duckduckgo.', 'search.yahoo.', 'baidu.'];
-      const socialHosts = ['t.me', 'telegram.', 'facebook.', 'instagram.', 'x.com', 'twitter.', 'linkedin.', 'vk.com'];
-      const isSearch = searchHosts.some((pattern) => sourceHost.includes(pattern));
-      const isSocial = socialHosts.some((pattern) => sourceHost.includes(pattern));
-
-      const detectedByReferrer = {
-        channel: 'external',
-        sourceType: isSearch ? 'search' : (isSocial ? 'social' : 'referral'),
-        sourceHost,
-        sourceUrl: referrer,
-      };
-      this.saveFirstSource(detectedByReferrer);
-      return detectedByReferrer;
-    } catch {
-      const invalidReferrerSource = {
-        channel: 'external',
-        sourceType: 'referral',
-        sourceHost: null,
-        sourceUrl: referrer,
-      };
-      this.saveFirstSource(invalidReferrerSource);
-      return invalidReferrerSource;
-    }
+    const directSource = withUtmMeta({
+      channel: 'direct',
+      sourceType: 'direct',
+      sourceHost: null,
+      sourceUrl: null,
+    });
+    this.saveFirstSource(directSource);
+    return directSource;
   }
 
   getDeviceInfo() {
