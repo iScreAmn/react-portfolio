@@ -2,7 +2,11 @@
   padding: 24px;
   max-width: 100%;
   height: calc(100vh - 200px);
+  min-height: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .sessions-loading,
@@ -43,6 +47,7 @@
   margin-bottom: 24px;
   flex-wrap: wrap;
   gap: 16px;
+  flex-shrink: 0;
 }
 
 .sessions-title {
@@ -83,7 +88,9 @@
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 20px;
-  height: calc(100% - 80px);
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
 }
 
 .sessions-list {
@@ -92,6 +99,7 @@
   border-radius: 8px;
   overflow-y: auto;
   padding: 16px;
+  min-height: 0;
 }
 
 .sessions-list-header {
@@ -188,6 +196,8 @@
   border-radius: 8px;
   overflow-y: auto;
   padding: 24px;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 .session-detail-empty {
@@ -401,16 +411,25 @@
 
 @media (max-width: 1200px) {
   .sessions-layout {
-    grid-template-columns: 1fr;
-    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 16px;
   }
 
   .sessions-list {
-    max-height: 500px;
+    flex: 0 1 auto;
+    max-height: min(420px, 42vh);
+    min-height: 0;
+    overflow-y: auto;
   }
 
   .session-detail {
-    min-height: 600px;
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
   }
 
   .session-detail-grid {
@@ -421,6 +440,7 @@
 @media (max-width: 768px) {
   .sessions-view {
     padding: 16px;
+    height: calc(100vh - 220px);
   }
 
   .sessions-header {
@@ -432,13 +452,20 @@
   }
 
   .sessions-layout {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 0;
   }
 
   .sessions-list {
     padding: 12px;
+    flex: 1;
+    min-height: 0;
     max-height: none;
     margin-bottom: 0;
+    overflow-y: auto;
   }
 
   .sessions-list--hidden-mobile {
@@ -447,9 +474,12 @@
 
   .session-detail {
     display: none;
+    flex: 1;
+    min-height: 0;
     padding: 0;
     border: none;
     background: transparent;
+    overflow-y: auto;
   }
 
   .session-detail--visible-mobile {
@@ -554,7 +584,8 @@
   }
 
   .session-detail-events {
-    max-height: 350px;
+    max-height: none;
+    overflow: visible;
   }
 
   .session-event {
