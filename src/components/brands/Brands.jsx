@@ -9,10 +9,12 @@ import {
   brand8, 
   brand9 
 } from '../../assets/images';
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 import '../section-title/SectionTitle.css';
 import './Brands.css';
 
 const Brands = () => {
+  const { brandsSectionData } = useLocaleHomeData();
   const brands = [
     { logo: brand1, name: 'AskChef', url: '#' },
     { logo: brand2, name: 'Balu', url: '#', darkOnLightHover: true },
@@ -46,8 +48,8 @@ const Brands = () => {
     <section className="brands" id="brands">
       <div className="container brands__container">
         <div className="brands__header">
-          <h2 className="inner-title">Trusted Brands</h2>
-          <h3 className="inner-subtitle">Clients I&apos;ve Worked With</h3>
+          <h2 className="inner-title">{brandsSectionData.sectionTitle}</h2>
+          <h3 className="inner-subtitle">{brandsSectionData.sectionSubtitle}</h3>
         </div>
         <div className="brands__carousel">
           <div className="brands__track">

@@ -74,7 +74,6 @@ const AboutPage = () => {
       <section className="about-page__hero">
         <div className="about-page__container">
           <div className="about-page__content">
-            <div className="about-page__eyebrow">{heroData.eyebrow}</div>
             <h1 className="about-page__title">{heroData.title}</h1>
             <p className="about-page__subtitle">
               {heroData.subtitle}

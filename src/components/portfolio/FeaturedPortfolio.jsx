@@ -17,9 +17,6 @@ const FeaturedPortfolio = () => {
     <section className="featured-portfolio section" id="featured-portfolio">
       <div className="featured-portfolio__container">
         <div className="featured-portfolio__header">
-          <div className="featured-portfolio__eyebrow">
-            {featuredPortfolioSectionData.eyebrow}
-          </div>
           <h2 className="featured-portfolio__title">
             {featuredPortfolioSectionData.title}
           </h2>

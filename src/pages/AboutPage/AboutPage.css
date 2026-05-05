@@ -173,7 +173,7 @@
 
 .about-page__poster img {
   width: 100%;
-  height: 100%;
+  height: 457px;
   object-fit: cover;
   display: block;
 }
@@ -382,7 +382,7 @@
 
   .about-page__poster img {
     max-height: 360px;
-    object-fit: contain;
+    object-fit: cover;
   }
 }
 
