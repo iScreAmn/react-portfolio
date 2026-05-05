@@ -1,35 +1,40 @@
 import "./Home.css";
 import DecryptedText from "../widgets/decryptedText/DecryptedText";
 import { aboutImg2 } from "../../assets/images";
-import { homeData as fallbackData } from "../../data/homeData";
-import { socialLinks } from "../../data/aboutData";
 import { motion } from "motion/react";
 import { iconVariants, slideInVariants } from "../../utils/animation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { fetchHomeSection } from "../../services/strapi";
-
-const icons = socialLinks.map((link, index) => {
-  const Icon = link.icon;
-  return {
-    id: index + 1,
-    href: link.href,
-    icon: <Icon />,
-  };
-});
+import { useLocaleAboutData } from "../../hooks/useLocaleAboutData";
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
+import { useLocale } from "../../context/LocaleContext";
 
 const Home = () => {
+  const { locale } = useLocale();
+  const localeHome = useLocaleHomeData();
+  const fallbackData = localeHome.homeData;
   const [homeData, setHomeData] = useState(fallbackData);
+  const { socialLinks } = useLocaleAboutData();
 
-  // Загружаем данные из Strapi при монтировании компонента
+  const icons = useMemo(
+    () =>
+      socialLinks.map((link, index) => {
+        const Icon = link.icon;
+        return {
+          id: index + 1,
+          href: link.href,
+          icon: <Icon />,
+        };
+      }),
+    [socialLinks]
+  );
+
   useEffect(() => {
+    setHomeData(fallbackData);
+
     const loadData = async () => {
-      console.log('🔵 Loading home data from Strapi...');
-      console.log('🔵 Strapi URL:', import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337');
       const data = await fetchHomeSection();
-      console.log('🔵 Received data:', data);
       if (data?.greeting) {
-        console.log('✅ Using Strapi data');
-        // Обновляем state данными из Strapi
         setHomeData({
           greeting: data.greeting,
           role: data.role,
@@ -45,14 +50,11 @@ const Home = () => {
             icon: fallbackData.scrollDown.icon,
           },
         });
-      } else {
-        console.log('❌ Using fallback data');
       }
-      // Если данные не загрузились, используется fallback из homeData.js
     };
 
     loadData();
-  }, []);
+  }, [locale, fallbackData]);
 
   const ContactIcon = homeData.contactButton.icon;
   const ScrollIcon = homeData.scrollDown.icon;

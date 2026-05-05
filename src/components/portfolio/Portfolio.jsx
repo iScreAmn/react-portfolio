@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./Portfolio.css";
 import portfolioData from "../../data/portfolioData";
 import PortfolioItem from "./PortfolioItem";
+import { useLocalePortfolioData } from "../../hooks/useLocalePortfolioData";
 
 const Portfolio = () => {
   const navigate = useNavigate();
+  const { portfolioHeroData } = useLocalePortfolioData();
 
   const chips = useMemo(() => {
     const unique = new Set();
@@ -30,15 +32,9 @@ const Portfolio = () => {
     <div className="portfolio-page">
       <section className="portfolio-hero">
         <div className="portfolio-hero__container">
-          <div className="portfolio-hero__eyebrow">Selected work</div>
-          <h1 className="portfolio-hero__title">
-            Digital products and brands with sharp detail
-          </h1>
-          <p className="portfolio-hero__subtitle">
-            Modern interfaces, clear information architecture and motion that
-            supports the product story. Every card opens a detailed page with a
-            gallery.
-          </p>
+          <div className="portfolio-hero__eyebrow">{portfolioHeroData.eyebrow}</div>
+          <h1 className="portfolio-hero__title">{portfolioHeroData.title}</h1>
+          <p className="portfolio-hero__subtitle">{portfolioHeroData.subtitle}</p>
 
           <div className="portfolio-hero__chips">
             {chips.map((chip) => (
@@ -53,13 +49,13 @@ const Portfolio = () => {
               className="portfolio-hero__btn portfolio-hero__btn--primary"
               onClick={handleScrollToGrid}
             >
-              View work
+              {portfolioHeroData.viewWorkButton}
             </button>
             <button
               className="portfolio-hero__btn portfolio-hero__btn--ghost"
               onClick={handleContact}
             >
-              Plan a project
+              {portfolioHeroData.planProjectButton}
             </button>
           </div>
         </div>

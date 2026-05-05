@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
-import { workExperience } from "../../data/aboutData";
+import { useLocaleAboutData } from "../../hooks/useLocaleAboutData";
 
 const WorkExperience = () => {
+  const { workExperience } = useLocaleAboutData();
   return (
     <div className="education work-exp none">
       <motion.h3

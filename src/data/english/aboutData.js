@@ -1,13 +1,17 @@
 import { FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
-import cvFile from "../assets/docs/Dimitri_Jmukhadze_CV.pdf";
+import cvFile from "../../assets/docs/Dimitri_Jmukhadze_CV.pdf";
 
 export const heroData = {
   eyebrow: "About",
   title: "Dimitri Jmukhadze",
-  subtitle: "Front-end developer focused on fast, responsive web apps and product thinking. I design and ship modern interfaces with smooth motion, clean layout systems, and maintainable code. I care about accessibility, performance budgets, and readable design tokens for both light and dark themes.",
-  subtitleSecondary: "I build user-focused web interfaces, from SaaS dashboards to promotional platforms and custom UI components. My approach combines consistent design systems, meaningful animation, and fast, collaborative iteration.",
+  subtitle:
+    "Front-end developer focused on fast, responsive web apps and product thinking. I design and ship modern interfaces with smooth motion, clean layout systems, and maintainable code. I care about accessibility, performance budgets, and readable design tokens for both light and dark themes.",
+  subtitleSecondary:
+    "I build user-focused web interfaces, from SaaS dashboards to promotional platforms and custom UI components. My approach combines consistent design systems, meaningful animation, and fast, collaborative iteration.",
   chips: ["Frontend", "Web apps", "Integrations", "UX Focus", "API"],
 };
+
+export const posterAlt = "Dimitri Jmukhadze portrait";
 
 export const cvData = {
   downloadText: "Download CV",

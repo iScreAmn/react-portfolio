@@ -6,6 +6,8 @@ const AnimatedNumber = ({ value, duration = 2, delay = 0 }) => {
   const count = useMotionValue(0);
   const [displayValue, setDisplayValue] = useState(0);
   const elementRef = useRef(null);
+  const suffix = value.includes("+") ? "+" : value.includes("%") ? "%" : "";
+  const digitsCount = value.replace(/[^0-9]/g, "").length;
 
   // Слушаем изменения MotionValue
   useMotionValueEvent(count, "change", (latest) => {
@@ -44,17 +46,14 @@ const AnimatedNumber = ({ value, duration = 2, delay = 0 }) => {
     };
   }, [count, value, duration, delay]);
 
-  // Определяем суффикс для числа
-  const getSuffix = () => {
-    if (value.includes('+')) return '+';
-    if (value.includes('%')) return '%';
-    return '';
-  };
-
   return (
-    <span ref={elementRef} className="animated-number">
+    <span
+      ref={elementRef}
+      className="animated-number"
+      style={{ minWidth: `${digitsCount + (suffix ? 1 : 0)}ch` }}
+    >
       {displayValue}
-      {getSuffix()}
+      {suffix}
     </span>
   );
 };

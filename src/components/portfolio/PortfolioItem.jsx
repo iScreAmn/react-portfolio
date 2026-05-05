@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { portfolio } from "../../utils/analyticsTrackers";
 
 const PortfolioItem = ({ item, index }) => {
   return (
@@ -7,6 +8,7 @@ const PortfolioItem = ({ item, index }) => {
         to={`/portfolio/${item.slug}`}
         className="portfolio-card__link"
         aria-label={`Открыть проект ${item.title}`}
+        onClick={() => portfolio.cardClick(item.slug, item.title, item.category)}
       >
         <div className="img-card">
           <div className="overlay" />

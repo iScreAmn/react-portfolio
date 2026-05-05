@@ -1,71 +1,79 @@
 import { aboutImg } from "../../assets/images";
-import {
-  heroData as fallbackHeroData,
-  cvData,
-  socialLinks,
-  sectionLabels,
-  workExperience,
-  skills,
-  education,
-} from "../../data/aboutData";
 import { useState, useEffect } from "react";
 import { fetchAboutHero } from "../../services/strapi";
+import { useLocaleAboutData } from "../../hooks/useLocaleAboutData";
 import "./AboutPage.css";
 
 const AboutPage = () => {
-  const [heroData, setHeroData] = useState(fallbackHeroData);
+  const aboutContent = useLocaleAboutData();
+  const {
+    heroData: fallbackHero,
+    cvData,
+    socialLinks,
+    sectionLabels,
+    workExperience,
+    skills,
+    education,
+    posterAlt,
+  } = aboutContent;
+
+  const [heroData, setHeroData] = useState(fallbackHero);
   const [posterImage, setPosterImage] = useState(aboutImg);
   const [imageKey, setImageKey] = useState(0);
 
-  // Загружаем данные из Strapi при монтировании компонента
   useEffect(() => {
+    let cancelled = false;
+    setHeroData(fallbackHero);
+
     const loadData = async () => {
       const data = await fetchAboutHero();
-      if (data?.title) {
-        // Обновляем state данными из Strapi
-        setHeroData({
-          eyebrow: data.eyebrow,
-          title: data.title,
-          subtitle: data.subtitle,
-          subtitleSecondary: data.subtitleSecondary,
-          // chips может быть JSON строкой или массивом
-          chips: typeof data.chips === 'string' ? JSON.parse(data.chips) : (data.chips || []),
-        });
-        
-        // Обновляем изображение если есть в Strapi с принудительной перезагрузкой
-        if (data.posterImageUrl) {
-          // Предзагружаем изображение через новый Image объект для обхода кеша
-          const img = new Image();
-          const imageUrlWithCacheBuster = `${data.posterImageUrl}${data.posterImageUrl.includes('?') ? '&' : '?'}_nocache=${Date.now()}`;
-          
-          img.onload = () => {
-            // Изображение загружено, обновляем state
-            setImageKey(prev => prev + 1);
-            setPosterImage(imageUrlWithCacheBuster);
-          };
-          
-          img.onerror = () => {
-            // Если не загрузилось, пробуем оригинальный URL
-            setImageKey(prev => prev + 1);
-            setPosterImage(data.posterImageUrl);
-          };
-          
-          // Начинаем загрузку
-          img.src = imageUrlWithCacheBuster;
-        }
+      if (cancelled || !data?.title) {
+        return;
       }
-      // Если данные не загрузились, используется fallback из aboutData.js
+
+      setHeroData({
+        eyebrow: data.eyebrow,
+        title: data.title,
+        subtitle: data.subtitle,
+        subtitleSecondary: data.subtitleSecondary,
+        chips:
+          typeof data.chips === "string"
+            ? JSON.parse(data.chips)
+            : data.chips || [],
+      });
+
+      if (data.posterImageUrl) {
+        const img = new Image();
+        const imageUrlWithCacheBuster = `${data.posterImageUrl}${data.posterImageUrl.includes("?") ? "&" : "?"}_nocache=${Date.now()}`;
+
+        img.onload = () => {
+          if (cancelled) return;
+          setImageKey((prev) => prev + 1);
+          setPosterImage(imageUrlWithCacheBuster);
+        };
+
+        img.onerror = () => {
+          if (cancelled) return;
+          setImageKey((prev) => prev + 1);
+          setPosterImage(data.posterImageUrl);
+        };
+
+        img.src = imageUrlWithCacheBuster;
+      }
     };
 
     loadData();
-  }, []);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [fallbackHero]);
 
   return (
     <div className="about-page">
       <section className="about-page__hero">
         <div className="about-page__container">
           <div className="about-page__content">
-            <div className="about-page__eyebrow">{heroData.eyebrow}</div>
             <h1 className="about-page__title">{heroData.title}</h1>
             <p className="about-page__subtitle">
               {heroData.subtitle}
@@ -111,10 +119,10 @@ const AboutPage = () => {
           </div>
 
           <div className="about-page__poster">
-            <img 
+            <img
               key={`poster-${imageKey}`}
               src={posterImage}
-              alt="Dimitri Jmukhadze portrait"
+              alt={posterAlt}
               loading="eager"
             />
           </div>
@@ -180,4 +188,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-

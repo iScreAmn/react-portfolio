@@ -1,24 +1,22 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import portfolioData from "../../data/portfolioData";
-import { featuredPortfolioSectionData } from "../../data/homeData";
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 import "./FeaturedPortfolio.css";
 
 const FeaturedPortfolio = () => {
   const navigate = useNavigate();
+  const { featuredPortfolioSectionData } = useLocaleHomeData();
   const featured = useMemo(
     () =>
       portfolioData.slice(0, featuredPortfolioSectionData.featuredCount),
-    []
+    [featuredPortfolioSectionData.featuredCount]
   );
 
   return (
     <section className="featured-portfolio section" id="featured-portfolio">
       <div className="featured-portfolio__container">
         <div className="featured-portfolio__header">
-          <div className="featured-portfolio__eyebrow">
-            {featuredPortfolioSectionData.eyebrow}
-          </div>
           <h2 className="featured-portfolio__title">
             {featuredPortfolioSectionData.title}
           </h2>

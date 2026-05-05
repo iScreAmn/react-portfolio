@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
 import { flameJumper2 } from "../../assets/images";
+import { game } from "../../utils/analyticsTrackers";
 import "./GamePage.css";
 
 const GamePage = () => {
@@ -54,6 +55,7 @@ const GamePage = () => {
                   href="https://iscreamn.github.io/game-jumper/"
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => game.playClick()}
                 >
                   Play now
                 </a>
@@ -63,6 +65,7 @@ const GamePage = () => {
                 href="https://github.com/iScreAmn/game-jumper"
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => game.githubClick()}
               >
                 Star me <FaGithub />
               </a>

@@ -2,14 +2,36 @@ import { motion } from "motion/react";
 import { aboutImg } from "../../assets/images";
 import SectionTitle from "../section-title/SectionTitle";
 import { slideInVariants } from "../../utils/animation";
-import { profList, aboutSectionData } from "../../data/homeData";
 import AnimatedNumber from "../widgets/animatedNumber/AnimatedNumber";
 import "./About.css";
 import ProfileCard from "../widgets/profileCard/ProfileCard";
 import { useNavigate } from "react-router-dom";
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 
 const About = () => {
+  const { profList, aboutSectionData } = useLocaleHomeData();
   const navigate = useNavigate();
+  const isMobileViewport =
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 768px)").matches;
+  const professionalListVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: isMobileViewport ? 0 : 0.16,
+        delayChildren: isMobileViewport ? 0 : 0.1,
+      },
+    },
+  };
+  const professionalListItemVariants = {
+    hidden: { opacity: 0, y: isMobileViewport ? 0 : 14 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: isMobileViewport ? 0.25 : 0.45, ease: "easeOut" },
+    },
+  };
 
   const goToAboutPage = () => {
     navigate(aboutSectionData.moreAboutButton.path);
@@ -96,35 +118,19 @@ const About = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.3,
-                    delayChildren: 0.2,
-                  },
-                },
-              }}
+              variants={professionalListVariants}
             >
               {profList.map((item, index) => (
                 <motion.li
                   className="list-item"
                   key={item.id}
-                  variants={{
-                    hidden: { opacity: 0, x: -50 },
-                    visible: {
-                      opacity: 1,
-                      x: 0,
-                      transition: { duration: 0.6, ease: "easeOut" },
-                    },
-                  }}
+                  variants={professionalListItemVariants}
                 >
                   <span className="number">
                     <AnimatedNumber
                       value={item.number}
                       duration={2}
-                      delay={index * 0.2}
+                      delay={isMobileViewport ? 0 : index * 0.2}
                     />
                   </span>
                   <span className="text">{item.text}</span>

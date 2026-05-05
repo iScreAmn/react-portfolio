@@ -3,11 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 import portfolioData from "../../data/portfolioData";
+import { portfolio } from "../../utils/analyticsTrackers";
+import { useLocale } from "../../context/LocaleContext";
 import "./ProjectPage.css";
 
 const ProjectPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const { locale } = useLocale();
 
   const project = portfolioData.find((item) => item.slug === slug);
   const gallery = project?.gallery?.length ? project.gallery : project ? [project.imgSrc] : [];
@@ -29,9 +32,15 @@ const ProjectPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setCurrentIndex(0);
+    if (project) {
+      portfolio.projectView(project.slug, project.title);
+    }
   }, [slug]);
 
   const openModalAt = (index) => {
+    if (!isModalOpen && project) {
+      portfolio.galleryOpen(project.slug);
+    }
     setCurrentIndex(index);
     setIsModalOpen(true);
     document.body.classList.add("no-scroll");
@@ -98,16 +107,23 @@ const ProjectPage = () => {
     ...(project.tags || []),
   ].filter(Boolean);
 
+  const projectEyebrow =
+    locale === "ru" ? project.categoryRu || project.category : project.category;
+  const projectDescription =
+    locale === "ru" ? project.descriptionRu || project.description : project.description;
+  const galleryButtonLabel = locale === "ru" ? "Открыть галерею" : "View gallery";
+  const projectLinkButtonLabel = locale === "ru" ? "Открыть сайт" : "View Page";
+
   return (
     <div className="project-page">
       <section className="project-hero">
         <div className="project-hero__container">
           <div className="project-hero__content">
             <div className="project-hero__eyebrow">
-              {project.category || "Project"}
+              {projectEyebrow || "Project"}
             </div>
             <h1 className="project-hero__title">{project.title}</h1>
-            <p className="project-hero__subtitle">{project.description}</p>
+            <p className="project-hero__subtitle">{projectDescription}</p>
 
             <div className="project-hero__meta">
               {metaChips.map((chip) => (
@@ -122,7 +138,7 @@ const ProjectPage = () => {
                 className="project-hero__btn project-hero__btn--primary"
                 onClick={() => openModalAt(0)}
               >
-                View gallery
+                {galleryButtonLabel}
               </button>
               {project.href && (
                 <a
@@ -130,8 +146,9 @@ const ProjectPage = () => {
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => portfolio.liveLinkClick(project.slug, project.href)}
                 >
-                  View Page
+                  {projectLinkButtonLabel}
                 </a>
               )}
             </div>

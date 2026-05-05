@@ -1,5 +1,5 @@
 import "./Clients.css";
-import { clientsData } from "../../data/homeData";
+import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -10,10 +10,15 @@ import { motion } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
 
 const Clients = () => {
+  const { clientsData, clientsSectionData } = useLocaleHomeData();
+
   return (
     <section className="section our-client" id="clients">
       <div className="container flex-center">
-        <SectionTitle title="Trusted By" subtitle="Trusted By" />
+        <SectionTitle
+          title={clientsSectionData.sectionTitle}
+          subtitle={clientsSectionData.sectionSubtitle}
+        />
         <motion.div
           className="our-client-wrapper"
           initial="hidden"
@@ -24,7 +29,7 @@ const Clients = () => {
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={30}
-            slidesperView={1}
+            slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
             loop={true}

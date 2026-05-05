@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { hobby1, hobby2, hobby3 } from "../../assets/images";
+import { hobby } from "../../utils/analyticsTrackers";
 import "./HobbyPage.css";
 
 const chips = ["Drone filming", "Video making", "Storytelling", "Aerial visuals"];
@@ -36,6 +37,7 @@ const HobbyPage = () => {
   const [activeVideo, setActiveVideo] = useState(null);
 
   const openVideo = (video) => {
+    hobby.videoOpen(video.title);
     setActiveVideo(video);
     document.body.classList.add("no-scroll");
   };
@@ -153,6 +155,7 @@ const HobbyPage = () => {
               <button
                 className="hobby-fly__btn hobby-fly__btn--primary"
                 type="button"
+                onClick={() => hobby.bookFlightClick()}
               >
                 Book a flight
               </button>

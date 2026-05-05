@@ -62,6 +62,9 @@
   align-items: center;
   column-gap: 15px;
   margin-bottom: 20px;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .list-item .number {
