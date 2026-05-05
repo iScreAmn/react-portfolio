@@ -57,9 +57,9 @@ const AnalyticsDashboard = ({ apiUrl, token, filters }) => {
     return (
       <div className="analytics-container">
         <div className="analytics-error">
-          <p>Ошибка: {error}</p>
+          <p>Error: {error}</p>
           <button onClick={fetchAnalytics} className="analytics-retry">
-            Попробовать снова
+            Try again
           </button>
         </div>
       </div>

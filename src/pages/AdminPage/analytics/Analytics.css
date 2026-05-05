@@ -22,7 +22,7 @@
 .analytics-retry {
   margin-top: 16px;
   padding: 10px 20px;
-  background: #047857;
+  background: #ffa500;
   color: white;
   border: none;
   border-radius: 6px;
@@ -32,7 +32,7 @@
 }
 
 .analytics-retry:hover {
-  background: #059669;
+  background: #c88406;
 }
 
 .analytics-header {

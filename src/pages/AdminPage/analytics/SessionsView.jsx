@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import './SessionsView.css';
 import { FaTrash, FaArrowLeft } from "react-icons/fa";
+import { IoIosLaptop, IoIosTabletLandscape } from "react-icons/io";
+import { CiMobile1 } from "react-icons/ci";
 
 const SessionsView = ({ apiUrl, token, filters }) => {
   const [sessions, setSessions] = useState([]);
@@ -31,7 +33,7 @@ const SessionsView = ({ apiUrl, token, filters }) => {
       });
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        const errorMessage = errorData.message || `Ошибка ${response.status}: ${response.statusText}`;
+        const errorMessage = errorData.message || `Error ${response.status}: ${response.statusText}`;
         throw new Error(errorMessage);
       }
       const result = await response.json();
@@ -59,7 +61,7 @@ const SessionsView = ({ apiUrl, token, filters }) => {
       });
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        const errorMessage = errorData.message || `Ошибка ${response.status}: ${response.statusText}`;
+        const errorMessage = errorData.message || `Error ${response.status}: ${response.statusText}`;
         throw new Error(errorMessage);
       }
       const result = await response.json();
@@ -100,11 +102,11 @@ const SessionsView = ({ apiUrl, token, filters }) => {
         setShowDeleteModal(false);
       } else {
         const result = await response.json().catch(() => ({}));
-        setDeleteError(result.message || 'Ошибка удаления');
+        setDeleteError(result.message || 'Error deleting');
       }
     } catch (err) {
       console.error('Failed to delete session:', err);
-      setDeleteError('Ошибка сети');
+      setDeleteError('Network error');
     } finally {
       setDeleting(false);
     }
@@ -122,9 +124,9 @@ const SessionsView = ({ apiUrl, token, filters }) => {
   };
 
   const getDeviceIcon = (deviceType) => {
-    if (deviceType === 'mobile') return '📱';
-    if (deviceType === 'tablet') return '📱';
-    return '💻';
+    if (deviceType === 'mobile') return <CiMobile1 />;
+    if (deviceType === 'tablet') return <IoIosTabletLandscape />;
+    return <IoIosLaptop />;
   };
 
   const getSourceLabel = (session) => {
@@ -156,9 +158,9 @@ const SessionsView = ({ apiUrl, token, filters }) => {
     return (
       <div className="sessions-view">
         <div className="sessions-error">
-          <p>Ошибка: {error}</p>
+          <p>Error: {error}</p>
           <button onClick={fetchSessions} className="sessions-retry">
-            Попробовать снова
+            Try again
           </button>
         </div>
       </div>

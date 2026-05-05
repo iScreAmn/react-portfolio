@@ -55,7 +55,7 @@ export default function Admin() {
       }
       setPassword('');
     } catch (e) {
-      setError(e.message || 'Ошибка');
+      setError(e.message || 'Error');
     } finally {
       setSubmitting(false);
     }
