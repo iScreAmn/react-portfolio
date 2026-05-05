@@ -106,6 +106,7 @@ export const brandsSectionData = {
 export const clientsSectionData = {
   sectionTitle: "Мне доверяют",
   sectionSubtitle: "Мне доверяют",
+  addReviewButton: "Оставить отзыв",
 };
 
 export const clientsData = [

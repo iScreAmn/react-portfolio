@@ -8,9 +8,14 @@ import "swiper/css/pagination";
 import SectionTitle from "../section-title/SectionTitle";
 import { motion } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
+import ReviewModal from "../review-modal/ReviewModal";
+import { useState } from "react";
+import { useLocale } from "../../context/LocaleContext";
 
 const Clients = () => {
   const { clientsData, clientsSectionData } = useLocaleHomeData();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { locale } = useLocale();
 
   return (
     <section className="section our-client" id="clients">
@@ -50,8 +55,23 @@ const Clients = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+          <motion.button
+            className="add-review-btn"
+            onClick={() => setIsModalOpen(true)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={slideInVariants("bottom", 0.9, 70, false)}
+          >
+            {clientsSectionData.addReviewButton}
+          </motion.button>
         </motion.div>
       </div>
+      <ReviewModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        locale={locale}
+      />
     </section>
   );
 };
