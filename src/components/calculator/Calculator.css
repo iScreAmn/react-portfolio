@@ -12,7 +12,7 @@
 }
 
 .calculator-card {
-  background: var(--card-bg-color);
+  background: linear-gradient(135deg, #ffa500 0%, #f7ab1d9e 100%);
   border-radius: 20px;
   box-shadow: var(--box-shadow);
   transition: all 0.3s ease;
@@ -22,9 +22,8 @@
   flex-direction: column;
 }
 
-.calculator-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 30px rgb(0 0 0 / 15%);
+.dark-theme .calculator-card {
+  background: linear-gradient(135deg, #203c7c 0%, rgb(255 255 255 / 0%) 100%);
 }
 
 .calculator-progress-container {
@@ -36,8 +35,12 @@
 
 .calculator-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--second-color), var(--hover-color));
+  background: linear-gradient(90deg, #1653e1, #4f7cff);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-theme .calculator-progress-bar {
+  background: linear-gradient(90deg, #ffa500, #e19301);
 }
 
 .calculator-step-indicator {
@@ -259,11 +262,15 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--second-color), var(--hover-color));
+  background: linear-gradient(135deg, #ba6f13, #e1930180);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.dark-theme .calculator-checkmark-circle {
+  background: linear-gradient(135deg, #1653e1 0%, rgb(255 255 255 / 0%) 100%);
 }
 
 .calculator-checkmark {
@@ -275,16 +282,24 @@
 .calculator-completion-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--first-color);
+  color: #f5f5f5;
   margin: 0;
+}
+
+.dark-theme .calculator-completion-title {
+  color: #d1caca;
 }
 
 .calculator-completion-message {
   font-size: 1.125rem;
   line-height: 1.7;
-  color: var(--third-color);
+  color: #fffefe;
   max-width: 500px;
   margin: 0;
+}
+
+.dark-theme .calculator-completion-message {
+  color: #fff;
 }
 
 .cta-card {
@@ -300,9 +315,8 @@
   transition: all 0.3s ease;
 }
 
-.cta-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 30px rgb(0 0 0 / 15%);
+.dark-theme .cta-card {
+  background: linear-gradient(220deg, #203c7c 0%, rgb(255 255 255 / 0%) 100%);
 }
 
 .cta-content {
