@@ -339,16 +339,6 @@ const Calculator = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.1 }}
                               />
-                              <motion.textarea
-                                className="calculator-contact-textarea"
-                                placeholder={t.optionalMessagePlaceholder}
-                                value={formData.message}
-                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                rows={4}
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.2 }}
-                              />
                             </>
                           )}
                         </div>
@@ -473,13 +463,6 @@ const Calculator = () => {
                       onChange={(e) => setCtaFormData({ ...ctaFormData, contact: e.target.value })}
                     />
                   )}
-                  <textarea
-                    className="calculator-contact-textarea"
-                    placeholder={t.optionalMessagePlaceholder}
-                    rows={4}
-                    value={ctaFormData.message}
-                    onChange={(e) => setCtaFormData({ ...ctaFormData, message: e.target.value })}
-                  />
                   <button
                     type="submit"
                     className="calculator-btn calculator-btn--next"

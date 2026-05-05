@@ -44,9 +44,9 @@ const HomePage = () => {
       <About />
       <Brands />
       <FeaturedPortfolio />
+      <Calculator />
       <Services />
       {/* <HobbyTeaser /> */}
-      <Calculator />
       <Clients />
       <GetInTouch />
     </div>
