@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { FaTelegramPlane, FaWhatsapp, FaPhone } from "react-icons/fa";
+import { FaTelegramPlane, FaWhatsapp, FaSpinner } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { getApiBase } from "../../utils/apiBase";
 import "./Calculator.css";
@@ -143,12 +143,6 @@ const Calculator = () => {
       label: "Email",
       placeholder: "your@email.com",
       icon: MdOutlineEmail,
-    },
-    {
-      id: "phone",
-      label: "Телефон",
-      placeholder: "+995 XXX XXX XXX",
-      icon: FaPhone,
     },
   ];
 
@@ -430,7 +424,7 @@ const Calculator = () => {
                   >
                     {isSubmitting ? (
                       <>
-                        <FaPhone className="spinner" /> Отправка...
+                        <FaSpinner className="spinner" /> Отправка...
                       </>
                     ) : currentStep === totalSteps ? (
                       "Отправить"
@@ -455,9 +449,9 @@ const Calculator = () => {
               <p className="cta-text">
                 Свяжемся с вами, ответим на все вопросы и предложим решение под ваш бюджет и задачи.
               </p>
-              <a href="tel:+995571040626" className="cta-btn">
-                Позвонить: +995 571 040 626
-              </a>
+              <button type="button" className="cta-btn" onClick={() => setCurrentStep(totalSteps)}>
+                Заказать консультацию
+              </button>
             </div>
             <div className="cta-decoration">
               <svg viewBox="0 0 200 200" className="cta-svg">
