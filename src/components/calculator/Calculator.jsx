@@ -3,9 +3,20 @@ import { motion, AnimatePresence } from "motion/react";
 import { FaTelegramPlane, FaWhatsapp, FaSpinner } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { getApiBase } from "../../utils/apiBase";
+import { useLocale } from "../../context/LocaleContext";
+import { calculatorData } from "../../data/calculatorData";
+import SectionTitle from "../section-title/SectionTitle";
 import "./Calculator.css";
 
+const contactMethodIcons = {
+  telegram: FaTelegramPlane,
+  whatsapp: FaWhatsapp,
+  email: MdOutlineEmail,
+};
+
 const Calculator = () => {
+  const { locale } = useLocale();
+  const t = calculatorData[locale] || calculatorData.en;
   const totalSteps = 9;
   const [currentStep, setCurrentStep] = useState(1);
   const [direction, setDirection] = useState(1);
@@ -14,7 +25,7 @@ const Calculator = () => {
   const [isCtaModalOpen, setIsCtaModalOpen] = useState(false);
   const [isCtaSubmitting, setIsCtaSubmitting] = useState(false);
   const [ctaSubmitDone, setCtaSubmitDone] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     projectType: "",
     goals: [],
@@ -36,129 +47,16 @@ const Calculator = () => {
     message: "",
   });
 
-  const steps = [
-    {
-      id: 1,
-      question: "Тип проекта",
-      field: "projectType",
-      options: [
-        { value: "landing", label: "Лендинг" },
-        { value: "corporate", label: "Корпоративный сайт" },
-        { value: "ecommerce", label: "Интернет-магазин" },
-        { value: "webapp", label: "Веб-приложение" },
-      ],
-      multiSelect: false,
-    },
-    {
-      id: 2,
-      question: "Цель проекта",
-      field: "goals",
-      options: [
-        { value: "leads", label: "Лиды/заявки" },
-        { value: "sales", label: "Онлайн-продажи" },
-        { value: "branding", label: "Презентация бренда" },
-        { value: "automation", label: "Автоматизация процессов" },
-      ],
-      multiSelect: true,
-    },
-    {
-      id: 3,
-      question: "Объём работы",
-      field: "scope",
-      options: [
-        { value: "mvp", label: "MVP (до 5 страниц)" },
-        { value: "medium", label: "Средний (6-10)" },
-        { value: "large", label: "Большой (15+)" },
-      ],
-      multiSelect: false,
-    },
-    {
-      id: 4,
-      question: "Дизайн-подход",
-      field: "designApproach",
-      options: [
-        { value: "hasDesign", label: "Есть референс/дизайн" },
-        { value: "needDesign", label: "Нужна разработка дизайна" },
-      ],
-      multiSelect: false,
-    },
-    {
-      id: 5,
-      question: "Функционал",
-      field: "features",
-      options: [
-        { value: "admin", label: "Админ-панель" },
-        { value: "cabinet", label: "Личный кабинет" },
-        { value: "filters", label: "Фильтры/поиск" },
-        { value: "multilang", label: "Мультиязычность" },
-        { value: "blog", label: "Блог/CMS" },
-        { value: "payment", label: "Online Оплата" },
-        { value: "notifications", label: "Telegram/email уведомления" },
-        { value: "seo", label: "SEO" },
-      ],
-      multiSelect: true,
-    },
-    {
-      id: 6,
-      question: "Контент",
-      field: "content",
-      options: [
-        { value: "ready", label: "Контент готов" },
-        { value: "needText", label: "Нужна помощь с текстами" },
-        { value: "needVisual", label: "Нужна помощь с визуалом" },
-      ],
-      multiSelect: false,
-    },
-    {
-      id: 7,
-      question: "Сроки",
-      field: "timeline",
-      options: [
-        { value: "standard", label: "Стандарт" },
-        { value: "fast", label: "Ускоренно" },
-        { value: "urgent", label: "Срочно" },
-      ],
-      multiSelect: false,
-    },
-    {
-      id: 8,
-      question: "Поддержка после запуска",
-      field: "support",
-      options: [
-        { value: "none", label: "Не нужна" },
-        { value: "1month", label: "1 месяц" },
-        { value: "3months", label: "3 месяца" },
-        { value: "partnership", label: "Партнерство" },
-      ],
-      multiSelect: false,
-    },
-  ];
-
-  const contactMethods = [
-    {
-      id: "telegram",
-      label: "Telegram",
-      placeholder: "@username или телефон",
-      icon: FaTelegramPlane,
-    },
-    {
-      id: "whatsapp",
-      label: "WhatsApp",
-      placeholder: "Номер телефона",
-      icon: FaWhatsapp,
-    },
-    {
-      id: "email",
-      label: "Email",
-      placeholder: "your@email.com",
-      icon: MdOutlineEmail,
-    },
-  ];
+  const steps = t.steps;
+  const contactMethods = t.contactMethods.map((method) => ({
+    ...method,
+    icon: contactMethodIcons[method.id],
+  }));
 
   const currentStepData = steps[currentStep - 1];
 
   const handleOptionSelect = (value) => {
-    if (currentStep === 9) return;
+    if (currentStep === totalSteps) return;
     
     const { field, multiSelect } = currentStepData;
 
@@ -176,7 +74,7 @@ const Calculator = () => {
   };
 
   const isOptionSelected = (value) => {
-    if (currentStep === 9) return false;
+    if (currentStep === totalSteps) return false;
     
     const { field, multiSelect } = currentStepData;
     if (multiSelect) {
@@ -186,7 +84,7 @@ const Calculator = () => {
   };
 
   const canProceed = () => {
-    if (currentStep === 9) {
+    if (currentStep === totalSteps) {
       return formData.contactMethod && formData.name.trim() && formData.contact.trim();
     }
     
@@ -297,6 +195,7 @@ const Calculator = () => {
   return (
     <section className="calculator-section section">
       <div className="container">
+        <SectionTitle title={t.innerTitle} subtitle={t.innerSubtitle} />
         <div className="calculator-wrapper">
           <motion.div 
             className="calculator-card"
@@ -339,7 +238,7 @@ const Calculator = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.4 }}
                 >
-                  Спасибо!
+                  {t.completionTitle}
                 </motion.h2>
                 <motion.p
                   className="calculator-completion-message"
@@ -347,7 +246,7 @@ const Calculator = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.4 }}
                 >
-                  Мы получили вашу заявку и скоро свяжемся с вами для обсуждения деталей проекта.
+                  {t.completionMessage}
                 </motion.p>
               </motion.div>
             ) : (
@@ -362,7 +261,7 @@ const Calculator = () => {
                 </div>
 
                 <div className="calculator-step-indicator">
-                  ШАГ {currentStep} ИЗ {totalSteps}
+                  {t.stepLabel} {currentStep} {t.fromLabel} {totalSteps}
                 </div>
 
                 <div className="calculator-content-wrapper">
@@ -398,7 +297,7 @@ const Calculator = () => {
                       ) : (
                         <div className="calculator-step">
                           <h3 className="calculator-question">
-                            Выберите удобный способ связи
+                            {t.contactStepTitle}
                           </h3>
                           <div className="calculator-contact-methods">
                             {contactMethods.map((method) => {
@@ -421,7 +320,7 @@ const Calculator = () => {
                               <motion.input
                                 type="text"
                                 className="calculator-contact-input"
-                                placeholder="Ваше имя"
+                                placeholder={t.namePlaceholder}
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 initial={{ opacity: 0, y: -10 }}
@@ -440,7 +339,7 @@ const Calculator = () => {
                               />
                               <motion.textarea
                                 className="calculator-contact-textarea"
-                                placeholder="Сообщение (необязательно)"
+                                placeholder={t.optionalMessagePlaceholder}
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 rows={4}
@@ -464,7 +363,7 @@ const Calculator = () => {
                       onClick={handleBack}
                       disabled={isSubmitting}
                     >
-                      Назад
+                      {t.backButton}
                     </button>
                   )}
                   <button
@@ -475,12 +374,12 @@ const Calculator = () => {
                   >
                     {isSubmitting ? (
                       <>
-                        <FaSpinner className="spinner" /> Отправка...
+                        <FaSpinner className="spinner" /> {locale === "ru" ? "Отправка..." : "Sending..."}
                       </>
                     ) : currentStep === totalSteps ? (
-                      "Отправить"
+                      t.submitButton
                     ) : (
-                      "Далее"
+                      t.nextButton
                     )}
                   </button>
                 </div>
@@ -496,12 +395,12 @@ const Calculator = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="cta-content">
-              <h3 className="cta-title">Нужна консультация?</h3>
+              <h3 className="cta-title">{t.ctaTitle}</h3>
               <p className="cta-text">
-                Свяжемся с вами, ответим на все вопросы и предложим решение под ваш бюджет и задачи.
+                {t.ctaText}
               </p>
               <button type="button" className="cta-btn" onClick={() => setIsCtaModalOpen(true)}>
-                Заказать звонок
+                {t.ctaButton}
               </button>
             </div>
             <div className="cta-decoration">
@@ -537,14 +436,14 @@ const Calculator = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {ctaSubmitDone ? (
-                <div className="calculator-modal-success">Заявка отправлена</div>
+                <div className="calculator-modal-success">{t.ctaSuccess}</div>
               ) : (
                 <form className="calculator-modal-form" onSubmit={handleCtaSubmit}>
-                  <h4 className="calculator-modal-title">Заказать звонок</h4>
+                  <h4 className="calculator-modal-title">{t.ctaModalTitle}</h4>
                   <input
                     className="calculator-contact-input"
                     type="text"
-                    placeholder="Ваше имя"
+                    placeholder={t.namePlaceholder}
                     value={ctaFormData.name}
                     onChange={(e) => setCtaFormData({ ...ctaFormData, name: e.target.value })}
                   />
@@ -553,7 +452,7 @@ const Calculator = () => {
                     value={ctaFormData.contactMethod}
                     onChange={(e) => setCtaFormData({ ...ctaFormData, contactMethod: e.target.value, contact: "" })}
                   >
-                    <option value="">Выберите способ связи</option>
+                    <option value="">{t.contactMethodSelectPlaceholder}</option>
                     {contactMethods.map((method) => (
                       <option key={method.id} value={method.id}>
                         {method.label}
@@ -564,14 +463,17 @@ const Calculator = () => {
                     <input
                       className="calculator-contact-input"
                       type="text"
-                      placeholder={contactMethods.find((method) => method.id === ctaFormData.contactMethod)?.placeholder || "Ваш контакт"}
+                      placeholder={
+                        contactMethods.find((method) => method.id === ctaFormData.contactMethod)?.placeholder ||
+                        (locale === "ru" ? "Ваш контакт" : "Your contact")
+                      }
                       value={ctaFormData.contact}
                       onChange={(e) => setCtaFormData({ ...ctaFormData, contact: e.target.value })}
                     />
                   )}
                   <textarea
                     className="calculator-contact-textarea"
-                    placeholder="Сообщение (необязательно)"
+                    placeholder={t.optionalMessagePlaceholder}
                     rows={4}
                     value={ctaFormData.message}
                     onChange={(e) => setCtaFormData({ ...ctaFormData, message: e.target.value })}
@@ -581,10 +483,16 @@ const Calculator = () => {
                     className="calculator-btn calculator-btn--next"
                     disabled={!ctaFormData.name.trim() || !ctaFormData.contactMethod || !ctaFormData.contact.trim() || isCtaSubmitting}
                   >
-                    {isCtaSubmitting ? <><FaSpinner className="spinner" /> Отправка...</> : "Отправить"}
+                    {isCtaSubmitting ? (
+                      <>
+                        <FaSpinner className="spinner" /> {locale === "ru" ? "Отправка..." : "Sending..."}
+                      </>
+                    ) : (
+                      t.submitButton
+                    )}
                   </button>
                   <p className="calculator-modal-phone">
-                    Или позвоните мне <a href="tel:+995571040626">+995571040626</a>
+                    {t.ctaPhoneLinePrefix} <a href="tel:+995571040626">+995571040626</a>
                   </p>
                 </form>
               )}
