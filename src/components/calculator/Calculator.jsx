@@ -11,6 +11,9 @@ const Calculator = () => {
   const [direction, setDirection] = useState(1);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCtaModalOpen, setIsCtaModalOpen] = useState(false);
+  const [isCtaSubmitting, setIsCtaSubmitting] = useState(false);
+  const [ctaSubmitDone, setCtaSubmitDone] = useState(false);
   
   const [formData, setFormData] = useState({
     projectType: "",
@@ -23,6 +26,12 @@ const Calculator = () => {
     support: "",
     contactMethod: "",
     name: "",
+    contact: "",
+    message: "",
+  });
+  const [ctaFormData, setCtaFormData] = useState({
+    name: "",
+    contactMethod: "",
     contact: "",
     message: "",
   });
@@ -230,6 +239,44 @@ const Calculator = () => {
     }
   };
 
+  const handleCtaSubmit = async (event) => {
+    event.preventDefault();
+    if (!ctaFormData.name.trim() || !ctaFormData.contactMethod || !ctaFormData.contact.trim()) return;
+
+    setIsCtaSubmitting(true);
+    try {
+      const apiBase = getApiBase();
+      const response = await fetch(`${apiBase}/api/calculator`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...ctaFormData,
+          source: "cta-modal",
+        }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setCtaSubmitDone(true);
+        setTimeout(() => {
+          setIsCtaModalOpen(false);
+          setCtaSubmitDone(false);
+          setCtaFormData({
+            name: "",
+            contactMethod: "",
+            contact: "",
+            message: "",
+          });
+        }, 1200);
+      }
+    } catch (error) {
+      console.error("CTA submit error:", error);
+    } finally {
+      setIsCtaSubmitting(false);
+    }
+  };
+
   const progressPercentage = (currentStep / totalSteps) * 100;
 
   const slideVariants = {
@@ -338,6 +385,7 @@ const Calculator = () => {
                           <div className={`calculator-options ${currentStepData.options.length > 4 ? 'calculator-options--grid' : ''}`}>
                             {currentStepData.options.map((option) => (
                               <button
+                                type="button"
                                 key={option.value}
                                 className={`calculator-option ${isOptionSelected(option.value) ? 'selected' : ''}`}
                                 onClick={() => handleOptionSelect(option.value)}
@@ -357,6 +405,7 @@ const Calculator = () => {
                               const Icon = method.icon;
                               return (
                                 <button
+                                  type="button"
                                   key={method.id}
                                   className={`calculator-contact-method ${formData.contactMethod === method.id ? 'selected' : ''}`}
                                   onClick={() => setFormData({ ...formData, contactMethod: method.id })}
@@ -410,6 +459,7 @@ const Calculator = () => {
                 <div className="calculator-actions">
                   {currentStep > 1 && (
                     <button
+                      type="button"
                       className="calculator-btn calculator-btn--back"
                       onClick={handleBack}
                       disabled={isSubmitting}
@@ -418,6 +468,7 @@ const Calculator = () => {
                     </button>
                   )}
                   <button
+                    type="button"
                     className={`calculator-btn calculator-btn--next ${!canProceed() || isSubmitting ? 'disabled' : ''}`}
                     onClick={handleNext}
                     disabled={!canProceed() || isSubmitting}
@@ -449,8 +500,8 @@ const Calculator = () => {
               <p className="cta-text">
                 Свяжемся с вами, ответим на все вопросы и предложим решение под ваш бюджет и задачи.
               </p>
-              <button type="button" className="cta-btn" onClick={() => setCurrentStep(totalSteps)}>
-                Заказать консультацию
+              <button type="button" className="cta-btn" onClick={() => setIsCtaModalOpen(true)}>
+                Заказать звонок
               </button>
             </div>
             <div className="cta-decoration">
@@ -468,6 +519,79 @@ const Calculator = () => {
           </motion.div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isCtaModalOpen && (
+          <motion.div
+            className="calculator-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => !isCtaSubmitting && setIsCtaModalOpen(false)}
+          >
+            <motion.div
+              className="calculator-modal"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {ctaSubmitDone ? (
+                <div className="calculator-modal-success">Заявка отправлена</div>
+              ) : (
+                <form className="calculator-modal-form" onSubmit={handleCtaSubmit}>
+                  <h4 className="calculator-modal-title">Заказать звонок</h4>
+                  <input
+                    className="calculator-contact-input"
+                    type="text"
+                    placeholder="Ваше имя"
+                    value={ctaFormData.name}
+                    onChange={(e) => setCtaFormData({ ...ctaFormData, name: e.target.value })}
+                  />
+                  <select
+                    className="calculator-contact-input"
+                    value={ctaFormData.contactMethod}
+                    onChange={(e) => setCtaFormData({ ...ctaFormData, contactMethod: e.target.value, contact: "" })}
+                  >
+                    <option value="">Выберите способ связи</option>
+                    {contactMethods.map((method) => (
+                      <option key={method.id} value={method.id}>
+                        {method.label}
+                      </option>
+                    ))}
+                  </select>
+                  {ctaFormData.contactMethod && (
+                    <input
+                      className="calculator-contact-input"
+                      type="text"
+                      placeholder={contactMethods.find((method) => method.id === ctaFormData.contactMethod)?.placeholder || "Ваш контакт"}
+                      value={ctaFormData.contact}
+                      onChange={(e) => setCtaFormData({ ...ctaFormData, contact: e.target.value })}
+                    />
+                  )}
+                  <textarea
+                    className="calculator-contact-textarea"
+                    placeholder="Сообщение (необязательно)"
+                    rows={4}
+                    value={ctaFormData.message}
+                    onChange={(e) => setCtaFormData({ ...ctaFormData, message: e.target.value })}
+                  />
+                  <button
+                    type="submit"
+                    className="calculator-btn calculator-btn--next"
+                    disabled={!ctaFormData.name.trim() || !ctaFormData.contactMethod || !ctaFormData.contact.trim() || isCtaSubmitting}
+                  >
+                    {isCtaSubmitting ? <><FaSpinner className="spinner" /> Отправка...</> : "Отправить"}
+                  </button>
+                  <p className="calculator-modal-phone">
+                    Или позвоните мне <a href="tel:+995571040626">+995571040626</a>
+                  </p>
+                </form>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
