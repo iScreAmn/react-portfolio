@@ -20,10 +20,10 @@ export const navItems = [
 ];
 
 export const homeData = {
-  greeting: "Привет, я D.J",
-  role: "Front-end разработчик",
+  greeting: "Привет, я Дмитрий",
+  role: "Full-stack разработчик",
   description:
-    "Делаю стильные сайты под ваш бизнес: веб-дизайн и разработка с большим опытом",
+    "Помогаю бизнесу расти с помощью продуманных и визуально сильных сайтов.",
   contactButton: {
     text: "Написать мне",
     href: "https://t.me/iscreamn",
@@ -58,11 +58,11 @@ export const aboutSectionData = {
   sectionTitle: "Обо мне",
   sectionSubtitle: "Обо мне",
   heading: "Я - Дмитрий Джмухадзе",
-  taglineRole: "Front-end разработчик",
+  taglineRole: "Full-stack разработчик",
   taglineBetween: " из ",
   taglineLocation: "Грузии",
   description:
-    "Разрабатываю кастомные решения для клиентов: современные сайты, веб-приложения и e-commerce. Мне важно создавать вовлекающий цифровой опыт через продуманный дизайн. Загляните в портфолио",
+    "Разрабатываю сайты и веб-приложения, которые привлекают клиентов и помогают бизнесу расти. Современный дизайн, быстрая работа и удобный пользовательский опыт, всё продумано до деталей. Посмотрите портфолио и оцените результат.",
   moreAboutButton: {
     text: "Подробнее обо мне",
     path: "/about",
@@ -71,9 +71,9 @@ export const aboutSectionData = {
 
 export const featuredPortfolioSectionData = {
   eyebrow: "Избранное",
-  title: "Недавние кейсы, которыми горжусь",
+  title: "Недавние проекты, которыми горжусь",
   subtitle:
-    "Свежие запуски с вниманием к микровзаимодействиям, адаптивным сеткам и тексту. Каждая карточка ведёт к полному кейсу.",
+    "Недавние проекты включают систему записи и администрирования пациентов, конверсионный сайт с дизайнерским подходом, а также платформу для продажи широкоформатных принтеров и сопутствующих материалов.",
   allProjectsButton: {
     text: "Все проекты",
     path: "/portfolio",
@@ -82,10 +82,10 @@ export const featuredPortfolioSectionData = {
 };
 
 export const servicesSectionData = {
-  sectionTitle: "Недавний проект",
-  sectionSubtitle: "Недавний проект",
+  sectionTitle: "В работе",
+  sectionSubtitle: "Разрабатываю прямо сейчас",
   gameSpotlight: {
-    eyebrow: "Так же",
+    eyebrow: "Протестируй одним их первых",
     subtitle: "Я разрабатываю игру",
     title: "Flame Jumper",
     playButton: {
@@ -100,7 +100,7 @@ export const servicesSectionData = {
 
 export const brandsSectionData = {
   sectionTitle: "Проверено клиентами",
-  sectionSubtitle: "Бренды, с которыми я работал",
+  sectionSubtitle: "Клиенты, с которыми я работал",
 };
 
 export const clientsSectionData = {

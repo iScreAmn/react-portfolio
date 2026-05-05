@@ -41,6 +41,9 @@ const portfolioData = [
     tags: ["React", "Node.js", "Rest API"],
     description:
       "Multi-page website for a Georgian Polygraph Services with a modern design and a responsive layout.",
+    categoryRu: "Полиграфические услуги",
+    descriptionRu:
+      "Многостраничный сайт для Georgian Polygraph Services с современным дизайном и адаптивной версткой.",
     gallery: [portfolio21, portfolio22, portfolio24, portfolio23 ],
   },
   {
@@ -54,6 +57,9 @@ const portfolioData = [
     tags: ["Multi-page", "Commercial Design", "Responsive"],
     description:
       "Multi-page website for a design agency with a modern design and a responsive layout.",
+    categoryRu: "Дизайн-агентство",
+    descriptionRu:
+      "Многостраничный сайт для дизайн-агентства с современным дизайном и адаптивной версткой.",
     gallery: [portfolio16, portfolio17, portfolio18, portfolio19],
   },
   {
@@ -67,6 +73,9 @@ const portfolioData = [
     tags: ["Multi-page", "Medical Clinic", "Responsive"],
     description:
       "Multi-page website for a clinic with a modern design and a responsive layout.",
+    categoryRu: "Частная клиника",
+    descriptionRu:
+      "Многостраничный сайт для клиники с современным дизайном и адаптивной версткой.",
     gallery: [portfolio11, portfolio12, portfolio13, portfolio14],
   },
   {
@@ -80,6 +89,9 @@ const portfolioData = [
     tags: ["Next.js", "Coffee Shop", "Responsive"],
     description:
       "Multi-page website for a coffee shop and roastery with a warm visual style, product storytelling, and a responsive layout.",
+    categoryRu: "Кофейня и обжарка",
+    descriptionRu:
+      "Многостраничный сайт для кофейни и обжарки с теплым визуальным стилем, продуманной подачей продукта и адаптивной версткой.",
     gallery: [portfolio26, portfolio27, portfolio28, portfolio29],
   },
   {
@@ -93,6 +105,9 @@ const portfolioData = [
     tags: ["React", "AI assistant", "Meal planning"],
     description:
       "AskChef - a web app for weekly meal planning, recipe management, and automatic shopping lists. An AI helper suggests recipes based on the products you have.",
+    categoryRu: "Приложение для планирования питания",
+    descriptionRu:
+      "AskChef — веб-приложение для недельного планирования питания, управления рецептами и автоматических списков покупок. AI-помощник предлагает рецепты на основе продуктов, которые у вас есть.",
     gallery: [portfolio1, portfolio1, portfolio1, portfolio1],
   },
   {
@@ -106,6 +121,9 @@ const portfolioData = [
     tags: ["Multi-page", "i18n", "Brand site"],
     description:
       "Multi-page website for a Georgian law firm with three languages, responsive grid blocks, and lead-focused calls to action.",
+    categoryRu: "Юридическое бюро",
+    descriptionRu:
+      "Многостраничный сайт для грузинской юридической компании с тремя языками, адаптивными блоками и акцентом на конверсионные CTA.",
     gallery: [portfolio2, portfolio2, portfolio2, portfolio2],
   },
   {
@@ -119,6 +137,9 @@ const portfolioData = [
     tags: ["Landing", "Booking CTA", "Responsive"],
     description:
       "Landing for apartments in the heart of Tbilisi with atmospheric visuals, quick booking CTAs, and a mobile-first layout.",
+    categoryRu: "Аренда апартаментов",
+    descriptionRu:
+      "Лендинг для апартаментов в центре Тбилиси с атмосферной визуальной подачей, быстрыми CTA для бронирования и mobile-first версткой.",
     gallery: [portfolio3, portfolio3, portfolio3, portfolio3],
   },
   {
@@ -132,6 +153,9 @@ const portfolioData = [
     tags: ["SPA", "Vanilla JS", "Webpack"],
     description:
       "Interactive photo sharing SPA with client-side validation, modal UX, and API integration built on vanilla JS and Webpack.",
+    categoryRu: "Обмен фотографиями",
+    descriptionRu:
+      "Интерактивное SPA для обмена фотографиями с клиентской валидацией, modal UX и API-интеграцией на vanilla JS и Webpack.",
     gallery: [portfolio4, portfolio4, portfolio4],
   },
   {
@@ -145,6 +169,9 @@ const portfolioData = [
     tags: ["Parallax", "Scroll FX", "Creative"],
     description:
       "Promo page with parallax effects and smooth scroll animations to keep users engaged through dynamic scenes.",
+    categoryRu: "Параллакс",
+    descriptionRu:
+      "Промо-страница с параллакс-эффектами и плавными scroll-анимациями, чтобы удерживать внимание пользователя через динамичные сцены.",
     gallery: [portfolio5, portfolio5, portfolio5],
   },
   {
@@ -158,6 +185,9 @@ const portfolioData = [
     tags: ["Telegram", "grammY", "Automation"],
     description:
       "Telegram bot for LaFee Studio: interactive questionnaire, inspiration feed, and lead capture built on grammY.",
+    categoryRu: "LaFee Studio",
+    descriptionRu:
+      "Telegram-бот для LaFee Studio: интерактивный опросник, лента вдохновения и сбор лидов на базе grammY.",
     gallery: [portfolio6, portfolio6, portfolio6],
   },
   {
@@ -171,6 +201,9 @@ const portfolioData = [
     tags: ["Travel", "Storytelling", "Static site"],
     description:
       "Storytelling travel landing about Ukraine with lightweight layout, culture highlights, and fast loading.",
+    categoryRu: "Тревел-лендинг",
+    descriptionRu:
+      "Тревел-лендинг об Украине в формате storytelling: легкая структура, культурные акценты и быстрая загрузка.",
     gallery: [portfolio7, portfolio7, portfolio7],
   },
   {
@@ -184,6 +217,9 @@ const portfolioData = [
     tags: ["Restaurant", "Menu", "Order CTA"],
     description:
       "One-page restaurant site with a burger menu, accent CTAs, and currency toggle for easier orders.",
+    categoryRu: "Ресторанный лендинг",
+    descriptionRu:
+      "Одностраничный сайт ресторана с бургер-меню, акцентными CTA и переключением валюты для удобного оформления заказа.",
     gallery: [portfolio8, portfolio8, portfolio8],
   },
   {
@@ -197,6 +233,9 @@ const portfolioData = [
     tags: ["Travel", "Hero imagery", "Responsive"],
     description:
       "Travel promo about Georgia with bold hero imagery, responsive grid, and clear calls to action.",
+    categoryRu: "Тревел-лендинг",
+    descriptionRu:
+      "Тревел-промо о Грузии с выразительным hero-блоком, адаптивной сеткой и понятными призывами к действию.",
     gallery: [portfolio9, portfolio9, portfolio9],
   },
 ];
