@@ -175,7 +175,7 @@ const Calculator = () => {
     }
   };
 
-  const progressPercentage = (currentStep / totalSteps) * 100;
+  const progressPercentage = Math.min((currentStep / (totalSteps - 1)) * 100, 100);
 
   const slideVariants = {
     enter: (direction) => ({
@@ -260,9 +260,11 @@ const Calculator = () => {
                   />
                 </div>
 
-                <div className="calculator-step-indicator">
-                  {t.stepLabel} {currentStep} {t.fromLabel} {totalSteps}
-                </div>
+                {currentStep < totalSteps && (
+                  <div className="calculator-step-indicator">
+                    {t.stepLabel} {currentStep} {t.fromLabel} {totalSteps - 1}
+                  </div>
+                )}
 
                 <div className="calculator-content-wrapper">
                   <AnimatePresence mode="wait" custom={direction}>
