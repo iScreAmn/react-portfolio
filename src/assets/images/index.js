@@ -3,8 +3,6 @@ import aboutImg2 from "./dj-cover.png"
 
 // Portfolio Images
 import portfolio1 from "./portfolio/askchef.webp"
-import portfolio2 from "./portfolio/lawfirm.webp"
-import portfolio3 from "./portfolio/otn.webp"
 import portfolio4 from "./portfolio/mesto.webp"
 import portfolio5 from "./portfolio/paralax.webp"
 import portfolio6 from "./portfolio/telegram.webp"
@@ -26,12 +24,33 @@ import portfolio17 from "./portfolio/impera/2.png"
 import portfolio18 from "./portfolio/impera/3.png"
 import portfolio19 from "./portfolio/impera/4.png"
 
+// Balu Balkon
+import baluCover from "./portfolio/balu/balu-cover.webp"
+import balu1 from "./portfolio/balu/1.webp"
+import balu2 from "./portfolio/balu/2.webp"
+import balu3 from "./portfolio/balu/3.webp"
+import balu4 from "./portfolio/balu/4.webp"
+
 // GPS
 import portfolio20 from "./portfolio/gps/gps-cover.webp"
 import portfolio21 from "./portfolio/gps/gps1.webp"
 import portfolio22 from "./portfolio/gps/gps2.webp"
 import portfolio23 from "./portfolio/gps/gps3.webp"
 import portfolio24 from "./portfolio/gps/gps4.webp"
+
+// Law Firm
+import lawFirmCover from "./portfolio/lawfirm/lawfirm-cover.webp"
+import lawFirm1 from "./portfolio/lawfirm/1.webp"
+import lawFirm2 from "./portfolio/lawfirm/2.webp"
+import lawFirm3 from "./portfolio/lawfirm/3.webp"
+import lawFirm4 from "./portfolio/lawfirm/4.webp"
+
+// Old Tbilisi Narikala
+import otnCover from "./portfolio/otn/otnCover.webp"
+import otn1 from "./portfolio/otn/1.webp"
+import otn2 from "./portfolio/otn/2.webp"
+import otn3 from "./portfolio/otn/3.webp"
+import otn4 from "./portfolio/otn/4.webp"
 
 // Aurora Coffee & Roasters
 import portfolio25 from "./portfolio/coffee-shop/aurora.webp"
@@ -89,8 +108,6 @@ export {
   flameJumper,
   abonent,
   portfolio1,
-  portfolio2,
-  portfolio3,
   portfolio4,
   portfolio5,
   portfolio6,
@@ -117,6 +134,21 @@ export {
   portfolio27,
   portfolio28,
   portfolio29,
+  baluCover,
+  balu1,
+  balu2,
+  balu3,
+  balu4,
+  lawFirmCover,
+  lawFirm1,
+  lawFirm2,
+  lawFirm3,
+  lawFirm4,
+  otnCover,
+  otn1,
+  otn2,
+  otn3,
+  otn4,
   flameJumper1,
   flameJumper2,
   client1,
