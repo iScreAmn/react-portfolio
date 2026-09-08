@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
-import { portfolio } from "../../utils/analyticsTrackers";
+import { useAnalytics } from "../../analytics/AnalyticsProvider";
 
 const PortfolioItem = ({ item, index }) => {
+  const { track } = useAnalytics();
+
   return (
     <article className="portfolio-img-card portfolio-grid__card">
       <Link
         to={`/portfolio/${item.slug}`}
         className="portfolio-card__link"
         aria-label={`Открыть проект ${item.title}`}
-        onClick={() => portfolio.cardClick(item.slug, item.title, item.category)}
+        onClick={() => track("project", "open", item.slug, { block: "portfolio-grid" })}
       >
         <div className="img-card">
           <div className="overlay" />

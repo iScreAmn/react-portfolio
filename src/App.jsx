@@ -10,14 +10,11 @@ import HobbyPage from "./pages/HobbyPage/HobbyPage";
 import ServicesPage from "./pages/ServicesPage/ServicesPage";
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import Admin from "./pages/AdminPage/Admin";
-import { usePageAnalytics } from "./hooks/usePageAnalytics";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
-
-  usePageAnalytics();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

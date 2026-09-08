@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
 import { flameJumper2 } from "../../assets/images";
-import { game } from "../../utils/analyticsTrackers";
+import { useAnalytics } from "../../analytics/AnalyticsProvider";
 import "./GamePage.css";
 
 const GamePage = () => {
+  const { track } = useAnalytics();
   const [isMobile, setIsMobile] = useState(false);
   const chips = ["Indie platformer", "Pixel art", "Web game", "Made with love"];
 
@@ -55,7 +56,7 @@ const GamePage = () => {
                   href="https://iscreamn.github.io/game-jumper/"
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => game.playClick()}
+                  onClick={() => track("cta", "click", "game-play")}
                 >
                   Play now
                 </a>
@@ -65,7 +66,7 @@ const GamePage = () => {
                 href="https://github.com/iScreAmn/game-jumper"
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => game.githubClick()}
+                onClick={() => track("cta", "click", "game-github")}
               >
                 Star me <FaGithub />
               </a>
