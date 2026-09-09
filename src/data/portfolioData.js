@@ -40,7 +40,12 @@ import {
   otn1,
   otn2,
   otn3,
-  otn4 } from "../assets/images";
+  otn4,
+  imgboxCover,
+  imgbox1,
+  imgbox2,
+  imgbox3,
+  imgbox4 } from "../assets/images";
 
 const portfolioData = [
   {
@@ -122,6 +127,23 @@ const portfolioData = [
     descriptionRu:
       'Многостраничный корпоративный сайт грузинской юридической компании "მართლმსაჯულება" / "Martlmsajuleba".',
     gallery: [lawFirm1, lawFirm2, lawFirm3, lawFirm4],
+  },
+  {
+    id: 15,
+    slug: "imgbox-converter",
+    title: "ImgBox Converter",
+    category: "Online Converter App",
+    imgSrc: imgboxCover,
+    href: "https://github.com/iScreAmn/imgbox-converter",
+    inDevelopment: true,
+    year: "2026",
+    tags: ["Next.js", "WebAssembly", "In-browser"],
+    description:
+      "A web app for compressing and converting images that runs right in the browser.",
+    categoryRu: "Онлайн конвертер",
+    descriptionRu:
+      "Веб-приложение для сжатия и конвертации изображений, работающее прямо в браузере.",
+    gallery: [imgbox1, imgbox2, imgbox3, imgbox4],
   },
   {
     id: 7,

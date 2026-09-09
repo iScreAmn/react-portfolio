@@ -1,5 +1,6 @@
+import logo from "./dj-logo.webp"
 import aboutImg from "./about-img-2.webp"
-import aboutImg2 from "./dj-cover.png"
+import aboutImg2 from "./dj-cover.webp"
 
 // Portfolio Images
 import portfolio1 from "./portfolio/askchef.webp"
@@ -52,6 +53,13 @@ import otn2 from "./portfolio/otn/2.webp"
 import otn3 from "./portfolio/otn/3.webp"
 import otn4 from "./portfolio/otn/4.webp"
 
+// ImgBox Converter
+import imgboxCover from "./portfolio/imgbox/imgbox-cover.webp"
+import imgbox1 from "./portfolio/imgbox/1.webp"
+import imgbox2 from "./portfolio/imgbox/2.webp"
+import imgbox3 from "./portfolio/imgbox/3.webp"
+import imgbox4 from "./portfolio/imgbox/4.webp"
+
 // Aurora Coffee & Roasters
 import portfolio25 from "./portfolio/coffee-shop/aurora.webp"
 import portfolio26 from "./portfolio/coffee-shop/1.webp"
@@ -100,10 +108,11 @@ import service1 from "./web-art/standart.webp"
 import service2 from "./web-art/premium.webp"
 import service3 from "./web-art/comfort.webp"
 import project from "./web-art/project.webp"
-import abonent from "./generated-vertical.png"
+import abonent from "./generated-vertical.webp"
 
 
 export {
+  logo,
   aboutImg,
   flameJumper,
   abonent,
@@ -149,6 +158,11 @@ export {
   otn2,
   otn3,
   otn4,
+  imgboxCover,
+  imgbox1,
+  imgbox2,
+  imgbox3,
+  imgbox4,
   flameJumper1,
   flameJumper2,
   client1,

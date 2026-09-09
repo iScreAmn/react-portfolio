@@ -117,6 +117,28 @@
   transform: translateY(-1px);
 }
 
+.project-hero__btn-wrap--disabled {
+  display: inline-flex;
+  cursor: not-allowed;
+}
+
+.project-hero__btn-wrap--disabled .project-hero__btn {
+  pointer-events: none;
+}
+
+.project-hero__btn--disabled,
+.project-hero__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.project-hero__btn--ghost:disabled:hover,
+.project-hero__btn--disabled:hover {
+  background: transparent;
+  transform: none;
+}
+
 .project-gallery {
   background: var(--card-bg-color);
   padding: 40px 0 120px;

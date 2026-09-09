@@ -114,6 +114,7 @@ const ProjectPage = () => {
     locale === "ru" ? project.descriptionRu || project.description : project.description;
   const galleryButtonLabel = locale === "ru" ? "Открыть галерею" : "View gallery";
   const projectLinkButtonLabel = locale === "ru" ? "Открыть сайт" : "View Page";
+  const inDevelopmentLabel = locale === "ru" ? "В разработке" : "In development";
 
   return (
     <div className="project-page">
@@ -141,7 +142,18 @@ const ProjectPage = () => {
               >
                 {galleryButtonLabel}
               </button>
-              {project.href && (
+              {project.inDevelopment ? (
+                <span className="project-hero__btn-wrap project-hero__btn-wrap--disabled">
+                  <button
+                    type="button"
+                    className="project-hero__btn project-hero__btn--ghost project-hero__btn--disabled"
+                    disabled
+                    aria-disabled="true"
+                  >
+                    {inDevelopmentLabel}
+                  </button>
+                </span>
+              ) : project.href ? (
                 <a
                   className="project-hero__btn project-hero__btn--ghost"
                   href={project.href}
@@ -151,7 +163,7 @@ const ProjectPage = () => {
                 >
                   {projectLinkButtonLabel}
                 </a>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
