@@ -9,6 +9,7 @@ import {
   FeaturedPortfolio,
   GetInTouch,
   Clients,
+  Calculator,
 } from "../../components/index";
 import "./HomePage.css";
 
@@ -43,6 +44,7 @@ const HomePage = () => {
       <About />
       <Brands />
       <FeaturedPortfolio />
+      <Calculator />
       <Services />
       {/* <HobbyTeaser /> */}
       <Clients />

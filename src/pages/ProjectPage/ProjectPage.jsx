@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 import portfolioData from "../../data/portfolioData";
-import { portfolio } from "../../utils/analyticsTrackers";
+import { useAnalytics } from "../../analytics/AnalyticsProvider";
 import { useLocale } from "../../context/LocaleContext";
 import "./ProjectPage.css";
 
@@ -11,6 +11,7 @@ const ProjectPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { locale } = useLocale();
+  const { track } = useAnalytics();
 
   const project = portfolioData.find((item) => item.slug === slug);
   const gallery = project?.gallery?.length ? project.gallery : project ? [project.imgSrc] : [];
@@ -33,13 +34,13 @@ const ProjectPage = () => {
     window.scrollTo(0, 0);
     setCurrentIndex(0);
     if (project) {
-      portfolio.projectView(project.slug, project.title);
+      track("project", "view", project.slug);
     }
   }, [slug]);
 
   const openModalAt = (index) => {
     if (!isModalOpen && project) {
-      portfolio.galleryOpen(project.slug);
+      track("project", "gallery", project.slug);
     }
     setCurrentIndex(index);
     setIsModalOpen(true);
@@ -113,6 +114,7 @@ const ProjectPage = () => {
     locale === "ru" ? project.descriptionRu || project.description : project.description;
   const galleryButtonLabel = locale === "ru" ? "Открыть галерею" : "View gallery";
   const projectLinkButtonLabel = locale === "ru" ? "Открыть сайт" : "View Page";
+  const inDevelopmentLabel = locale === "ru" ? "В разработке" : "In development";
 
   return (
     <div className="project-page">
@@ -140,17 +142,28 @@ const ProjectPage = () => {
               >
                 {galleryButtonLabel}
               </button>
-              {project.href && (
+              {project.inDevelopment ? (
+                <span className="project-hero__btn-wrap project-hero__btn-wrap--disabled">
+                  <button
+                    type="button"
+                    className="project-hero__btn project-hero__btn--ghost project-hero__btn--disabled"
+                    disabled
+                    aria-disabled="true"
+                  >
+                    {inDevelopmentLabel}
+                  </button>
+                </span>
+              ) : project.href ? (
                 <a
                   className="project-hero__btn project-hero__btn--ghost"
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => portfolio.liveLinkClick(project.slug, project.href)}
+                  onClick={() => track("project", "live_link", project.slug)}
                 >
                   {projectLinkButtonLabel}
                 </a>
-              )}
+              ) : null}
             </div>
           </div>
         </div>

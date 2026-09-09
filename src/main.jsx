@@ -3,11 +3,14 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import { LocaleProvider } from "./context/LocaleContext.jsx";
+import { AnalyticsProvider } from "./analytics/AnalyticsProvider.jsx";
 
 createRoot(document.getElementById('root')).render(
   <LocaleProvider>
     <BrowserRouter>
-      <App />
+      <AnalyticsProvider>
+        <App />
+      </AnalyticsProvider>
     </BrowserRouter>
   </LocaleProvider>
 )

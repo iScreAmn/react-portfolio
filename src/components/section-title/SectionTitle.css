@@ -2,6 +2,7 @@
   font-size: 60px;
   font-weight: 800;
   margin-bottom: 20px;
+  text-align: center;
   background: linear-gradient(to top, transparent 0%, var(--first-color) 70%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -13,14 +14,16 @@
   font-size: 25px;
   font-weight: 700;
   top: -55px;
+  text-align: center;
 }
 
 .inner-subtitle::before {
   content: "";
   position: absolute;
   width: 70px;
-  height: 5px;
-  right: 0;
+  height: 3px;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 0;
   background: var(--second-color);
 }

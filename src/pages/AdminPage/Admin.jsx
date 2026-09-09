@@ -1,89 +1,91 @@
-import { useCallback, useState } from 'react';
-import { getApiBase } from '../../utils/apiBase';
+import { useCallback, useEffect, useState } from 'react';
+import { supabase } from '../../lib/supabase';
+import { signIn, signOut } from '../../lib/analyticsAdmin';
 import AnalyticsContainer from './analytics/AnalyticsContainer';
 import './Admin.css';
 
-const TOKEN_KEY = 'admin_jwt';
-
-function getStoredToken() {
-  try {
-    return localStorage.getItem(TOKEN_KEY) || '';
-  } catch {
-    return '';
-  }
-}
-
 export default function Admin() {
-  const apiUrl = getApiBase();
-  const [token, setToken] = useState(() => getStoredToken());
-  const [login, setLogin] = useState('');
+  // Сессию держит сам supabase-js (persistSession), localStorage вручную не трогаем.
+  const [session, setSession] = useState(null);
+  const [checking, setChecking] = useState(true);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
+  useEffect(() => {
+    let active = true;
+
+    supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        if (!active) return;
+        setSession(data?.session ?? null);
+      })
+      .finally(() => {
+        if (active) setChecking(false);
+      });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setSession(nextSession ?? null);
+    });
+
+    return () => {
+      active = false;
+      listener?.subscription?.unsubscribe();
+    };
+  }, []);
+
   const tryAuth = useCallback(async () => {
-    const l = login.trim();
-    if (!l || !password) {
-      setError('Введите логин и пароль');
-      return;
-    }
-    if (import.meta.env.PROD && !apiUrl) {
-      setError('Не задан VITE_API_URL для production. Логин на API невозможен.');
+    const mail = email.trim();
+    if (!mail || !password) {
+      setError('Введите email и пароль');
       return;
     }
     setError(null);
     setSubmitting(true);
     try {
-      const res = await fetch(`${apiUrl}/api/admin/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ login: l, password }),
-      });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(body.message || `HTTP ${res.status}`);
-      }
-      const t = body?.data?.token || body?.token;
-      if (!t) {
-        throw new Error(body.message || 'Нет токена в ответе');
-      }
-      setToken(t);
-      try {
-        localStorage.setItem(TOKEN_KEY, t);
-      } catch {
-        /* ignore */
-      }
+      await signIn(mail, password);
       setPassword('');
+      // сессию проставит onAuthStateChange
     } catch (e) {
-      setError(e.message || 'Error');
+      setError(e?.message || 'Не удалось войти');
     } finally {
       setSubmitting(false);
     }
-  }, [apiUrl, login, password]);
+  }, [email, password]);
 
-  const logout = () => {
-    setToken('');
+  const logout = async () => {
     try {
-      localStorage.removeItem(TOKEN_KEY);
+      await signOut();
     } catch {
-      /* ignore */
+      /* даже если разлогин не дошёл до сервера, локальную сессию supabase-js сбросит */
     }
+    setSession(null);
   };
 
-  if (!token) {
+  if (checking) {
+    return (
+      <div className="admin-gate">
+        <div className="admin-gate__card">
+          <p className="admin-gate__hint">Проверяем сессию…</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
     return (
       <div className="admin-gate">
         <div className="admin-gate__card">
           <h1 className="admin-gate__title">Admin Panel</h1>
-          <p className="admin-gate__hint">
-            Login to access the analytics.
-          </p>
+          <p className="admin-gate__hint">Login to access the analytics.</p>
           <input
-            type="text"
+            type="email"
             className="admin-gate__input"
-            placeholder="Login"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             autoComplete="username"
           />
           <input
@@ -111,7 +113,7 @@ export default function Admin() {
 
   return (
     <div className="admin-page">
-      <AnalyticsContainer apiUrl={apiUrl} token={token} onLogout={logout} />
+      <AnalyticsContainer session={session} onLogout={logout} />
     </div>
   );
 }

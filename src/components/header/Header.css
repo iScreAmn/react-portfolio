@@ -15,8 +15,21 @@
 }
 
 .header .logo {
-  color: var(--first-color);
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header .logo img {
+  display: block;
+  height: 25px;
+  width: auto;
+  filter: var(--color-filter);
+  mix-blend-mode: multiply;
+}
+
+.dark-theme .header .logo img {
+  mix-blend-mode: screen;
 }
 
 .header__wrapper {

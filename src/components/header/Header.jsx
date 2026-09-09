@@ -6,6 +6,7 @@ import { TbMenu3 } from "react-icons/tb";
 import { RemoveScroll } from "react-remove-scroll";
 import Nav from "../nav/Nav";
 import { useLocale } from "../../context/LocaleContext";
+import { logo } from "../../assets/images";
 
 const Header = ({ isMenuOpen, toggleMenu, handleMenuClick }) => {
   const [isSticky, setIsSticky] = useState(false)
@@ -25,8 +26,8 @@ const Header = ({ isMenuOpen, toggleMenu, handleMenuClick }) => {
     <header className={isSticky ? "header sticky" : "header"}>
       <div className="container">
         <div className="header__wrapper">
-          <Link to="/" className="logo" onClick={handleMenuClick}>
-            DJ
+          <Link to="/" className="logo" onClick={handleMenuClick} aria-label="DJ">
+            <img src={logo} alt="DJ" />
           </Link>
           <RemoveScroll enabled={isMenuOpen} className="remove-scroll-wrapper">
             <Nav isMenuOpen={isMenuOpen} handleMenuClick={handleMenuClick} />

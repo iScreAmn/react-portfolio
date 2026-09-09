@@ -1,87 +1,52 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './AnalyticsSettings.css';
 import { IoRefresh } from "react-icons/io5";
 import { CiWarning } from "react-icons/ci";
+import { getMyProfile, changePassword } from '../../../lib/analyticsAdmin';
 
-const AnalyticsSettings = ({ apiUrl, token, onLogout }) => {
+const AnalyticsSettings = ({ session, onLogout }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
-  const [showDeleteAllConfirm, setShowDeleteAllConfirm] = useState(false);
-  const [showDeletePeriodDialog, setShowDeletePeriodDialog] = useState(false);
-  const [periodDays, setPeriodDays] = useState(90);
-  const [analyticsInfo, setAnalyticsInfo] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [profileMissing, setProfileMissing] = useState(false);
 
-  const fetchAnalyticsInfo = async () => {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const fetchProfile = useCallback(async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/analytics/info`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      if (response.ok) {
-        const result = await response.json();
-        setAnalyticsInfo(result.data);
-      }
+      const row = await getMyProfile();
+      setProfile(row);
+      setProfileMissing(!row);
     } catch (err) {
-      console.error('Failed to fetch analytics info:', err);
+      console.error('Failed to fetch profile:', err);
+      setProfileMissing(true);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchAnalyticsInfo();
-  }, [apiUrl, token]);
+    fetchProfile();
+  }, [fetchProfile]);
 
-  const handleDeleteAll = async () => {
-    setLoading(true);
-    setMessage(null);
-    try {
-      const response = await fetch(`${apiUrl}/api/analytics/data/all`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      const result = await response.json();
-      
-      if (response.ok) {
-        setMessage({ type: 'success', text: result.message });
-        setShowDeleteAllConfirm(false);
-        fetchAnalyticsInfo();
-      } else {
-        setMessage({ type: 'error', text: result.message || 'Ошибка удаления' });
-      }
-    } catch (err) {
-      console.error('Failed to delete analytics:', err);
-      setMessage({ type: 'error', text: 'Ошибка сети' });
-    } finally {
-      setLoading(false);
+  const handleChangePassword = async () => {
+    if (newPassword.length < 6) {
+      setMessage({ type: 'error', text: 'Пароль должен быть не короче 6 символов' });
+      return;
     }
-  };
+    if (newPassword !== confirmPassword) {
+      setMessage({ type: 'error', text: 'Пароли не совпадают' });
+      return;
+    }
 
-  const handleDeleteByPeriod = async () => {
     setLoading(true);
     setMessage(null);
     try {
-      const response = await fetch(`${apiUrl}/api/analytics/data/period`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ days: periodDays }),
-      });
-      const result = await response.json();
-      
-      if (response.ok) {
-        setMessage({ type: 'success', text: result.message });
-        setShowDeletePeriodDialog(false);
-        fetchAnalyticsInfo();
-      } else {
-        setMessage({ type: 'error', text: result.message || 'Ошибка удаления' });
-      }
+      await changePassword(newPassword);
+      setMessage({ type: 'success', text: 'Пароль изменён' });
+      setNewPassword('');
+      setConfirmPassword('');
     } catch (err) {
-      console.error('Failed to delete analytics by period:', err);
-      setMessage({ type: 'error', text: 'Ошибка сети' });
+      setMessage({ type: 'error', text: err?.message || 'Не удалось сменить пароль' });
     } finally {
       setLoading(false);
     }
@@ -90,11 +55,11 @@ const AnalyticsSettings = ({ apiUrl, token, onLogout }) => {
   return (
     <div className="analytics-settings">
       <div className="analytics-settings-header">
-        <h2 className="analytics-settings-title">Управление данными</h2>
+        <h2 className="analytics-settings-title">Аккаунт</h2>
         <div className="analytics-settings-header__actions">
           <button
             type="button"
-            onClick={fetchAnalyticsInfo}
+            onClick={fetchProfile}
             className="analytics-settings-refresh"
             disabled={loading}
           >
@@ -114,121 +79,73 @@ const AnalyticsSettings = ({ apiUrl, token, onLogout }) => {
         </div>
       )}
 
-      {analyticsInfo && (
-        <div className="analytics-settings-info">
-          <div className="analytics-settings-info-card">
-            <div className="analytics-settings-info-label">Всего событий:</div>
-            <div className="analytics-settings-info-value">{analyticsInfo.totalEvents.toLocaleString()}</div>
-          </div>
-          <div className="analytics-settings-info-card">
-            <div className="analytics-settings-info-label">Примерный размер:</div>
-            <div className="analytics-settings-info-value">{analyticsInfo.estimatedSize}</div>
-          </div>
+      <div className="analytics-settings-info">
+        <div className="analytics-settings-info-card">
+          <div className="analytics-settings-info-label">Email:</div>
+          <div className="analytics-settings-info-value">{session?.user?.email || '—'}</div>
+        </div>
+        <div className="analytics-settings-info-card">
+          <div className="analytics-settings-info-label">Роль:</div>
+          <div className="analytics-settings-info-value">{profile?.role || '—'}</div>
+        </div>
+      </div>
+
+      {profileMissing && (
+        <div className="analytics-settings-message analytics-settings-message--error">
+          <CiWarning /> Вход выполнен, но строки в <code>profiles</code> нет — RLS будет
+          отдавать пустую статистику. Добавьте профиль этому пользователю в Supabase.
         </div>
       )}
 
       <div className="analytics-settings-section">
-        <h3 className="analytics-settings-section-title">Удаление данных</h3>
+        <h3 className="analytics-settings-section-title">Смена пароля</h3>
         <p className="analytics-settings-section-desc">
-          <CiWarning/> Внимание: удаленные данные невозможно восстановить
+          Меняется через Supabase Auth для текущего пользователя.
         </p>
 
-        <div className="analytics-settings-actions">
-          <div className="analytics-settings-action-card">
-            <h4 className="analytics-settings-action-title">Удалить старые данные</h4>
-            <p className="analytics-settings-action-desc">
-              Удалить аналитику старше определенного периода
-            </p>
-            <button
-              onClick={() => setShowDeletePeriodDialog(true)}
-              className="analytics-settings-btn analytics-settings-btn--warning"
-              disabled={loading}
-            >
-              Удалить по периоду
-            </button>
-          </div>
-
-          <div className="analytics-settings-action-card">
-            <h4 className="analytics-settings-action-title">Удалить всю аналитику</h4>
-            <p className="analytics-settings-action-desc">
-              Полная очистка всех данных аналитики из базы данных
-            </p>
-            <button
-              onClick={() => setShowDeleteAllConfirm(true)}
-              className="analytics-settings-btn analytics-settings-btn--danger"
-              disabled={loading}
-            >
-              Удалить все данные
-            </button>
-          </div>
+        <div className="analytics-settings-modal-input-group">
+          <input
+            type="password"
+            className="analytics-settings-modal-input"
+            placeholder="Новый пароль"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            autoComplete="new-password"
+          />
         </div>
+        <div className="analytics-settings-modal-input-group">
+          <input
+            type="password"
+            className="analytics-settings-modal-input"
+            placeholder="Повторите пароль"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleChangePassword()}
+            autoComplete="new-password"
+          />
+        </div>
+        <button
+          type="button"
+          onClick={handleChangePassword}
+          className="analytics-settings-btn analytics-settings-btn--warning"
+          disabled={loading || !newPassword || !confirmPassword}
+        >
+          {loading ? 'Сохранение...' : 'Сменить пароль'}
+        </button>
       </div>
 
-      {showDeleteAllConfirm && (
-        <div className="analytics-settings-modal-overlay" onClick={() => setShowDeleteAllConfirm(false)}>
-          <div className="analytics-settings-modal" onClick={(e) => e.stopPropagation()}>
-            <h3 className="analytics-settings-modal-title">Подтверждение удаления</h3>
-            <p className="analytics-settings-modal-text">
-              Вы уверены, что хотите удалить ВСЮ аналитику?
-              <br />
-              Это действие нельзя отменить!
-            </p>
-            <div className="analytics-settings-modal-actions">
-              <button
-                onClick={() => setShowDeleteAllConfirm(false)}
-                className="analytics-settings-modal-btn analytics-settings-modal-btn--cancel"
-                disabled={loading}
-              >
-                Отмена
-              </button>
-              <button
-                onClick={handleDeleteAll}
-                className="analytics-settings-modal-btn analytics-settings-modal-btn--danger"
-                disabled={loading}
-              >
-                {loading ? 'Удаление...' : 'Да, удалить все'}
-              </button>
-            </div>
-          </div>
+      <div className="analytics-settings-section">
+        <h3 className="analytics-settings-section-title">Удаление данных</h3>
+        <p className="analytics-settings-section-desc">
+          <CiWarning /> Публичный ключ не имеет прав на удаление — это защита от чистки
+          статистики через фронтенд. Удаляйте через Supabase → SQL Editor:
+        </p>
+        <div className="analytics-settings-action-card">
+          <p className="analytics-settings-action-desc">
+            <code>delete from public.analytics_events where occurred_at &lt; now() - interval &#39;90 days&#39;;</code>
+          </p>
         </div>
-      )}
-
-      {showDeletePeriodDialog && (
-        <div className="analytics-settings-modal-overlay" onClick={() => setShowDeletePeriodDialog(false)}>
-          <div className="analytics-settings-modal" onClick={(e) => e.stopPropagation()}>
-            <h3 className="analytics-settings-modal-title">Удаление по периоду</h3>
-            <p className="analytics-settings-modal-text">
-              Удалить данные старше:
-            </p>
-            <div className="analytics-settings-modal-input-group">
-              <input
-                type="number"
-                min="1"
-                value={periodDays}
-                onChange={(e) => setPeriodDays(parseInt(e.target.value, 10))}
-                className="analytics-settings-modal-input"
-              />
-              <span className="analytics-settings-modal-input-label">дней</span>
-            </div>
-            <div className="analytics-settings-modal-actions">
-              <button
-                onClick={() => setShowDeletePeriodDialog(false)}
-                className="analytics-settings-modal-btn analytics-settings-modal-btn--cancel"
-                disabled={loading}
-              >
-                Отмена
-              </button>
-              <button
-                onClick={handleDeleteByPeriod}
-                className="analytics-settings-modal-btn analytics-settings-modal-btn--warning"
-                disabled={loading}
-              >
-                {loading ? 'Удаление...' : 'Удалить'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

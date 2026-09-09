@@ -4,10 +4,11 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import { motion, AnimatePresence } from "motion/react";
 import { slideInVariants } from "../../utils/animation";
 import { getApiBase } from "../../utils/apiBase";
-import { contact } from "../../utils/analyticsTrackers";
+import { useAnalytics } from "../../analytics/AnalyticsProvider";
 import "./ContactsForm.css";
 
 const ContactsForm = () => {
+  const { track } = useAnalytics();
   const [formData, setFormData] = useState({
     name: "",
     contactMethod: "",
@@ -114,11 +115,11 @@ const ContactsForm = () => {
       
       if (data.success) {
         setSubmitStatus('success');
-        contact.formSubmit('success', formData.contactMethod);
+        track('form', 'submit', 'contact', { status: 'success', method: formData.contactMethod });
         setFormData({ name: "", contactMethod: "", contactValue: "", message: "", agreeToPrivacy: false });
       } else {
         setSubmitStatus('error');
-        contact.formSubmit('error', formData.contactMethod);
+        track('form', 'submit', 'contact', { status: 'error', method: formData.contactMethod });
         if (data.errors?.length) {
           const serverErrors = {};
           data.errors.forEach(error => {
@@ -127,9 +128,9 @@ const ContactsForm = () => {
           setErrors(serverErrors);
         }
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
-      contact.formSubmit('error', formData.contactMethod);
+      track('form', 'submit', 'contact', { status: 'error', method: formData.contactMethod });
     } finally {
       setIsSubmitting(false);
     }
