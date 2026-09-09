@@ -1,4 +1,4 @@
-import { FaPaperPlane, FaRegImages } from "react-icons/fa";
+import { FaPaperPlane, FaArrowRight } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { IoLogoGameControllerA } from "react-icons/io";
 import {
@@ -107,7 +107,7 @@ export const servicesSectionData = {
       button: {
         text: "Learn more",
         path: "/portfolio/imgbox-converter",
-        icon: FaRegImages,
+        icon: FaArrowRight,
       },
       imageSrc: imgboxCover,
       imageAlt: "ImgBox Converter",
