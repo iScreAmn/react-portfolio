@@ -4,18 +4,29 @@
  */
 import { supabase } from './supabase'
 
+function getSupabaseOrThrow() {
+  if (!supabase) {
+    throw new Error(
+      'Supabase не настроен. Добавьте VITE_SUPABASE_URL и VITE_SUPABASE_ANON_KEY в .env.'
+    )
+  }
+  return supabase
+}
+
 export async function signIn(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client.auth.signInWithPassword({ email, password })
   if (error) throw error
   return data
 }
 
-export const signOut = () => supabase.auth.signOut()
+export const signOut = () => getSupabaseOrThrow().auth.signOut()
 
 /** Сводка за период: тоталы, график по дням, топ страниц, источники, гео. */
 export async function getSummary(from, to = new Date()) {
+  const client = getSupabaseOrThrow()
   const fromTs = from ?? new Date(Date.now() - 30 * 24 * 3600 * 1000)
-  const { data, error } = await supabase.rpc('analytics_summary', {
+  const { data, error } = await client.rpc('analytics_summary', {
     from_ts: new Date(fromTs).toISOString(),
     to_ts: new Date(to).toISOString(),
   })
@@ -24,7 +35,8 @@ export async function getSummary(from, to = new Date()) {
 }
 
 export async function getDaily(limit = 60) {
-  const { data, error } = await supabase
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client
     .from('analytics_daily')
     .select('*')
     .order('day', { ascending: false })
@@ -37,7 +49,8 @@ export async function getDaily(limit = 60) {
 // PostgREST не сохраняет), поэтому сортировку задаём явно в каждом запросе.
 
 export async function getTopPages(limit = 20) {
-  const { data, error } = await supabase
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client
     .from('analytics_pages')
     .select('*')
     .order('pageviews', { ascending: false })
@@ -47,7 +60,8 @@ export async function getTopPages(limit = 20) {
 }
 
 export async function getSources(limit = 20) {
-  const { data, error } = await supabase
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client
     .from('analytics_sources')
     .select('*')
     .order('sessions', { ascending: false })
@@ -57,7 +71,8 @@ export async function getSources(limit = 20) {
 }
 
 export async function getDevices(limit = 20) {
-  const { data, error } = await supabase
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client
     .from('analytics_devices')
     .select('*')
     .order('sessions', { ascending: false })
@@ -67,7 +82,8 @@ export async function getDevices(limit = 20) {
 }
 
 export async function getGeo(limit = 50) {
-  const { data, error } = await supabase
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client
     .from('analytics_geo')
     .select('*')
     .order('sessions', { ascending: false })
@@ -78,8 +94,9 @@ export async function getGeo(limit = 50) {
 
 /** Список визитов за период. Одна строка = одна сессия. */
 export async function getSessionsList(from, to = new Date(), limit = 100) {
+  const client = getSupabaseOrThrow()
   const fromTs = from ?? new Date(Date.now() - 7 * 24 * 3600 * 1000)
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from('analytics_sessions')
     .select('*')
     .gte('started_at', new Date(fromTs).toISOString())
@@ -92,7 +109,8 @@ export async function getSessionsList(from, to = new Date(), limit = 100) {
 
 /** Лента событий одной сессии — для раскрытия карточки визита. */
 export async function getSessionEvents(sessionId, limit = 500) {
-  const { data, error } = await supabase
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client
     .from('analytics_events')
     .select('occurred_at, category, action, label, path, params')
     .eq('session_id', sessionId)
@@ -104,24 +122,27 @@ export async function getSessionEvents(sessionId, limit = 500) {
 
 /** Профиль вошедшего админа. Пустой ответ = строки в profiles нет. */
 export async function getMyProfile() {
-  const { data: auth } = await supabase.auth.getUser()
+  const client = getSupabaseOrThrow()
+  const { data: auth } = await client.auth.getUser()
   const userId = auth?.user?.id
   if (!userId) return null
 
-  const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).maybeSingle()
+  const { data, error } = await client.from('profiles').select('*').eq('id', userId).maybeSingle()
   if (error) throw error
   return data
 }
 
 /** Смена собственного пароля — работает через Supabase Auth, без обращения к profiles. */
 export async function changePassword(newPassword) {
-  const { error } = await supabase.auth.updateUser({ password: newPassword })
+  const client = getSupabaseOrThrow()
+  const { error } = await client.auth.updateUser({ password: newPassword })
   if (error) throw error
 }
 
 /** Последние сырые события — для отладки трекера. */
 export async function getRecentEvents(limit = 100) {
-  const { data, error } = await supabase
+  const client = getSupabaseOrThrow()
+  const { data, error } = await client
     .from('analytics_events')
     .select('occurred_at, session_id, category, action, label, path, country, device_type, browser')
     .order('occurred_at', { ascending: false })
@@ -132,6 +153,8 @@ export async function getRecentEvents(limit = 100) {
 
 /** Живая лента событий через Realtime (включи репликацию таблицы в дашборде). */
 export function subscribeToEvents(onEvent) {
+  if (!supabase) return () => {}
+
   const channel = supabase
     .channel('analytics-live')
     .on(

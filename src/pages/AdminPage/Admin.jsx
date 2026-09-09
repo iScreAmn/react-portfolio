@@ -14,6 +14,11 @@ export default function Admin() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
+    if (!supabase) {
+      setChecking(false);
+      return undefined;
+    }
+
     let active = true;
 
     supabase.auth
@@ -35,6 +40,19 @@ export default function Admin() {
       listener?.subscription?.unsubscribe();
     };
   }, []);
+
+  if (!supabase) {
+    return (
+      <div className="admin-gate">
+        <div className="admin-gate__card">
+          <h1 className="admin-gate__title">Admin Panel</h1>
+          <p className="admin-gate__err">
+            Supabase не настроен. Добавьте `VITE_SUPABASE_URL` и `VITE_SUPABASE_ANON_KEY` в `.env`.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const tryAuth = useCallback(async () => {
     const mail = email.trim();
