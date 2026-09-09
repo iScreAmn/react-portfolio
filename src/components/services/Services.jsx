@@ -1,18 +1,17 @@
 import "./Services.css";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import SectionTitle from "../section-title/SectionTitle";
 import { useLocaleHomeData } from "../../hooks/useLocaleHomeData";
 
 const Services = () => {
   const { servicesSectionData } = useLocaleHomeData();
   const navigate = useNavigate();
-  const { gameSpotlight } = servicesSectionData;
-  const PlayIcon = gameSpotlight.playButton.icon;
-
-  const handlePlay = () => {
-    navigate(gameSpotlight.playButton.path);
-  };
+  const { slides } = servicesSectionData;
 
   return (
     <section className="services section" id="services">
@@ -23,61 +22,52 @@ const Services = () => {
         />
         <div className="services__wrapper">
           <motion.div
-            className="services-app"
+            className="services-slider"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <motion.div 
-              className="services-app-content"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              slidesPerView={1}
+              spaceBetween={30}
+              loop={true}
+              grabCursor={true}
+              autoplay={{
+                delay: 10000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              pagination={{ clickable: true }}
+              className="services-swiper"
             >
-              <motion.h4
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-              >
-                {gameSpotlight.eyebrow}
-              </motion.h4>
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-              >
-                {gameSpotlight.subtitle}
-              </motion.h3>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-              >
-                {gameSpotlight.title}
-              </motion.h2>
-              <motion.button
-                type="button"
-                className="inner-info-link game-app"
-                onClick={handlePlay}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
-              >
-                {gameSpotlight.playButton.text} <PlayIcon />
-              </motion.button>
-            </motion.div>
-            <div className="services-app-img">
-              <img
-                src={gameSpotlight.imageSrc}
-                alt={gameSpotlight.imageAlt}
-              />
-            </div>
+              {slides.map((slide) => {
+                const ButtonIcon = slide.button.icon;
+
+                return (
+                  <SwiperSlide key={slide.id}>
+                    <div className="services-app">
+                      <div className="services-app-content">
+                        {slide.eyebrow && <h4>{slide.eyebrow}</h4>}
+                        <h3>{slide.subtitle}</h3>
+                        <h2>{slide.title}</h2>
+                        <button
+                          type="button"
+                          className="inner-info-link game-app"
+                          onClick={() => navigate(slide.button.path)}
+                        >
+                          {slide.button.text} <ButtonIcon />
+                        </button>
+                      </div>
+                      <div className="services-app-img">
+                        <img src={slide.imageSrc} alt={slide.imageAlt} />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </motion.div>
         </div>
       </div>

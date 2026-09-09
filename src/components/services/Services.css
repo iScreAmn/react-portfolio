@@ -65,7 +65,7 @@
   }
 
   .game-app svg {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .game-app {
@@ -112,7 +112,7 @@
   }
 
   .game-app svg {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .game-app {
@@ -186,7 +186,7 @@
 }
 
 .game-app svg {
-  font-size: 26px;
+  font-size: 18px;
   animation: shake 2s infinite;
 }
 
@@ -362,4 +362,170 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+/* Слайдер проектов "в работе" */
+.services__wrapper,
+.services-slider {
+  width: 100%;
+}
+
+.services-slider .services-swiper {
+  --swiper-pagination-bottom: 8px;
+  --swiper-pagination-color: var(--second-color);
+  --swiper-pagination-bullet-inactive-color: var(--swiper-bullet-color);
+  width: 100%;
+  padding-bottom: 45px;
+}
+
+.services-swiper .swiper-slide {
+  display: flex;
+  height: auto;
+}
+
+.services-swiper .services-app {
+  align-items: stretch;
+  height: 100%;
+  overflow: hidden;
+}
+
+.services-swiper .services-app-content {
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.services-swiper .services-app-img {
+  display: flex;
+}
+
+.services-swiper .services-app-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.services-swiper .swiper-pagination-bullet {
+  background-color: var(--swiper-bullet-color);
+  opacity: 0.6;
+  transition: 0.3s linear;
+}
+
+.services-swiper .swiper-pagination-bullet-active {
+  background-color: var(--second-color);
+  opacity: 1;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Появление контента активного слайда */
+.services-swiper .swiper-slide-active .services-app-content > * {
+  animation: servicesContentIn 0.6s ease-out backwards;
+}
+
+.services-swiper .swiper-slide-active .services-app-content > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.services-swiper .swiper-slide-active .services-app-content > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.services-swiper .swiper-slide-active .services-app-content > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.services-swiper .swiper-slide-active .services-app-content > *:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes servicesContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-slider .services-swiper {
+    padding-bottom: 36px;
+  }
+
+  .services-swiper .services-app {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    padding: 0;
+  }
+
+  .services-swiper .services-app-img {
+    width: 100%;
+    order: 1;
+  }
+
+  .services-swiper .services-app-img img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .services-swiper .services-app-content {
+    order: 2;
+    gap: 6px;
+    padding: 22px 18px 26px;
+    text-align: center;
+  }
+
+  .services-swiper .services-app-content h4 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--third-color);
+  }
+
+  .services-swiper .services-app-content h3 {
+    font-size: 18px;
+  }
+
+  .services-swiper .services-app-content h2 {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .services-swiper .game-app {
+    margin: 16px auto 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-swiper .services-app-content {
+    padding: 18px 14px 22px;
+  }
+
+  .services-swiper .services-app-content h3 {
+    font-size: 16px;
+  }
+
+  .services-swiper .services-app-content h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  .services-swiper .services-app-content h4 {
+    font-size: 12px;
+  }
+
+  .services-swiper .services-app-content h3 {
+    font-size: 15px;
+  }
+
+  .services-swiper .services-app-content h2 {
+    font-size: 24px;
+  }
 }

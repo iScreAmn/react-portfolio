@@ -1,4 +1,4 @@
-import { FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane, FaRegImages } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { IoLogoGameControllerA } from "react-icons/io";
 import {
@@ -8,6 +8,7 @@ import {
   client4,
   client5,
   flameJumper,
+  imgboxCover,
 } from "../../assets/images";
 
 export const navItems = [
@@ -84,18 +85,34 @@ export const featuredPortfolioSectionData = {
 export const servicesSectionData = {
   sectionTitle: "Recent Project",
   sectionSubtitle: "Recent Project",
-  gameSpotlight: {
-    eyebrow: "Check it out",
-    subtitle: "Game developed by me",
-    title: "Flame Jumper",
-    playButton: {
-      text: "Let's Play",
-      path: "/game",
-      icon: IoLogoGameControllerA,
+  slides: [
+    {
+      id: "flame-jumper",
+      eyebrow: "Check it out",
+      subtitle: "Game developed by me",
+      title: "Flame Jumper",
+      button: {
+        text: "Let's Play",
+        path: "/game",
+        icon: IoLogoGameControllerA,
+      },
+      imageSrc: flameJumper,
+      imageAlt: "Flame Jumper",
     },
-    imageSrc: flameJumper,
-    imageAlt: "Flame Jumper",
-  },
+    {
+      id: "imgbox-converter",
+      eyebrow: "Check it out",
+      subtitle: "App developed by me",
+      title: "ImgBox Converter",
+      button: {
+        text: "Learn more",
+        path: "/portfolio/imgbox-converter",
+        icon: FaRegImages,
+      },
+      imageSrc: imgboxCover,
+      imageAlt: "ImgBox Converter",
+    },
+  ],
 };
 
 export const brandsSectionData = {
