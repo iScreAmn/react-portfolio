@@ -224,30 +224,30 @@ const ProjectPage = () => {
               <IoIosClose />
             </button>
 
-            <button
-              type="button"
-              className="gallery-modal__nav-prev"
-              onClick={showPrev}
-              aria-label="Previous image"
-            >
-              <MdKeyboardArrowLeft />
-            </button>
-
             <div className="gallery-modal__slide">
               <img
                 src={gallery[currentIndex]}
                 alt={`${project.title} full ${currentIndex + 1}`}
               />
-            </div>
 
-            <button
-              type="button"
-              className="gallery-modal__nav-next"
-              onClick={showNext}
-              aria-label="Next image"
-            >
-              <MdKeyboardArrowRight />
-            </button>
+              <button
+                type="button"
+                className="gallery-modal__nav-prev"
+                onClick={showPrev}
+                aria-label="Previous image"
+              >
+                <MdKeyboardArrowLeft />
+              </button>
+
+              <button
+                type="button"
+                className="gallery-modal__nav-next"
+                onClick={showNext}
+                aria-label="Next image"
+              >
+                <MdKeyboardArrowRight />
+              </button>
+            </div>
 
             <div className="gallery-modal__thumbnails">
               {gallery.map((image, idx) => (
