@@ -282,6 +282,7 @@
   max-width: 100%;
   max-height: calc(92vh - 160px);
   object-fit: contain;
+  border-radius: 12px;
 }
 
 .gallery-modal__nav-prev,
