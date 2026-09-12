@@ -59,7 +59,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
-      <SidePanel isMenuOpen={isMenuOpen} />
+      <SidePanel />
     </>
   );
 }

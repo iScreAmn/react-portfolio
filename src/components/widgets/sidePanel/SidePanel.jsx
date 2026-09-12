@@ -1,29 +1,36 @@
 import { useState, useEffect } from "react";
-import { FaArrowUp, FaSun, FaMoon } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 import "./SidePanel.css";
 
-const SidePanel = ({ isMenuOpen }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [theme, setTheme] = useState("light");
-
-  // Инициализация темы
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("saved-theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.body.classList.toggle("dark-theme", savedTheme === "dark");
-    }
-  }, []);
+const SidePanel = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
 
   // Обработка скролла
   const handleScroll = () => {
-    setIsVisible(window.scrollY > 300);
+    setIsScrolled(window.scrollY > 300);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Кнопка прижата к низу экрана, поэтому на футере она бы легла прямо поверх
+  // его содержимого — прячем её, как только футер появляется в кадре.
+  useEffect(() => {
+    const footer = document.querySelector(".footer");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(([entry]) =>
+      setIsFooterVisible(entry.isIntersecting)
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  const isVisible = isScrolled && !isFooterVisible;
 
   // Прокрутка к началу страницы
   const scrollToTop = () => {
@@ -33,38 +40,15 @@ const SidePanel = ({ isMenuOpen }) => {
     });
   };
 
-  // Переключение темы
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.body.classList.toggle("dark-theme", newTheme === "dark");
-    localStorage.setItem("saved-theme", newTheme);
-  };
-
-  // Скрываем панель если открыто мобильное меню
-  if (isMenuOpen) {
-    return null;
-  }
-
   return (
-    <>
-      <button
-        className={`side-panel-btn scroll-btn ${isVisible ? "visible" : ""}`}
-        onClick={scrollToTop}
-        aria-label="Прокрутить к началу страницы"
-      >
-        <FaArrowUp />
-      </button>
-      
-      <button
-        className="side-panel-btn theme-btn"
-        onClick={toggleTheme}
-        aria-label={theme === "light" ? "Переключить на темную тему" : "Переключить на светлую тему"}
-      >
-        {theme === "light" ? <FaMoon /> : <FaSun />}
-      </button>
-    </>
+    <button
+      className={`side-panel-btn scroll-btn ${isVisible ? "visible" : ""}`}
+      onClick={scrollToTop}
+      aria-label="Прокрутить к началу страницы"
+    >
+      <FaArrowUp />
+    </button>
   );
 };
 
-export default SidePanel; 
+export default SidePanel;

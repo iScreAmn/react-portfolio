@@ -1,23 +1,5 @@
-.side-panel {
-  position: fixed;
-  right: 0;
-  top: 30%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  z-index: 11;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-.side-panel.visible {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: all;
-}
-
+/* Кнопка «наверх» прижата к нижнему правому углу и выезжает из-за края экрана,
+   когда страница прокручена. Переключатель темы живёт в меню навигации. */
 .side-panel-btn {
   position: fixed;
   right: 0;
@@ -53,17 +35,12 @@
 }
 
 .side-panel-btn:hover {
-  /* transform: translateX(-2px); */
   box-shadow: var(--box-shadow), 0 4px 12px rgba(0, 0, 0, 0.15);
   background: var(--bg-transparent-color-02);
 }
 
 .side-panel-btn:hover::before {
   opacity: 1;
-}
-
-.side-panel-btn:active {
-  transform: translateX(0) translateY(-50%);
 }
 
 .side-panel-btn svg {
@@ -76,20 +53,18 @@
   transform: scale(1.1);
 }
 
-/* Специфичные стили для кнопки прокрутки */
 .scroll-btn {
-  top: 50%;
-  background: var(--bg-transparent-color-01);
+  bottom: 20px;
   color: #fff;
   opacity: 0;
-  transform: translateX(100%) translateY(-50%);
+  transform: translateX(100%);
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scroll-btn.visible {
   opacity: 1;
-  transform: translateX(0) translateY(-50%);
+  transform: translateX(0);
   pointer-events: all;
 }
 
@@ -97,35 +72,8 @@
   background: var(--second-color-hover, #0056b3);
 }
 
-/* Специфичные стили для кнопки темы */
-.theme-btn {
-  top: calc(50% + 60px);
-  opacity: 1;
-  transform: translateX(0) translateY(-50%);
-  pointer-events: all;
-  background: var(--bg-transparent-color-01);
-}
-
-.theme-btn:hover {
-  background: var(--second-color-hover, #ffa500);
-}
-
-/* Адаптивность для планшетов */
+/* Адаптивность */
 @media (max-width: 1024px) {
-  .scroll-btn {
-    top: 50%;
-    transform: translateX(100%) translateY(-50%);
-  }
-  
-  .scroll-btn.visible {
-    transform: translateX(0) translateY(-50%);
-  }
-  
-  .theme-btn {
-    top: calc(50% + 58px);
-    transform: translateX(0) translateY(-50%);
-  }
-  
   .side-panel-btn {
     width: 48px;
     height: 48px;
@@ -133,22 +81,7 @@
   }
 }
 
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
-  .scroll-btn {
-    top: 50%;
-    transform: translateX(100%) translateY(-50%);
-  }
-  
-  .scroll-btn.visible {
-    transform: translateX(0) translateY(-50%);
-  }
-  
-  .theme-btn {
-    top: calc(50% + 55px);
-    transform: translateX(0) translateY(-50%);
-  }
-  
   .side-panel-btn {
     width: 45px;
     height: 45px;
@@ -157,22 +90,7 @@
   }
 }
 
-/* Адаптивность для маленьких планшетов и больших телефонов */
 @media (max-width: 600px) {
-  .scroll-btn {
-    top: 50%;
-    transform: translateX(100%) translateY(-50%);
-  }
-  
-  .scroll-btn.visible {
-    transform: translateX(0) translateY(-50%);
-  }
-  
-  .theme-btn {
-    top: calc(50% + 52px);
-    transform: translateX(0) translateY(-50%);
-  }
-  
   .side-panel-btn {
     width: 42px;
     height: 42px;
@@ -180,22 +98,7 @@
   }
 }
 
-/* Адаптивность для мобильных телефонов */
 @media (max-width: 480px) {
-  .scroll-btn {
-    top: 50%;
-    transform: translateX(100%) translateY(-50%);
-  }
-  
-  .scroll-btn.visible {
-    transform: translateX(0) translateY(-50%);
-  }
-  
-  .theme-btn {
-    top: calc(50% + 50px);
-    transform: translateX(0) translateY(-50%);
-  }
-  
   .side-panel-btn {
     width: 40px;
     height: 40px;
@@ -204,76 +107,17 @@
   }
 }
 
-/* Адаптивность для очень маленьких экранов */
 @media (max-width: 360px) {
-  .scroll-btn {
-    top: 50%;
-    transform: translateX(100%) translateY(-50%);
-  }
-  
-  .scroll-btn.visible {
-    transform: translateX(0) translateY(-50%);
-  }
-  
-  .theme-btn {
-    top: calc(50% + 46px);
-    transform: translateX(0) translateY(-50%);
-  }
-  
   .side-panel-btn {
     width: 36px;
     height: 36px;
     font-size: 14px;
-    border-radius: 3px 0 0 3px;
   }
-}
-
-/* Адаптивность для ландшафтной ориентации на мобильных */
-@media (max-width: 768px) and (orientation: landscape) {
-  .scroll-btn {
-    top: 50%;
-    transform: translateX(100%) translateY(-50%);
-  }
-  
-  .scroll-btn.visible {
-    transform: translateX(0) translateY(-50%);
-  }
-  
-  .theme-btn {
-    top: calc(50% + 50px);
-    transform: translateX(0) translateY(-50%);
-  }
-  
-  .side-panel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-  }
-}
-
-/* Анимация появления */
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.side-panel.visible {
-  animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Поддержка плавной прокрутки */
-html {
-  scroll-behavior: smooth;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
-} 
+}
