@@ -12,13 +12,66 @@ import {
 } from "../../assets/images";
 
 export const navItems = [
-  { id: "home", label: "home", type: "section" },
-  { id: "about", label: "about", type: "route", path: "/about" },
-  { id: "services", label: "services", type: "route", path: "/services" },
-  { id: "portfolio", label: "portfolio", type: "route", path: "/portfolio" },
-  { id: "hobby", label: "hobby", type: "route", path: "/hobby" },
-  { id: "contact", label: "contact", type: "route", path: "/contacts" },
+  { id: "home", label: "home", type: "section", hint: "Intro and quick pitch" },
+  {
+    id: "about",
+    label: "about",
+    type: "route",
+    path: "/about",
+    hint: "Background and stack",
+  },
+  {
+    id: "services",
+    label: "services",
+    type: "route",
+    path: "/services",
+    hint: "What I can build for you",
+  },
+  {
+    id: "portfolio",
+    label: "portfolio",
+    type: "route",
+    path: "/portfolio",
+    hint: "Selected projects",
+  },
+  {
+    id: "hobby",
+    label: "hobby",
+    type: "route",
+    path: "/hobby",
+    hint: "Life beyond the code",
+  },
+  {
+    id: "contact",
+    label: "contact",
+    type: "route",
+    path: "/contacts",
+    hint: "Let's get in touch",
+  },
 ];
+
+export const navMenu = {
+  open: "Open the menu",
+  close: "Close the menu",
+  panelLabel: "Main menu",
+  sectionsTitle: "Navigation",
+  settingsTitle: "Settings",
+  theme: {
+    label: "Theme",
+    dark: "Dark",
+    light: "Light",
+    darkAria: "Switch to the dark theme",
+    lightAria: "Switch to the light theme",
+  },
+  language: {
+    label: "Language",
+    options: { en: "EN", ru: "RU" },
+    switchTo: {
+      en: "Switch to English",
+      ru: "Switch to Russian",
+    },
+  },
+};
 
 export const homeData = {
   greeting: "Hey, I am D.J",

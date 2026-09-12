@@ -75,9 +75,14 @@ export const skills = [
   { skill: "Next.js", level: "" },
   { skill: "Node.js", level: "" },
   { skill: "Express.js", level: "" },
-  { skill: "CSS", level: "" },
+  { skill: "Tailwind CSS", level: "" },
   { skill: "Vue", level: "" },
   { skill: "TypeScript", level: "" },
+  { skill: "VPS", level: "" },
+  { skill: "Linux", level: "" },
+  { skill: "Docker", level: "" },
+  { skill: "Nginx", level: "" },
+  { skill: "PostgreSQL", level: "" },
   { skill: "GIT", level: "" },
   { skill: "AI Automation", level: "" },
 ];
@@ -85,7 +90,7 @@ export const skills = [
 export const education = [
   {
     year: "2024-2025",
-    degree: "Backend & Docker.",
+    degree: "Backend & Docker",
     institution: "Microsoft Academy",
   },
   {

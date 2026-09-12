@@ -14,15 +14,6 @@ const AnalyticsContext = createContext({
   setEnabled: setAnalyticsEnabled,
 })
 
-/**
- * Оборачивает приложение ВНУТРИ роутера:
- *
- *   <BrowserRouter>
- *     <AnalyticsProvider>
- *       <App />
- *     </AnalyticsProvider>
- *   </BrowserRouter>
- */
 export function AnalyticsProvider({ children }) {
   const location = useLocation()
   const lastPath = useRef(null)
@@ -33,7 +24,7 @@ export function AnalyticsProvider({ children }) {
 
   useEffect(() => {
     const path = location.pathname + location.search
-    if (lastPath.current === path) return // StrictMode в dev монтирует дважды
+    if (lastPath.current === path) return
     lastPath.current = path
     trackPageview(path)
   }, [location.pathname, location.search])
@@ -46,21 +37,9 @@ export function AnalyticsProvider({ children }) {
     </AnalyticsContext.Provider>
   )
 }
-
-/**
- * Хук для событий из компонентов:
- *   const { track } = useAnalytics()
- *   <button onClick={() => track('cta', 'click', 'hire-me', { block: 'hero' })}>
- */
 export function useAnalytics() {
   return useContext(AnalyticsContext)
 }
-
-/**
- * Отмечает, что блок реально доскроллили и увидели.
- *   const ref = useTrackVisible('projects')
- *   <section ref={ref}>…</section>
- */
 export function useTrackVisible(sectionName, threshold = 0.4) {
   const ref = useRef(null)
   const fired = useRef(false)

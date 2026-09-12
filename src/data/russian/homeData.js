@@ -12,13 +12,66 @@ import {
 } from "../../assets/images";
 
 export const navItems = [
-  { id: "home", label: "главная", type: "section" },
-  { id: "about", label: "обо мне", type: "route", path: "/about" },
-  { id: "services", label: "услуги", type: "route", path: "/services" },
-  { id: "portfolio", label: "портфолио", type: "route", path: "/portfolio" },
-  { id: "hobby", label: "хобби", type: "route", path: "/hobby" },
-  { id: "contact", label: "контакты", type: "route", path: "/contacts" },
+  { id: "home", label: "главная", type: "section", hint: "Коротко обо всём" },
+  {
+    id: "about",
+    label: "обо мне",
+    type: "route",
+    path: "/about",
+    hint: "Опыт и стек",
+  },
+  {
+    id: "services",
+    label: "услуги",
+    type: "route",
+    path: "/services",
+    hint: "Что я могу сделать",
+  },
+  {
+    id: "portfolio",
+    label: "портфолио",
+    type: "route",
+    path: "/portfolio",
+    hint: "Избранные проекты",
+  },
+  {
+    id: "hobby",
+    label: "хобби",
+    type: "route",
+    path: "/hobby",
+    hint: "Жизнь вне кода",
+  },
+  {
+    id: "contact",
+    label: "контакты",
+    type: "route",
+    path: "/contacts",
+    hint: "Связаться со мной",
+  },
 ];
+
+export const navMenu = {
+  open: "Открыть меню",
+  close: "Закрыть меню",
+  panelLabel: "Главное меню",
+  sectionsTitle: "Навигация",
+  settingsTitle: "Настройки",
+  theme: {
+    label: "Тема",
+    dark: "Тёмная",
+    light: "Светлая",
+    darkAria: "Переключить на тёмную тему",
+    lightAria: "Переключить на светлую тему",
+  },
+  language: {
+    label: "Язык",
+    options: { en: "EN", ru: "RU" },
+    switchTo: {
+      en: "Переключить на английский",
+      ru: "Переключить на русский",
+    },
+  },
+};
 
 export const homeData = {
   greeting: "Привет, я Дмитрий",
