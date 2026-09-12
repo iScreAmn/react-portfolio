@@ -5,6 +5,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { getApiBase } from "../../utils/apiBase";
 import { useLocale } from "../../context/LocaleContext";
 import { calculatorData } from "../../data/calculatorData";
+import { logo } from "../../assets/images";
 import SectionTitle from "../section-title/SectionTitle";
 import "./Calculator.css";
 
@@ -395,18 +396,7 @@ const Calculator = () => {
                 {t.ctaButton}
               </button>
             </div>
-            <div className="cta-decoration">
-              <svg viewBox="0 0 200 200" className="cta-svg">
-                <path
-                  d="M50,100 Q80,50 110,80 T170,100"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.3"
-                />
-                <circle cx="150" cy="80" r="8" fill="currentColor" opacity="0.4" />
-              </svg>
-            </div>
+            <img src={logo} alt="" aria-hidden className="cta-decoration" />
           </motion.div>
         </div>
       </div>
